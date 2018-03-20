@@ -14,7 +14,7 @@ const routes: Routes = [
     },
     {
       path: 'input-business-user-info',
-            component: InputLoanInfoComponent,
+            component: InputBusinessUserInfoComponent,
     },
     {
       path: 'input-private-user-info',
