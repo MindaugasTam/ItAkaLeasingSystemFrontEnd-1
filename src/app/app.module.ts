@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { InputLoanInfoComponent } from './input-loan-info/input-loan-info.component';
 import { InputBusinessUserInfoComponent } from './input-business-user-info/input-business-user-info.component';
@@ -22,7 +21,8 @@ import { PrivateUserLoanReportComponent } from './private-user-loan-report/priva
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
