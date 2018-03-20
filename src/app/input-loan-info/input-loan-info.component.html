@@ -1,22 +1,21 @@
-<div class="form-group">
-  <label for="customerType">Customer Type</label>
-  <select class="form-control" id="customerType">
-    <option  name="customerType">Test</option>
-  </select>
- 
- </div>
- 
- <div class="form-group">
-  <label for="assetType">Asset Type</label>
-  <input type="text"  class="form-control" id="assetType"
-         name="assetType">
- </div>
- <div class="form-group">
-  <label for="carBrand">Car brand</label>
-  <select class="form-control" id="carBrand">
-        <option name="carBrand">CarModel</option>
-  </select> 
- </div>
+<form [formGroup]="loanForm" (ngSubmit)="send()">
+        <div class="form-group">
+                <label for="customerType">Customer Type</label>
+                <select class="form-control" id="customerType" formControlName="customerType">
+                        <option  name="Private">Private</option>
+                        <option  name="Business">Business</option>
+                </select>
+        </div>
+        <div class="form-group">
+                <label for="assetType">Asset Type</label>
+                <input type="text"  class="form-control" id="assetType" name="assetType" formControlName="assetType">
+        </div>
+        <div class="form-group">
+                <label for="carBrand">Car brand</label>
+                <select class="form-control" id="carBrand" formControlName="carBrand">
+                        <option name="carBrand">CarModel</option>
+                </select> 
+         </div>
  
  <div class="form-group">
   <label for="carModel">Car Model</label>
@@ -68,4 +67,7 @@
   <select class="form-control" id="paymentDay">
         <option name="paymentDay"></option>
       </select>
- </div>
+</div>
+<button class="btn btn-danger" type="reset">Reset</button>
+<button class="btn btn-primary" type="submit">Next</button>
+</form>

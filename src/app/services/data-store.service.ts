@@ -19,4 +19,5 @@ export class DataStoreService {
   };
 
   getLeasingInfo(){return this.leasingInfo};
+  pushData(){}
 }
