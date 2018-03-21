@@ -5,6 +5,7 @@
                         <option  name="Private">Private</option>
                         <option  name="Business">Business</option>
                 </select>
+                <small *ngIf="customerType.invalid&&ng-touched" class="form-text text-danger">Customer type is required</small>
         </div>
         <div class="form-group">
                 <label for="assetType">Asset Type</label>
