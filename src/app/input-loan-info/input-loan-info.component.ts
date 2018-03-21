@@ -8,7 +8,7 @@ import {  Router, RouterModule } from '@angular/router';
   providers: [DataStoreService, RouterModule],
   templateUrl: './input-loan-info.component.html',
   styleUrls: ['./input-loan-info.component.css'],
-  styles:['input.ng-invalid {border-color:red}']
+  styles:['input.ng-invalid {border:3px solid red}']
 })
 export class InputLoanInfoComponent implements OnInit {
 
@@ -21,8 +21,8 @@ export class InputLoanInfoComponent implements OnInit {
         carBrand:['Not selected', Validators.required],
         carModel:['Not selected', Validators.required],
         year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4), Validators.max(new Date().getFullYear())]],
-        enginePower:[1, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(1)]],
-        assetPrice:[0, [Validators.required, Validators.min(0)]],
+        enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(0)]],
+        assetPrice:[5000, [Validators.required, Validators.min(5000)]],
         paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100)]],
         leasePeriod:[12, Validators.required],
         margin:[10, Validators.required],
