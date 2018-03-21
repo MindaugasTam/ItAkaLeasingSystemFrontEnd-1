@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InputLoanInfoComponent } from './input-loan-info.component';
 
 describe('InputLoanInfoComponent', () => {

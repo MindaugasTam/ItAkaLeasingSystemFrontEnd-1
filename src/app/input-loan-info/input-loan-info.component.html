@@ -1,3 +1,73 @@
-<p>
-  input-loan-info works!
-</p>
+<form [formGroup]="loanForm" (ngSubmit)="send()">
+        <div class="form-group">
+                <label for="customerType">Customer Type</label>
+                <select class="form-control" id="customerType" formControlName="customerType">
+                        <option  name="Private">Private</option>
+                        <option  name="Business">Business</option>
+                </select>
+        </div>
+        <div class="form-group">
+                <label for="assetType">Asset Type</label>
+                <input type="text"  class="form-control" id="assetType" name="assetType" formControlName="assetType">
+        </div>
+        <div class="form-group">
+                <label for="carBrand">Car brand</label>
+                <select class="form-control" id="carBrand" formControlName="carBrand">
+                        <option name="carBrand">CarModel</option>
+                </select> 
+         </div>
+ 
+ <div class="form-group">
+  <label for="carModel">Car Model</label>
+  <input type="text"  class="form-control" id="carModel"
+         name="carModel">
+ </div>
+ <div>
+  <label for="year">Year</label>
+  <input type="text" class="form-control" id="year"
+         name="year">
+ </div>
+ <div>
+  <label for="enginePower">Engine power</label>
+  <input type="text" class="form-control" id="enginePower"
+         name="enginePower">
+ </div>
+ <div>
+  <label for="assetPrice">Asset price</label>
+  <input type="text" class="form-control" id="assetPrice"
+         name="assetPrice">
+ </div>
+ <div>
+  <label for="paymentPercentage">Advance payment percentage</label>
+  <input type="text" class="form-control" id="paymentPercentage"
+         name="paymentPercentage">
+ </div>
+ <div>
+  <label for="paymentAmount">Advanced payment amount</label>
+  <input type="text" class="form-control" id="paymentAmount"
+         name="paymentAmount">
+ </div>
+ <div>
+  <label for="leasePeriod">Lease period</label>
+  <input type="text" class="form-control" id="leasePeriod"
+         name="leasePeriod">
+ </div>
+ <div>
+  <label for="margin">Margin</label>
+  <input type="text" class="form-control" id="margin"
+         name="margin">
+ </div>
+ <div>
+  <label for="contractFee">Contract fee</label>
+  <input type="text" class="form-control" id="contractFee"
+         name="contractFee">
+ </div>
+ <div>
+  <label for="paymentDay">Payment day</label>
+  <select class="form-control" id="paymentDay">
+        <option name="paymentDay"></option>
+      </select>
+</div>
+<button class="btn btn-danger" type="reset">Reset</button>
+<button class="btn btn-primary" type="submit">Next</button>
+</form>
