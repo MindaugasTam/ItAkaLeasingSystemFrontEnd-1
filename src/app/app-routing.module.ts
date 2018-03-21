@@ -9,7 +9,7 @@ import { PrivateUserLoanReportComponent } from './private-user-loan-report/priva
 
 const routes: Routes = [
     {
-      path: '',
+      path: 'input-loan-info',
             component: InputLoanInfoComponent,
     },
     {
