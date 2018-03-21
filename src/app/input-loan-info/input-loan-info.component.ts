@@ -22,12 +22,12 @@ export class InputLoanInfoComponent implements OnInit {
         carModel:['Not selected', Validators.required],
         year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4), Validators.max(new Date().getFullYear())]],
         enginePower:[1, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(1)]],
-        assetPrice:[0, Validators.required, Validators.min[0]],
+        assetPrice:[0, [Validators.required, Validators.min(0)]],
         paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100)]],
-        leasePeriod:[null, Validators.required],
-        margin:[null, Validators.required],
-        contractFee:[null, Validators.required],
-        paymentDay:[null, Validators.required]
+        leasePeriod:[12, Validators.required],
+        margin:[10, Validators.required],
+        contractFee:[200, Validators.required],
+        paymentDay:[15, Validators.required]
       })
 
     }
