@@ -13,14 +13,15 @@
         <div class="form-group">
                 <label for="carBrand">Car brand</label>
                 <select class="form-control" id="carBrand" formControlName="carBrand">
-                        <option name="carBrand">CarModel</option>
+                        <option name="carBrand">Audi</option>
+                        <option name="carBrand">VW</option>
+                        <option name="carBrand">BMW</option>
                 </select> 
          </div>
  
  <div class="form-group">
   <label for="carModel">Car Model</label>
-  <input type="text"  class="form-control" id="carModel"
-         name="carModel">
+  <input type="text"  class="form-control" id="carModel" name="carModel" formControlName="carModel">
  </div>
  <div>
   <label for="year">Year</label>
@@ -29,43 +30,37 @@
  </div>
  <div>
   <label for="enginePower">Engine power</label>
-  <input type="text" class="form-control" id="enginePower"
-         name="enginePower">
+  <input type="text" class="form-control" id="enginePower" name="enginePower" formControlName="enginePower">
  </div>
  <div>
   <label for="assetPrice">Asset price</label>
-  <input type="text" class="form-control" id="assetPrice"
-         name="assetPrice">
+  <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
  </div>
  <div>
   <label for="paymentPercentage">Advance payment percentage</label>
-  <input type="text" class="form-control" id="paymentPercentage"
-         name="paymentPercentage">
+  <input type="text" class="form-control" id="paymentPercentage" name="paymentPercentage" formControlName="paymentPercentage">
  </div>
  <div>
   <label for="paymentAmount">Advanced payment amount</label>
-  <input type="text" class="form-control" id="paymentAmount"
-         name="paymentAmount">
+  <input type="text" class="form-control" id="paymentAmount" name="paymentAmount" formControlName="paymentAmount">
  </div>
  <div>
   <label for="leasePeriod">Lease period</label>
-  <input type="text" class="form-control" id="leasePeriod"
-         name="leasePeriod">
+  <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
  </div>
  <div>
   <label for="margin">Margin</label>
-  <input type="text" class="form-control" id="margin"
-         name="margin">
+  <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
  </div>
  <div>
   <label for="contractFee">Contract fee</label>
-  <input type="text" class="form-control" id="contractFee"
-         name="contractFee">
+  <input type="text" class="form-control" id="contractFee" name="contractFee" formControlName="contractFee">
  </div>
  <div>
   <label for="paymentDay">Payment day</label>
-  <select class="form-control" id="paymentDay">
-        <option name="paymentDay"></option>
+  <select class="form-control" id="paymentDay" formControlName="paymentDay">
+        <option name="paymentDay">15</option>
+        <option name="paymentDay">30</option>
       </select>
 </div>
 <button class="btn btn-danger" type="reset">Reset</button>

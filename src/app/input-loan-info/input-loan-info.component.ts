@@ -15,9 +15,18 @@ export class InputLoanInfoComponent implements OnInit {
 
     constructor(fb: FormBuilder, private router: Router ){
       this.loanForm = fb.group({
-        customerType:null, //<-- customerType:[null, Validators.required]
+        customerType:null, //<--[null, Validators.required]
         assetType:null,
-        carBrand:null
+        carBrand:null,
+        carModel:null,
+        enginePowe:null,
+        assetPrice:null,
+        paymentPercentage:null,
+        paymentAmount:null,
+        leasePeriod:null,
+        margin:null,
+        contractFee:null,
+        paymentDay:null
       })
     }
 
