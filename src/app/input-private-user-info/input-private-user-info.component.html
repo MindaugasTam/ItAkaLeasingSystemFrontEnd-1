@@ -18,7 +18,7 @@
     <div class="form-group">
       <label for="privateID">ID code</label>
       <input type="text" placeholder = "Private ID" class="form-control" id="privateId" formControlName ="privateID">
-      <small *ngIf="privateID.invalid&&privateID.dirty&&privateID" class="form-text text-danger">
+      <small *ngIf="privateID.invalid&&privateID.dirty" class="form-text text-danger">
         Private customer ID must not be shorter than 11 numbers
       </small>
     </div>

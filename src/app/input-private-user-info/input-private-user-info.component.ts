@@ -19,9 +19,9 @@ export class InputPrivateUserInfoComponent implements OnInit {
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       privateID: ["", [Validators.required, Validators.minLength(11)]],
-      email: ["", Validators.required, Validators.email],
+      email: [null, [Validators.required, Validators.email]],
       phoneNumber: ["", Validators.required],
-      adress: ["", Validators.required],
+      adress: ["", Validators.required]
     })
   }
 
@@ -66,5 +66,4 @@ export class InputPrivateUserInfoComponent implements OnInit {
   ngOnInit() {
     let dataStore = new DataStoreService();
   }
-
 }
