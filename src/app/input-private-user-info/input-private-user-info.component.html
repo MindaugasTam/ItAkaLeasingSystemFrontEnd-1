@@ -1,30 +1,30 @@
+<form [formGroup]="privateUserInfoForm" (ngSubmit)="send()">
 <div class="container">
   <h1>Please write needed information below</h1>
-  <form>
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" required>
+      <input type="text" class="form-control" id="firstName" formControlName = "firstName" required>
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName">
+      <input type="text" class="form-control" id="lastName" formControlName ="lastName">
     </div>
     <div class="form-group">
       <label for="privateID">ID code</label>
-      <input type="text" class="form-control" id="privateId">
+      <input type="text" class="form-control" id="privateId" formControlName ="privateID">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" class="form-control" id="email">
+      <input type="text" class="form-control" id="email" formControlName = "email">
     </div>
     <div class="form-group">
       <label for="phoneNumber">Phone number</label>
-      <input type="text" class="form-control" id="phooneNumber">
+      <input type="text" class="form-control" id="phooneNumber" formControlName = "phoneNumber">
     </div>
     <div class="form-group">
       <label for="adress">Adress</label>
-      <input type="text" class="form-control" id="adress">
+      <input type="text" class="form-control" id="adress" formControlName = "adress">
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
-  </form>
 </div>
+</form>
