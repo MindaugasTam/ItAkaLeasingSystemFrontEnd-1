@@ -51,7 +51,7 @@
   <small *ngIf="paymentPercentage.invalid" class="form-text text-danger">Advanced payment percentage is invalid.</small>
 
 </div>
-                <h3 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h3>
+        <h4 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h4>
 <div class="form-group form-inline">
   <label for="leasePeriod">Lease period</label>
   <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
@@ -60,10 +60,7 @@
   <label for="margin">Margin</label>
   <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
  </div>
- <div class="form-group form-inline">
-  <label for="contractFee">Contract fee</label>
-  <input type="text" class="form-control" id="contractFee" name="contractFee" formControlName="contractFee">
- </div>
+        <h4>Contract fee: {{calculateContractFee()}}</h4>
  <div class="form-group form-inline">
   <label for="paymentDay">Payment day</label>
   <select class="form-control" id="paymentDay" formControlName="paymentDay">

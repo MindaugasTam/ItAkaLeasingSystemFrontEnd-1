@@ -37,6 +37,14 @@ export class InputLoanInfoComponent implements OnInit {
       return firstPaymentPrice;
     }
 
+    calculateContractFee(){
+      let perc = 0.01;
+      let contractFee = this.assetPriceValue*perc;
+      if(contractFee<200){
+        return 200;
+      }else return contractFee;
+    }
+
     get assetType(){return this.loanForm.get('assetType') as FormControl};
     get customerType(){return this.loanForm.get('customerType') as FormControl};
     get year(){return this.loanForm.get('year') as FormControl};
