@@ -1,10 +1,6 @@
-<form [formGroup]="businessUserInputForm" (ngSubmit)="send()">
+<form [formGroup]="businessUserInputForm">
 <div class="container">
   <h1>Please write needed information below</h1>
-<<<<<<< HEAD
-  <form [formGroup]="businessUser">
-=======
->>>>>>> 6f5154b508b6af337bb55d045f6c4720d553dbf8
     <div class="form-group">
       <label for="companyName">Company Name</label>
       <input type="text" class="form-control" id="companyName" formControlName = "companyName" required>
@@ -25,13 +21,8 @@
       <label for="adress">Adress</label>
       <input type="text" class="form-control" id="adress" formControlName = "adress">
     </div>
-<<<<<<< HEAD
     <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
     <button class="btn btn-success" (click)="send()" >Submit</button>
+    </div>
   </form>
-</div>
-=======
-    <button type="submit" class="btn btn-success">Submit</button>
-</div>
-</form>
->>>>>>> 6f5154b508b6af337bb55d045f6c4720d553dbf8
+

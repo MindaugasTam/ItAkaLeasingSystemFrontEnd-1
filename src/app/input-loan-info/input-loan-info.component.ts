@@ -33,7 +33,8 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     calculateAdvancedPaymentAmount(){
-      return (this.assetPriceValue*(this.paymentPercentageValue/100))-this.assetPriceValue);
+      let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
+      return firstPaymentPrice;
     }
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
