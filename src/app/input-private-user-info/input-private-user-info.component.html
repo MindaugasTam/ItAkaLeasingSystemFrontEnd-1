@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Please write needed information below</h1>
-  <form>
+  <form [formGroup]="privateUser">
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" class="form-control" id="firstName" required>
@@ -25,6 +25,7 @@
       <label for="adress">Adress</label>
       <input type="text" class="form-control" id="adress">
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
+    <button class="btn btn-success" (click)="send()" >Submit</button>
   </form>
 </div>
