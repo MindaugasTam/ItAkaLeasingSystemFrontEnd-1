@@ -1,73 +1,83 @@
-<form [formGroup]="loanForm" (ngSubmit)="send()">
-        <div class="form-group">
-                <label for="customerType">Customer Type</label>
-                <select class="form-control" id="customerType" formControlName="customerType">
-                        <option  name="Private">Private</option>
-                        <option  name="Business">Business</option>
-                </select>
-        </div>
-        <div class="form-group">
-                <label for="assetType">Asset Type</label>
-                <input type="text"  class="form-control" id="assetType" name="assetType" formControlName="assetType">
-        </div>
-        <div class="form-group">
-                <label for="carBrand">Car brand</label>
-                <select class="form-control" id="carBrand" formControlName="carBrand">
-                        <option name="carBrand">CarModel</option>
-                </select> 
-         </div>
- 
- <div class="form-group">
-  <label for="carModel">Car Model</label>
-  <input type="text"  class="form-control" id="carModel"
-         name="carModel">
- </div>
- <div>
-  <label for="year">Year</label>
-  <input type="text" class="form-control" id="year"
-         name="year">
- </div>
- <div>
-  <label for="enginePower">Engine power</label>
-  <input type="text" class="form-control" id="enginePower"
-         name="enginePower">
- </div>
- <div>
-  <label for="assetPrice">Asset price</label>
-  <input type="text" class="form-control" id="assetPrice"
-         name="assetPrice">
- </div>
- <div>
-  <label for="paymentPercentage">Advance payment percentage</label>
-  <input type="text" class="form-control" id="paymentPercentage"
-         name="paymentPercentage">
- </div>
- <div>
-  <label for="paymentAmount">Advanced payment amount</label>
-  <input type="text" class="form-control" id="paymentAmount"
-         name="paymentAmount">
- </div>
- <div>
-  <label for="leasePeriod">Lease period</label>
-  <input type="text" class="form-control" id="leasePeriod"
-         name="leasePeriod">
- </div>
- <div>
-  <label for="margin">Margin</label>
-  <input type="text" class="form-control" id="margin"
-         name="margin">
- </div>
- <div>
-  <label for="contractFee">Contract fee</label>
-  <input type="text" class="form-control" id="contractFee"
-         name="contractFee">
- </div>
- <div>
-  <label for="paymentDay">Payment day</label>
-  <select class="form-control" id="paymentDay">
-        <option name="paymentDay"></option>
-      </select>
+
+<div class='container container_margins'>
+        <form [formGroup]="loanForm" (ngSubmit)="send()">
+
+                <div class="form-group">
+                        <label for="customerType">Customer Type</label>
+                        <select class="form-control" id="customerType" formControlName="customerType">
+                                <option value="Private">Private</option>
+                                <option value="Business">Business</option>
+                        </select>
+                        <small *ngIf="customerType.invalid&&ng-touched" class="form-text text-danger">Customer type is required</small>
+                </div>
+
+                <div class="form-group">
+                        <label for="assetType">Asset Type</label>
+                        <select class="form-control" id="assetType" formControlName="assetType">
+                                <option value="vehicle" selected>Vehicle</option>
+                        </select>
+                </div>
+                <div class="row">
+                        <div class="form-group col-6">
+                                <label for="carBrand">Car brand</label>
+                                <select class="form-control" id="carBrand" formControlName="carBrand">
+                                        <option value="volkswagen">Volkswagen</option>
+                                        <option value="bmw">BMW</option>
+                                        <option value="audi">AUDI</option>
+                                </select>
+                        </div>
+
+                        <div class="form-group col-6">
+                                <label for="carModel">Car Model</label>
+                                <select class="form-control" id="carModel" formControlName="carModel">
+                                        <option value="volkswagen">Volkswagen</option>
+                                        <option value="bmw">BMW</option>
+                                        <option value="audi">AUDI</option>
+                                </select>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="form-group col-6">
+                                <label for="year">Year</label>
+                                <input type="text" class="form-control" id="year" name="year">
+                        </div>
+                        <div class="form-group col-6">
+                                <label for="enginePower">Engine power</label>
+                                <input type="text" class="form-control" id="enginePower" name="enginePower">
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label for="assetPrice">Asset price</label>
+                        <input type="text" class="form-control" id="assetPrice" name="assetPrice">
+                </div>
+                <div class="form-group">
+                        <label for="paymentPercentage">Advance payment percentage</label>
+                        <input type="text" class="form-control" id="paymentPercentage" name="paymentPercentage">
+                </div>
+                <div class="form-group">
+                        <label for="paymentAmount">Advanced payment amount</label>
+                        <input type="text" class="form-control" id="paymentAmount" name="paymentAmount">
+                </div>
+                <div class="form-group">
+                        <label for="leasePeriod">Lease period</label>
+                        <input type="text" class="form-control" id="leasePeriod" name="leasePeriod">
+                </div>
+                <div class="form-group">
+                        <label for="margin">Margin</label>
+                        <input type="text" class="form-control" id="margin" name="margin">
+                </div>
+                <div class="form-group">
+                        <label for="contractFee">Contract fee</label>
+                        <input type="text" class="form-control" id="contractFee" name="contractFee">
+                </div>
+                <div class="form-group">
+                        <label for="paymentDay">Payment day</label>
+                        <select class="form-control" id="paymentDay">
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                        </select>
+                </div>
+                <button class="btn btn-danger form-buttons" type="reset">Reset</button>
+                <button class="btn btn-primary form-buttons" type="submit">Next</button>
+        </form>
 </div>
-<button class="btn btn-danger" type="reset">Reset</button>
-<button class="btn btn-primary" type="submit">Next</button>
-</form>
