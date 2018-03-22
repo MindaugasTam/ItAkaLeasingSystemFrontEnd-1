@@ -2,41 +2,39 @@
     <h1>Private customer application summary</h1>
 
 <div class="row">
-  <div class="col-md-3">
-    <h2>User Info</h2>
-      <ul class="list-group" ng-if="this.userInfo">
-        <li class="list-group-item"><small>Firstname: </small>{{this.firstName}}</li>
-        <li class="list-group-item"><small>Lastname: </small>{{this.lastName}}</li>
-        <li class="list-group-item"><small>Address: </small>{{this.address}}</li>
-        <li class="list-group-item"><small>Email: </small>{{this.email}}</li>
-        <li class="list-group-item"><small>Phone number: </small>{{this.phoneNumber}}</li>
-        <li class="list-group-item"><small>Private ID: </small>{{this.privateID}}</li>
-      </ul>
+  <div class="col-md-3" ng-if="this.userInfo">
+      <h2>User Info</h2>
+        <p class="list-group-item"><small>Firstname: </small>{{this.firstName}}</p>
+        <p class="list-group-item"><small>Lastname: </small>{{this.lastName}}</p>
+        <p class="list-group-item"><small>Address: </small>{{this.address}}</p>
+        <p class="list-group-item"><small>Email: </small>{{this.email}}</p>
+        <p class="list-group-item"><small>Phone number: </small>{{this.phoneNumber}}</p>
+        <p class="list-group-item"><small>Private ID: </small>{{this.privateID}}</p>
   </div> 
 
-  <div class="col-md-9">
+  <div class="col-md-9"   ng-if="this.loanInfo">
       <h2>User Loan Info</h2>   
-      <ul class="list-group" ng-if="this.loanInfo">
-          <li class="list-group-item"><small>Customer type: </small>{{this.loanInfo.customerType}}</li>
-          <li class="list-group-item"><small>Asset type: </small>{{this.loanInfo.assetType}}</li>
-          <li class="list-group-item"><small>Car brand: </small>{{this.loanInfo.carBrand}}</li>
-          <li class="list-group-item"><small>Car model: </small>{{this.loanInfo.carModel}}</li>
-          <li class="list-group-item"><small>Car year: </small>{{this.loanInfo.year}}</li>
-          <li class="list-group-item"><small>Engine Power: </small>{{this.loanInfo.enginePower}}</li>
-
-          <li class="list-group-item"><small>Asset price: </small>{{this.loanInfo.assetPrice}}</li>
-          <li class="list-group-item"><small>Advanced payment percentage: </small>{{ this.loanInfo.paymentPercentage }}</li>
-          <li class="list-group-item"><small>Advanced payment amount: </small>{{ this.advancedPaymentAmount }}</li>
-          <li class="list-group-item"><small>Contract fee: </small>{{ this.contractFee }}</li>
-          <li class="list-group-item"><small>margin: </small>{{this.loanInfo.margin}}</li>
-
-          <li class="list-group-item"><small>Lease Period: </small>{{this.loanInfo.leasePeriod}}</li>
-          <li class="list-group-item"><small>Payment day: </small>{{this.loanInfo.paymentDay}}</li>
-
-      </ul> 
+      <div class="row">
+        <div class="col-md-6">
+          <p class="list-group-item"><small>Customer type: </small>{{this.loanInfo.customerType}}</p>
+          <p class="list-group-item"><small>Asset type: </small>{{this.loanInfo.assetType}}</p>
+          <p class="list-group-item"><small>Car brand: </small>{{this.loanInfo.carBrand}}</p>
+          <p class="list-group-item"><small>Car model: </small>{{this.loanInfo.carModel}}</p>
+          <p class="list-group-item"><small>Car year: </small>{{this.loanInfo.year}}</p>
+          <p class="list-group-item"><small>Engine Power: </small>{{this.loanInfo.enginePower}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="list-group-item"><small>Asset price: </small>{{this.loanInfo.assetPrice}}</p>
+          <p class="list-group-item"><small>Advanced payment percentage: </small>{{ this.loanInfo.paymentPercentage }}</p>
+          <p class="list-group-item"><small>Advanced payment amount: </small>{{ this.advancedPaymentAmount }}</p>
+          <p class="list-group-item"><small>Contract fee: </small>{{ this.contractFee }}</p>
+          <p class="list-group-item"><small>margin: </small>{{this.loanInfo.margin}}</p>
+          <p class="list-group-item"><small>Lease Period: </small>{{this.loanInfo.leasePeriod}}</p>
+          <p class="list-group-item"><small>Payment day: </small>{{this.loanInfo.paymentDay}}</p>
+        </div>
+      </div>
   </div>
 </div>
-  
     <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
     <button class="btn btn-success btn-lg" (click)="submit()" >Submit</button>
 </div>
