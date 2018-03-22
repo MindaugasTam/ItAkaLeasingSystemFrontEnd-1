@@ -3,7 +3,7 @@
                 <div class="form-group row">
                         <label for="customerType" class="col-sm-3 col-form-label">Customer Type</label>
                         <div class="col-sm-9">
-                                <select class="form-control" id="customerType" formControlName="customerType">
+                                <select class="form-control" id="customerType" (input) ="userTypeChange($event.target.value)" formControlName="customerType">
                                         <option name="Private">Private</option>
                                         <option name="Business">Business</option>
                                         <ng-container *ngFor="let contact of data.contacts">
