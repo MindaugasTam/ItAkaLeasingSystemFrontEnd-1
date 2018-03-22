@@ -4,9 +4,9 @@
     width: 35%;
     background: #fff;
     border-radius: 5px;
-    padding: 20px 10px;
     font-weight: 500;
-    color: #f1773b;
+    color: #f35b1c;
+    padding: 0px !important;
 }
 
 body {
@@ -18,4 +18,25 @@ body {
     margin-bottom: 20px;
  }
  
+ .form-header {
+
+    padding: 10px 5px;
+    text-align: center;
+    background:linear-gradient(to right,#f58322 0,#ffcb13 100%);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.form-header {
+
+    padding: 10px 5px;
+    text-align: center;
+    background:linear-gradient(to right,#f58322 0,#ffcb13 100%);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.inner-container {
+
+    margin: 20px 10px;
+}
+
  
