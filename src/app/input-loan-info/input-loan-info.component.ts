@@ -105,9 +105,7 @@ export class InputLoanInfoComponent implements OnInit {
   ngOnInit() {
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
-    //let dataStore = new DataStoreService();
-    console.log(this.dataStore);
-  
+    }
   }
 
   userTypeChange(userTypeT: string){
