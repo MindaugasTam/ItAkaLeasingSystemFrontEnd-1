@@ -13,6 +13,8 @@ import {  Router, RouterModule } from '@angular/router';
 export class InputLoanInfoComponent implements OnInit {
 
     public loanForm: FormGroup;
+    private userType: String;
+    private minAssetPrice: number = 5000;
 
     constructor(fb: FormBuilder, private router: Router, public dataStore : DataStoreService){
       this.loanForm = fb.group({
@@ -28,8 +30,8 @@ export class InputLoanInfoComponent implements OnInit {
         margin:[10, Validators.required],
         contractFee:[200, Validators.required],
         paymentDay:[15, Validators.required]
-      })
-
+        
+      })        
     }
 
     calculateAdvancedPaymentAmount(){
@@ -44,6 +46,7 @@ export class InputLoanInfoComponent implements OnInit {
         return 200;
       }else return contractFee;
     }
+    
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
     get customerType(){return this.loanForm.get('customerType') as FormControl};
@@ -59,7 +62,10 @@ export class InputLoanInfoComponent implements OnInit {
 
     get assetPriceValue(){return this.loanForm.get('assetPrice').value}
     get paymentPercentageValue(){return this.loanForm.get('paymentPercentage').value}
-
+    
+    set assetPriceValue(minAssetPrice){
+      this.loanForm.setValue(minAssetPrice);
+    }
 
     send(){
       //validuojam, irasom i datastore service
@@ -78,6 +84,25 @@ export class InputLoanInfoComponent implements OnInit {
   ngOnInit() {
     //let dataStore = new DataStoreService();
     console.log(this.dataStore);
+  
+  }
+
+  userTypeChange(userTypeT: string){
+    this.userType = userTypeT;  // "Private" or "Business"
+    this.loanForm.patchValue({"assetPrice": this.findMinAssetPrice()})
+    this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice())]);
+    this.loanForm.controls['assetPrice'].updateValueAndValidity();
+ }
+
+  findMinAssetPrice(){
+    if (this.userType === "Private"){
+      this.minAssetPrice = 5000;
+      return this.minAssetPrice;
+    }
+    if (this.userType === "Business"){
+      this.minAssetPrice = 10000;
+      return this.minAssetPrice;
+    }
   }
 
 }

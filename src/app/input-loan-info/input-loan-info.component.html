@@ -2,7 +2,7 @@
 <form [formGroup]="loanForm" (ngSubmit)="send()">
         <div class="form-group form-inline">
                 <label for="customerType">Customer Type</label>
-                <select class="form-control" id="customerType" formControlName="customerType">
+                <select class="form-control" id="customerType" (input) ="userTypeChange($event.target.value)" formControlName="customerType">
                         <option  name="Private">Private</option>
                         <option  name="Business">Business</option>
                 </select>
