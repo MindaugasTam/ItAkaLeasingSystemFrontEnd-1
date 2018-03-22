@@ -25,7 +25,6 @@ export class InputLoanInfoComponent implements OnInit {
       this.getContacts();
       this.getData();
 
-
       this.loanForm = fb.group({
         customerType:['Private', Validators.required],
         assetType:['Vehicle', Validators.required],
