@@ -1,75 +1,116 @@
 <div class='container container_margins'>
-<form [formGroup]="loanForm" (ngSubmit)="send()">
-        <div class="form-group form-inline">
-                <label for="customerType">Customer Type</label>
-                <select class="form-control" id="customerType" formControlName="customerType">
-                        <option  name="Private">Private</option>
-                        <option  name="Business">Business</option>
-                </select>
-                <small *ngIf="customerType.invalid" class="form-text text-danger">Customer type is required</small>
-        </div>
-        <div class="form-group form-inline">
-                        <label for="assetType">Asset Type</label>
-                        <select class="form-control" id="assetType" formControlName="assetType">
-                                <option value="vehicle" selected>Vehicle</option>
-                        </select>
-        </div>
-        <small *ngIf="assetType.invalid" class="form-text text-danger">Asset type is invalid.</small>
-        <div class="form-group form-inline">
-                <label for="carBrand">Car brand</label>
-                <select class="form-control" id="carBrand" formControlName="carBrand">
-                        <option name="Audi">Audi</option>
-                        <option name="WV">WV</option>
-                        <option name="BMW">BMW</option>
-                        <option name="Seat">Seat</option>
-                </select>
-                <small *ngIf="carBrand.invalid" class="form-text text-danger">Please select car brand.</small> 
-         </div>
- 
- <div class="form-group form-inline">
-  <label for="carModel">Car Model</label>
-  <input type="text"  class="form-control" id="carModel" name="carModel" formControlName="carModel">
- </div>
- <div class="form-group form-inline">
-  <label for="year">Year</label>
-        <input type="text" class="form-control" id="year" name="year" formControlName="year">
-        <small *ngIf="year.invalid" class="form-text text-danger">Please enter valid year (starting from 2000).</small> 
- </div>
- <div class="form-group form-inline">
-  <label for="enginePower">Engine power</label>
-  <input type="text" class="form-control" id="enginePower" name="enginePower" formControlName="enginePower">
-  <small *ngIf="enginePower.invalid" class="form-text text-danger">Engine power is invalid.</small> 
- </div>
- <div class="form-group form-inline">
-  <label for="assetPrice">Asset price</label>
-  <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
-  <small *ngIf="assetPrice.invalid" class="form-text text-danger">Asset price is invalid.</small>
- </div>
- <div class="form-group form-inline">
-  <label for="paymentPercentage">Advanced payment percentage</label>
-  <input type="text" class="form-control" id="paymentPercentage" name="paymentPercentage" formControlName="paymentPercentage">
-  <small *ngIf="paymentPercentage.invalid" class="form-text text-danger">Advanced payment percentage is invalid.</small>
+        <form [formGroup]="loanForm" (ngSubmit)="send()">
+                <div class="form-group row">
+                        <label for="customerType" class="col-sm-3 col-form-label">Customer Type</label>
+                        <div class="col-sm-9">
+                                <select class="form-control" id="customerType" formControlName="customerType">
+                                        <option name="Private">Private</option>
+                                        <option name="Business">Business</option>
+                                        <ng-container *ngFor="let contact of data.contacts">
+                                                <option>{{contact.name}}</option>
+                                        </ng-container>
+                                </select>
+                                <small *ngIf="customerType.invalid" class="form-text text-danger">Customer type is required</small>
+                        </div>
+                </div>
 
+                <div class="form-group row">
+                        <label for="assetType" class="col-sm-3 col-form-label">Asset Type</label>
+                        <div class="col-sm-9">
+                                <select class="form-control" id="assetType" formControlName="assetType">
+                                        <option value="vehicle" selected>Vehicle</option>
+                                </select>
+                                <small *ngIf="assetType.invalid" class="form-text text-danger">Asset type is invalid.</small>
+                        </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="carBrand" class="col-sm-3 col-form-label">Car brand</label>
+                        <div class="col-sm-9">
+                                <select class="form-control" id="carBrand" formControlName="carBrand">
+                                        <option name="Audi">Audi</option>
+                                        <option name="WV">Volkswagen</option>
+                                        <option name="BMW">BMW</option>
+                                        <option name="Seat">Seat</option>
+                                </select>
+                                <small *ngIf="carBrand.invalid" class="form-text text-danger">Please select car brand.</small>
+                        </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="carModel" class="col-sm-3 col-form-label">Car Model</label>
+                        <div class="col-sm-9">
+                                <select class="form-control" id="carModel" formControlName="carModel">
+                                        <option name="Audi">Audi</option>
+                                </select>
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="year" class="col-sm-3 col-form-label">Year</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="year" name="year" formControlName="year">
+                      
+                                <small *ngIf="year.invalid" class="form-text text-danger">Please enter valid year (starting from 2000).</small>
+                        
+                </div>
+                </div>
+                <div class="form-group row">
+                        <label for="enginePower" class="col-sm-3 col-form-label">Engine power</label>
+                        <div class="col-sm-9">
+                                <input type="text" class="form-control" id="enginePower" name="enginePower" formControlName="enginePower">
+                                <small *ngIf="enginePower.invalid" class="form-text text-danger">Engine power is invalid.</small>
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="assetPrice" class="col-sm-3 col-form-label">Asset price</label>
+                        <div class="col-sm-9">
+                                <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
+                                <small *ngIf="assetPrice.invalid" class="form-text text-danger">Asset price is invalid.</small>
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="paymentPercentage" class="col-sm-3 col-form-label">Advanced payment percentage</label>
+                        <div class="col-sm-9">
+                                <input type="text" class="form-control" id="paymentPercentage" name="paymentPercentage" formControlName="paymentPercentage">
+                                <small *ngIf="paymentPercentage.invalid" class="form-text text-danger">Advanced payment percentage is invalid.</small>
+
+                        </div>
+                </div>
+                <h3 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h3>
+
+                <div class="form-group row">
+                        <label for="leasePeriod" class="col-sm-3 col-form-label">Lease period</label>
+                        <div class="col-sm-9">
+                                <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
+                        </div>
+                </div>
+
+
+                <div class="form-group row">
+                        <label for="margin" class="col-sm-3 col-form-label">Margin</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
+                </div>
+        </div>
+                <div class="form-group row">
+                        <label for="contractFee" class="col-sm-3 col-form-label">Contract fee</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="contractFee" name="contractFee" formControlName="contractFee">
+                </div>
+                </div>
+                <h4>Contract fee: {{calculateContractFee()}}</h4>
+                <div class="form-group row">
+                        <label for="paymentDay" class="col-sm-3 col-form-label">Payment day</label>
+                        <div class="col-sm-9">
+                        <select class="form-control" id="paymentDay" formControlName="paymentDay">
+                                <option name="paymentDay">15</option>
+                                <option name="paymentDay">30</option>
+                        </select>
+                        <small *ngIf="paymentDay.invalid" class="form-text text-danger">Payment day is invalid.</small>
+                </div>
+                </div>
+                <button class="btn btn-danger form-buttons" type="reset">Reset</button>
+                <button class="btn btn-primary form-buttons" type="submit">Next</button>
+        </form>
 </div>
-        <h4 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h4>
-<div class="form-group form-inline">
-  <label for="leasePeriod">Lease period</label>
-  <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
- </div>
- <div class="form-group form-inline">
-  <label for="margin">Margin</label>
-  <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
- </div>
-        <h4>Contract fee: {{calculateContractFee()}}</h4>
- <div class="form-group form-inline">
-  <label for="paymentDay">Payment day</label>
-  <select class="form-control" id="paymentDay" formControlName="paymentDay">
-        <option name="paymentDay">15</option>
-        <option name="paymentDay">30</option>
-      </select>
-      <small *ngIf="paymentDay.invalid" class="form-text text-danger">Payment day is invalid.</small>
-</div>
-        <button class="btn btn-danger form-buttons" type="reset">Reset</button>
-        <button class="btn btn-primary form-buttons" type="submit">Next</button>
-</form>
-</div>
+
