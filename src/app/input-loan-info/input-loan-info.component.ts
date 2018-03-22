@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map'
   providers: [DataStoreService, RouterModule],
   templateUrl: './input-loan-info.component.html',
   styleUrls: ['./input-loan-info.component.css'],
-  styles:['input.ng-invalid {border-color:red}']
+  styles:['input.ng-invalid {border:3px solid red}']
 })
 export class InputLoanInfoComponent implements OnInit {
 
@@ -19,20 +19,24 @@ export class InputLoanInfoComponent implements OnInit {
 
     public loanForm: FormGroup;
 
+<<<<<<< HEAD
     constructor(fb: FormBuilder, private router: Router, private http: Http ){
 
       console.log('Hello fellow user');
       this.getContacts();
       this.getData();
 
+=======
+    constructor(fb: FormBuilder, private router: Router, public dataStore : DataStoreService){
+>>>>>>> 036f7bf4c7f9bf19e5badbfae9806949d7fb2313
       this.loanForm = fb.group({
         customerType:['Private', Validators.required],
         assetType:['Vehicle', Validators.required],
         carBrand:['Not selected', Validators.required],
         carModel:['Not selected', Validators.required],
         year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4), Validators.max(new Date().getFullYear())]],
-        enginePower:[1, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(1)]],
-        assetPrice:[0, [Validators.required, Validators.min(0)]],
+        enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(0)]],
+        assetPrice:[5000, [Validators.required, Validators.min(5000)]],
         paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100)]],
         leasePeriod:[12, Validators.required],
         margin:[10, Validators.required],
@@ -71,6 +75,14 @@ export class InputLoanInfoComponent implements OnInit {
       return firstPaymentPrice;
     }
 
+    calculateContractFee(){
+      let perc = 0.01;
+      let contractFee = this.assetPriceValue*perc;
+      if(contractFee<200){
+        return 200;
+      }else return contractFee;
+    }
+
     get assetType(){return this.loanForm.get('assetType') as FormControl};
     get customerType(){return this.loanForm.get('customerType') as FormControl};
     get year(){return this.loanForm.get('year') as FormControl};
@@ -102,7 +114,8 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
   ngOnInit() {
-    let dataStore = new DataStoreService();
+    //let dataStore = new DataStoreService();
+    console.log(this.dataStore);
   }
 
 }

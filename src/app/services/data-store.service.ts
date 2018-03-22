@@ -17,7 +17,10 @@ export class DataStoreService {
     contractFee:200,
     paymentDate:15,
   };
-
   getLeasingInfo(){return this.leasingInfo};
   pushData(){}
+
 }
+
+
+

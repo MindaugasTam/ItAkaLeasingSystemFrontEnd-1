@@ -3,26 +3,33 @@
   <h1>Please write needed information below</h1>
     <div class="form-group">
       <label for="companyName">Company Name</label>
-      <input type="text" class="form-control" id="companyName" formControlName = "companyName" required>
+      <input type="text" placeholder="Company Name" class="form-control" id="companyName" formControlName = "companyName" required>
+      <small *ngIf="companyName.invalid&&companyName.dirty" class="form-text text-danger">Company name is required</small>
     </div>
     <div class="form-group">
       <label for="companyCode">Company Code</label>
-      <input type="text" class="form-control" id="companyCode" formControlName = "companyCode">
+      <input type="text" placeholder="Company Code" class="form-control" id="companyCode" formControlName = "companyCode">
+      <small *ngIf="companyCode.invalid&&companyCode.dirty" class="form-text text-danger">Company code is required</small>
     </div>
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" formControlName = "email">
+        <input type="text" placeholder="Email address" class="form-control" id="email" formControlName = "email">
+      <small *ngIf="email.invalid&&email.dirty" class="form-text text-danger">Email is invalid</small>
       </div>
     <div class="form-group">
-      <label for="phoneNumber">Phone Number</label>
-      <input type="text" class="form-control" id="phoneNumber" formControlName = "phoneNumber">
+      <label for="phoneNumber"> Phone Number</label>
+      <input type="text" placeholder = "Phone number" class="form-control" id="phoneNumber" formControlName = "phoneNumber">
+      <small *ngIf="phoneNumber.invalid&&phoneNumber.dirty" class="form-text text-danger">Phone number is invalid</small>
     </div>
     <div class="form-group">
       <label for="adress">Adress</label>
-      <input type="text" class="form-control" id="adress" formControlName = "adress">
+      <input type="text" placeholder="Address" class="form-control" id="adress" formControlName = "adress">
+      <small *ngIf="adress.invalid&&adress.dirty" class="form-text text-danger">Address is invalid</small>
     </div>
     <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
-    <button class="btn btn-success" (click)="send()" >Submit</button>
+
+    <button class="btn btn-primary form-buttons" (click)="send()" type="submit"
+            [disabled]="companyName.invalid||companyCode.invalid||email.invalid||phoneNumber.invalid||adress.invalid" >Next</button>
     </div>
-  </form>
+</form>
 

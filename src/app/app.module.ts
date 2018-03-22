@@ -11,6 +11,7 @@ import { InputBusinessUserInfoComponent } from './input-business-user-info/input
 import { InputPrivateUserInfoComponent } from './input-private-user-info/input-private-user-info.component';
 import { BusinessUserLoanReportComponent } from './business-user-loan-report/business-user-loan-report.component';
 import { PrivateUserLoanReportComponent } from './private-user-loan-report/private-user-loan-report.component';
+import {DataStoreService} from './services/data-store.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,13 @@ import { PrivateUserLoanReportComponent } from './private-user-loan-report/priva
     AppRoutingModule,
     HttpModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
+<<<<<<< HEAD
   providers: [AppComponent],
+=======
+  providers: [DataStoreService],
+>>>>>>> 036f7bf4c7f9bf19e5badbfae9806949d7fb2313
   bootstrap: [AppComponent]
 })
 export class AppModule { }
