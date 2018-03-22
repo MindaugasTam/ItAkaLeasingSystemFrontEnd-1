@@ -70,6 +70,6 @@
       <small *ngIf="paymentDay.invalid" class="form-text text-danger">Payment day is invalid.</small>
 </div>
         <button class="btn btn-danger form-buttons" type="reset">Reset</button>
-        <button class="btn btn-primary form-buttons" type="submit">Next</button>
+        <button class="btn btn-primary form-buttons" type="submit" [disabled]="!this.loanForm.valid">Next</button>
 </form>
 </div>
