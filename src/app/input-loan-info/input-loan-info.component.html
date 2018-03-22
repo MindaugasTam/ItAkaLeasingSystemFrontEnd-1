@@ -99,9 +99,11 @@
                                         <small *ngIf="paymentDay.invalid" class="form-text text-danger">Payment day is invalid.</small>
                               
                         </div>
-                        <button class="btn btn-danger form-buttons" type="reset">Reset</button>
-                        <button class="btn btn-primary form-buttons" type="submit">Next</button>
+                        <div class="form-footer">
+                        <button class="btn btn-outline-warning  form-buttons btn-block" type="reset">Reset</button>
+                        <button class="btn btn-outline-warning form-buttons btn-block" type="submit"  [disabled]="!this.loanForm.valid" >Next</button>
+                        </div>
                 </form>     
         </div>
-  <div class="form-footer"></div>
+  
 </div>

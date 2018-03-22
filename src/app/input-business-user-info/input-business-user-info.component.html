@@ -1,5 +1,7 @@
+<div class='container container_margins'>
+    <div class="form-header">Car loan</div>
+    <div class="inner-container">
 <form [formGroup]="businessUserInputForm">
-<div class="container">
   <h1>Please write needed information below</h1>
     <div class="form-group">
       <label for="companyName">Company Name</label>
@@ -26,9 +28,12 @@
       <input type="text" placeholder="Address" class="form-control" id="adress" formControlName = "adress">
       <small *ngIf="adress.invalid&&adress.dirty" class="form-text text-danger">Address is invalid</small>
     </div>
+    <div class="form-footer">
     <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
 
     <button class="btn btn-primary form-buttons" (click)="send()" type="submit"
             [disabled]="!this.businessUserInputForm.valid" >Next</button>
-    </div>
+            </div>
 </form>
+</div>
+</div>
