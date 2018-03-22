@@ -14,7 +14,7 @@ export class InputLoanInfoComponent implements OnInit {
 
     public loanForm: FormGroup;
 
-    constructor(fb: FormBuilder, private router: Router ){
+    constructor(fb: FormBuilder, private router: Router, public dataStore : DataStoreService){
       this.loanForm = fb.group({
         customerType:['Private', Validators.required],
         assetType:['Vehicle', Validators.required],
@@ -76,7 +76,8 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
   ngOnInit() {
-    let dataStore = new DataStoreService();
+    //let dataStore = new DataStoreService();
+    console.log(this.dataStore);
   }
 
 }

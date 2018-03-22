@@ -14,7 +14,7 @@ export class InputPrivateUserInfoComponent implements OnInit {
 
   public privateUserInfoForm: FormGroup;
 
-  constructor(fb: FormBuilder, private router: Router) {
+  constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService) {
     this.privateUserInfoForm = fb.group({
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -64,6 +64,6 @@ export class InputPrivateUserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    let dataStore = new DataStoreService();
+    //let dataStore = new DataStoreService();
   }
 }
