@@ -28,7 +28,7 @@ import { PrivateUserLoanReportComponent } from './private-user-loan-report/priva
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
+import {Http, Response } from '@angular/http'
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-input-loan-info',
@@ -12,9 +14,17 @@ import {  Router, RouterModule } from '@angular/router';
 })
 export class InputLoanInfoComponent implements OnInit {
 
+  private apiUrl = 'https://address-book-demo.herokuapp.com/api/contacts';
+  data: any = {};
+
     public loanForm: FormGroup;
 
-    constructor(fb: FormBuilder, private router: Router ){
+    constructor(fb: FormBuilder, private router: Router, private http: Http ){
+
+      console.log('Hello fellow user');
+      this.getContacts();
+      this.getData();
+
       this.loanForm = fb.group({
         customerType:['Private', Validators.required],
         assetType:['Vehicle', Validators.required],
@@ -31,6 +41,30 @@ export class InputLoanInfoComponent implements OnInit {
       })
 
     }
+
+
+ 
+   
+    getData(){
+      return this.http.get(this.apiUrl)
+      .map((res: Response) => res.json())
+    }
+  
+    getContacts() {
+      this.getData().subscribe(data => {
+        console.log(data);
+        this.data = data;
+    })
+  }
+
+
+
+
+
+
+
+
+
 
     calculateAdvancedPaymentAmount(){
       let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
