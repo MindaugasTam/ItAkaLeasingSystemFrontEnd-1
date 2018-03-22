@@ -29,7 +29,6 @@
     <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
 
     <button class="btn btn-primary form-buttons" (click)="send()" type="submit"
-            [disabled]="companyName.invalid||companyCode.invalid||email.invalid||phoneNumber.invalid||adress.invalid" >Next</button>
+            [disabled]="!this.businessUserInputForm.valid" >Next</button>
     </div>
 </form>
-
