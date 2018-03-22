@@ -1,24 +1,33 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class DataStoreService {
-  leasingInfo={
-    isPrivateClient:true,
-    assetType:'Vehicle',
-    vehicleMake:'Vehicle Make',
-    vehicleModel:'Vehicle Model',
-    vehicleYear:'2000',
-    enginePower:235,
-    assetPrice:1,
-    paymentPercantage:100,
-    advancedPaymentAmount:10,
-    leasePeriod:6,
-    margin:10,
-    contractFee:200,
-    paymentDate:15,
-  };
-  getLeasingInfo(){return this.leasingInfo};
-  pushData(){}
+
+  loanFormInfo: FormGroup;
+  privateUserInfo: FormGroup;
+  businessUserInfo: FormGroup;
+
+  getLoanForm(){return this.loanFormInfo};
+  getLoanFormInfo(){return this.loanFormInfo.value};
+  
+  getPrivateUserForm(){return this.privateUserInfo};
+  getPrivateUserData(){return this.privateUserInfo.value};
+
+  getBusinessUserForm(){return this.businessUserInfo};
+  getBusinessUserData(){return this.businessUserInfo.value};
+
+  saveLoanFormInfo(form: FormGroup){
+    this.loanFormInfo = form;
+  }
+
+  savePrivateUserFormInfo(form: FormGroup){
+    this.privateUserInfo = form;
+  }
+
+  saveBusinessUserFormInfo(form: FormGroup){
+    this.businessUserInfo = form;
+  }
 
 }
 

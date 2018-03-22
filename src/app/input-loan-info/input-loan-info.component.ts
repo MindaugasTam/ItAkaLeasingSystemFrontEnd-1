@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-input-loan-info',
-  providers: [DataStoreService, RouterModule],
   templateUrl: './input-loan-info.component.html',
   styleUrls: ['./input-loan-info.component.css'],
   styles:['input.ng-invalid {border:3px solid red}']
@@ -21,9 +20,8 @@ export class InputLoanInfoComponent implements OnInit {
     private userType: String;
     private minAssetPrice: number = 5000;
 
-    constructor(fb: FormBuilder, private router: Router, private http: Http, public dataStore : DataStoreService ){
+    constructor(fb: FormBuilder, private router: Router, private http: Http, private dataStore : DataStoreService ){
 
-      console.log('Hello fellow user');
       this.getContacts();
       this.getData();
 
@@ -46,7 +44,6 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
  
-   
     getData(){
       return this.http.get(this.apiUrl)
       .map((res: Response) => res.json())
@@ -54,7 +51,6 @@ export class InputLoanInfoComponent implements OnInit {
   
     getContacts() {
       this.getData().subscribe(data => {
-        console.log(data);
         this.data = data;
     })
   }
@@ -94,8 +90,7 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     send(){
-      //validuojam, irasom i datastore service
-      console.log(this.loanForm.value);
+      this.dataStore.saveLoanFormInfo(this.loanForm);
       if(this.loanForm.value.customerType==='Private'){
           this.router.navigate(['/input-private-user-info']);
       }else {
@@ -108,6 +103,8 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
   ngOnInit() {
+    if(this.dataStore.loanFormInfo){
+      this.loanForm = this.dataStore.getLoanForm();
     //let dataStore = new DataStoreService();
     console.log(this.dataStore);
   
