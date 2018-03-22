@@ -36,8 +36,6 @@ export class InputLoanInfoComponent implements OnInit {
       })        
     }
 
- 
-   
     calculateAdvancedPaymentAmount(){
       let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
       return firstPaymentPrice;
@@ -50,7 +48,6 @@ export class InputLoanInfoComponent implements OnInit {
         return 200;
       }else return contractFee;
     }
-    
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
     get customerType(){return this.loanForm.get('customerType') as FormControl};
@@ -72,7 +69,7 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     send(){
-      this.dataStore.saveLoanFormInfo(this.loanForm);
+      this.dataStore.saveLoanFormInfo(this.loanForm, this.calculateContractFee(), this.calculateAdvancedPaymentAmount());
       if(this.loanForm.value.customerType==='Private'){
           this.router.navigate(['/input-private-user-info']);
       }else {
