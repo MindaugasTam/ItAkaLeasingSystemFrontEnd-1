@@ -26,9 +26,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
    }
 
   ngOnInit() {
-    if(this.dataStore.privateUserInfo){
-      console.log(this.dataStore.getLoanFormInfo());
-    }
+
   }
 
   submit() {
@@ -37,7 +35,6 @@ export class PrivateUserLoanReportComponent implements OnInit {
   }
 
   toPreviousPage(){
-    console.log("Back");
     this.router.navigate(['/input-private-user-info']);
   }
 }
