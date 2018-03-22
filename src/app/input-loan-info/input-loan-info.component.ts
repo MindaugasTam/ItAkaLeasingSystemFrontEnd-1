@@ -79,5 +79,4 @@ export class InputLoanInfoComponent implements OnInit {
     //let dataStore = new DataStoreService();
     console.log(this.dataStore);
   }
-
 }
