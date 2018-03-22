@@ -19,16 +19,13 @@ export class InputLoanInfoComponent implements OnInit {
 
     public loanForm: FormGroup;
 
-<<<<<<< HEAD
-    constructor(fb: FormBuilder, private router: Router, private http: Http ){
+    constructor(fb: FormBuilder, private router: Router, private http: Http, public dataStore : DataStoreService ){
 
       console.log('Hello fellow user');
       this.getContacts();
       this.getData();
 
-=======
-    constructor(fb: FormBuilder, private router: Router, public dataStore : DataStoreService){
->>>>>>> 036f7bf4c7f9bf19e5badbfae9806949d7fb2313
+
       this.loanForm = fb.group({
         customerType:['Private', Validators.required],
         assetType:['Vehicle', Validators.required],
@@ -46,7 +43,6 @@ export class InputLoanInfoComponent implements OnInit {
 
     }
 
-
  
    
     getData(){
@@ -60,14 +56,6 @@ export class InputLoanInfoComponent implements OnInit {
         this.data = data;
     })
   }
-
-
-
-
-
-
-
-
 
 
     calculateAdvancedPaymentAmount(){

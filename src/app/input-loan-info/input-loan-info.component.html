@@ -14,8 +14,6 @@
                         </div>
                 </div>
 
-
-
                 <div class="form-group row">
                         <label for="assetType" class="col-sm-3 col-form-label">Asset Type</label>
                         <div class="col-sm-9">
@@ -26,8 +24,6 @@
                         </div>
                 </div>
 
-
-<<<<<<< HEAD
                 <div class="form-group row">
                         <label for="carBrand" class="col-sm-3 col-form-label">Car brand</label>
                         <div class="col-sm-9">
@@ -102,6 +98,7 @@
                         <input type="text" class="form-control" id="contractFee" name="contractFee" formControlName="contractFee">
                 </div>
                 </div>
+                <h4>Contract fee: {{calculateContractFee()}}</h4>
                 <div class="form-group row">
                         <label for="paymentDay" class="col-sm-3 col-form-label">Payment day</label>
                         <div class="col-sm-9">
@@ -116,28 +113,4 @@
                 <button class="btn btn-primary form-buttons" type="submit">Next</button>
         </form>
 </div>
-=======
-</div>
-        <h4 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h4>
-<div class="form-group form-inline">
-  <label for="leasePeriod">Lease period</label>
-  <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
- </div>
- <div class="form-group form-inline">
-  <label for="margin">Margin</label>
-  <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
- </div>
-        <h4>Contract fee: {{calculateContractFee()}}</h4>
- <div class="form-group form-inline">
-  <label for="paymentDay">Payment day</label>
-  <select class="form-control" id="paymentDay" formControlName="paymentDay">
-        <option name="paymentDay">15</option>
-        <option name="paymentDay">30</option>
-      </select>
-      <small *ngIf="paymentDay.invalid" class="form-text text-danger">Payment day is invalid.</small>
-</div>
-        <button class="btn btn-danger form-buttons" type="reset">Reset</button>
-        <button class="btn btn-primary form-buttons" type="submit">Next</button>
-</form>
-</div>
->>>>>>> 036f7bf4c7f9bf19e5badbfae9806949d7fb2313
+

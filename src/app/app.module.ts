@@ -29,11 +29,7 @@ import {DataStoreService} from './services/data-store.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-<<<<<<< HEAD
-  providers: [AppComponent],
-=======
-  providers: [DataStoreService],
->>>>>>> 036f7bf4c7f9bf19e5badbfae9806949d7fb2313
+  providers: [AppComponent, DataStoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
