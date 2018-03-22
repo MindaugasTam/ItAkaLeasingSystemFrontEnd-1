@@ -20,7 +20,7 @@ export class InputPrivateUserInfoComponent implements OnInit {
       privateID: [null, [Validators.required, Validators.minLength(11)]],
       email: [null, [Validators.required, Validators.email]],
       phoneNumber: [null, Validators.required],
-      adress: [null, Validators.required]
+      address: [null, Validators.required]
     })
   }
 
@@ -29,7 +29,7 @@ export class InputPrivateUserInfoComponent implements OnInit {
   get privateID(){return this.privateUserInfoForm.get('privateID') as FormControl;}
   get email(){return this.privateUserInfoForm.get('email') as FormControl;}
   get phoneNumber(){return this.privateUserInfoForm.get('phoneNumber') as FormControl;}
-  get adress(){return this.privateUserInfoForm.get('adress') as FormControl;}
+  get address(){return this.privateUserInfoForm.get('address') as FormControl;}
 
   send() {
     this.dataStore.savePrivateUserFormInfo(this.privateUserInfoForm);

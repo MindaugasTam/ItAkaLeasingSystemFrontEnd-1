@@ -25,21 +25,21 @@
     <div class="form-group">
       <label for="email">Email</label>
       <input type="text" placeholder = "Email address" class="form-control" id="email" formControlName = "email">
-      <small *ngIf="email.invalid&&email.dirty" class="form-text text-danger">
+      <small *ngIf="email.invalid && email.dirty" class="form-text text-danger">
         Email is invalid
       </small>
     </div>
     <div class="form-group">
       <label for="phoneNumber">Phone number</label>
       <input type="text" placeholder = "Phone number" class="form-control" id="phoneNumber" formControlName = "phoneNumber">
-      <small *ngIf="phoneNumber.invalid&&phoneNumber.dirty" class="form-text text-danger">
+      <small *ngIf="phoneNumber.invalid && phoneNumber.dirty" class="form-text text-danger">
         Phone number is required
       </small>
     </div>
     <div class="form-group">
       <label for="adress">Adress</label>
-      <input type="text" placeholder = "Address" class="form-control" id="adress" formControlName = "adress">
-      <small *ngIf="adress.invalid&&adress.dirty" class="form-text text-danger">
+      <input type="text" placeholder = "Address" class="form-control" id="address" formControlName = "address">
+      <small *ngIf="address.invalid && address.dirty" class="form-text text-danger">
         Address is required
       </small>
     </div>

@@ -10,10 +10,21 @@ import { DataStoreService } from '../services/data-store.service';
 })
 export class PrivateUserLoanReportComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  firstName=this.dataStore.getPrivateUserData().firstName;
+  lastName=this.dataStore.getPrivateUserData().lastName;
+  address=this.dataStore.getPrivateUserData().address;
+  email=this.dataStore.getPrivateUserData().email;
+  phoneNumber=this.dataStore.getPrivateUserData().phoneNumber;
+  privateID=this.dataStore.getPrivateUserData().privateID;
+
+
+  constructor(private router: Router, private dataStore : DataStoreService) {
+   }
 
   ngOnInit() {
-
+    if(this.dataStore.privateUserInfo){
+      console.log(this.dataStore.getPrivateUserData());
+    }
   }
 
   submit() {
