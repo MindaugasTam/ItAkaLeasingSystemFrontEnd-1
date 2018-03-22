@@ -1,5 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 .container {
-    width: 30%;
+    width: 35%;
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px 10px;
+    font-weight: 500;
+    color: #f1773b;
 }
+
+body {
+    background: #eaedf1;
+}
+
+.container_margins {
+    margin-top: 50px;
+    margin-bottom: 20px;
+ }
+ 
+ 

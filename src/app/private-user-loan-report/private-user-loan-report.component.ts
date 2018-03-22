@@ -5,7 +5,6 @@ import { DataStoreService } from '../services/data-store.service';
 
 @Component({
   selector: 'app-private-user-loan-report',
-  providers: [DataStoreService],
   templateUrl: './private-user-loan-report.component.html',
   styleUrls: ['./private-user-loan-report.component.css']
 })
@@ -26,6 +25,4 @@ export class PrivateUserLoanReportComponent implements OnInit {
     console.log("Back");
     this.router.navigate(['/input-private-user-info']);
   }
-
-
 }

@@ -14,7 +14,6 @@ export class BusinessUserLoanReportComponent implements OnInit {
 
   ngOnInit() {
   }
-
   submit() {
     //this.router.navigate(['/input-private-user-info']);
     console.log("SUBMITTED")
@@ -24,5 +23,4 @@ export class BusinessUserLoanReportComponent implements OnInit {
     console.log("Back");
     this.router.navigate(['/input-business-user-info']);
   }
-
 }
