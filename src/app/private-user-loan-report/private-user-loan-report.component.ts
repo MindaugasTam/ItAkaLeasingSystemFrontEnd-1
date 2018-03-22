@@ -17,13 +17,17 @@ export class PrivateUserLoanReportComponent implements OnInit {
   phoneNumber=this.dataStore.getPrivateUserData().phoneNumber;
   privateID=this.dataStore.getPrivateUserData().privateID;
 
+  userInfo=this.dataStore.getPrivateUserData();
+  loanInfo=this.dataStore.getLoanFormInfo();
+  contractFee=this.dataStore.getContractFee();
+  advancedPaymentAmount=this.dataStore.getAdvancedPaymentAmount();
 
   constructor(private router: Router, private dataStore : DataStoreService) {
    }
 
   ngOnInit() {
     if(this.dataStore.privateUserInfo){
-      console.log(this.dataStore.getPrivateUserData());
+      console.log(this.dataStore.getLoanFormInfo());
     }
   }
 

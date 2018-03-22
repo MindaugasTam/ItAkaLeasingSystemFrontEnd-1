@@ -4,24 +4,35 @@
 <div class="row">
   <div class="col-md-3">
     <h2>User Info</h2>
-      <ul class="list-group">
-        <li class="list-group-item" ng-if="this.firstName!==undefined"><small>Firstname: </small>{{this.firstName}}</li>
-        <li class="list-group-item" ng-if="this.lastName!==undefined"><small>Lastname: </small>{{this.lastName}}</li>
-        <li class="list-group-item" ng-if="this.address!==undefined"><small>Address: </small>{{this.address}}</li>
-        <li class="list-group-item" ng-if="this.email!==undefined"><small>Email: </small>{{this.email}}</li>
-        <li class="list-group-item" ng-if="this.phoneNumber!==undefined"><small>Phone number: </small>{{this.phoneNumber}}</li>
-        <li class="list-group-item" ng-if="this.privateID!==undefined"><small>Private ID: </small>{{this.privateID}}</li>
+      <ul class="list-group" ng-if="this.userInfo">
+        <li class="list-group-item"><small>Firstname: </small>{{this.firstName}}</li>
+        <li class="list-group-item"><small>Lastname: </small>{{this.lastName}}</li>
+        <li class="list-group-item"><small>Address: </small>{{this.address}}</li>
+        <li class="list-group-item"><small>Email: </small>{{this.email}}</li>
+        <li class="list-group-item"><small>Phone number: </small>{{this.phoneNumber}}</li>
+        <li class="list-group-item"><small>Private ID: </small>{{this.privateID}}</li>
       </ul>
   </div> 
 
   <div class="col-md-9">
       <h2>User Loan Info</h2>   
-      <ul class="list-group">
-        <li class="list-group-item">Loan info</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
+      <ul class="list-group" ng-if="this.loanInfo">
+          <li class="list-group-item"><small>Customer type: </small>{{this.loanInfo.customerType}}</li>
+          <li class="list-group-item"><small>Asset type: </small>{{this.loanInfo.assetType}}</li>
+          <li class="list-group-item"><small>Car brand: </small>{{this.loanInfo.carBrand}}</li>
+          <li class="list-group-item"><small>Car model: </small>{{this.loanInfo.carModel}}</li>
+          <li class="list-group-item"><small>Car year: </small>{{this.loanInfo.year}}</li>
+          <li class="list-group-item"><small>Engine Power: </small>{{this.loanInfo.enginePower}}</li>
+
+          <li class="list-group-item"><small>Asset price: </small>{{this.loanInfo.assetPrice}}</li>
+          <li class="list-group-item"><small>Advanced payment percentage: </small>{{ this.loanInfo.paymentPercentage }}</li>
+          <li class="list-group-item"><small>Advanced payment amount: </small>{{ this.advancedPaymentAmount }}</li>
+          <li class="list-group-item"><small>Contract fee: </small>{{ this.contractFee }}</li>
+          <li class="list-group-item"><small>margin: </small>{{this.loanInfo.margin}}</li>
+
+          <li class="list-group-item"><small>Lease Period: </small>{{this.loanInfo.leasePeriod}}</li>
+          <li class="list-group-item"><small>Payment day: </small>{{this.loanInfo.paymentDay}}</li>
+
       </ul> 
   </div>
 </div>
