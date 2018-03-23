@@ -59,9 +59,10 @@ export class PrivateUserLoanReportComponent implements OnInit {
 
   addVehicleLoanToDB() {
     let loanForm = this.dataStore.getLoanFormInfo();
-    this.vehicleLoanService.createVehicleLeasing(loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
-                                                 loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
-                                                 loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay)
+    this.vehicleLoanService.createVehicleLeasing(
+      loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
+      loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
+      loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay)
       .then(data => {
         console.log("create vehicle loan callback");
         this.newVehicleLoan.emit(data);

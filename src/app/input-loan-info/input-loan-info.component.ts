@@ -19,19 +19,20 @@ export class InputLoanInfoComponent implements OnInit {
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
 
-      
-    
       this.loanForm = fb.group({
         customerType:[null, Validators.required],
         assetType:[null, Validators.required],
         carBrand:[null, Validators.required],
         carModel:[null, Validators.required],
-        year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4), Validators.max(new Date().getFullYear())]],
-        enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(0)]],
-        assetPrice:[5000, [Validators.required, Validators.min(5000)]],
-        paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100)]],
+        year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4),
+          Validators.max(new Date().getFullYear()), Validators.pattern("^[0-9]*$")]],
+        enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3),
+          Validators.min(0), Validators.pattern("^[0-9]*$")]],
+        assetPrice:[5000, [Validators.required, Validators.min(5000), Validators.pattern("^[0-9]*$")]],
+        paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100),
+                          Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         leasePeriod:[null, Validators.required],
-        margin:[null, Validators.required],
+        margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         contractFee:[200, Validators.required],
         paymentDay:[null, Validators.required]
 
@@ -63,11 +64,12 @@ export class InputLoanInfoComponent implements OnInit {
     get assetPrice(){return this.loanForm.get('assetPrice') as FormControl};
     get paymentDay(){return this.loanForm.get('paymentDay') as FormControl};
     get paymentPercentage(){return this.loanForm.get('paymentPercentage') as FormControl};
+    get margin() {return this.loanForm.get('margin') as FormControl};
 
 
     get assetPriceValue(){return this.loanForm.get('assetPrice').value}
     get paymentPercentageValue(){return this.loanForm.get('paymentPercentage').value}
-    
+
     set assetPriceValue(minAssetPrice){
       this.loanForm.setValue(minAssetPrice);
     }
