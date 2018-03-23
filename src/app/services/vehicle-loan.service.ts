@@ -7,7 +7,7 @@ export class VehicleLoanService {
   constructor(private http: HttpClient) { }
 
   createVehicleLeasing(manufacturer, model, manufacturingDate, enginePower, advancePaymentPercent, advancePaymentAmount,
-                       leasingPeriod, margin, contractFee, assetPrice, paymentDate){
+                       leasingPeriod, margin, contractFee, assetPrice, paymentDate, customerID){
     let vehicleLeasing = {
       manufacturer: manufacturer,
       model: model,
@@ -19,7 +19,8 @@ export class VehicleLoanService {
       margin: margin,
       contractFee: contractFee,
       assetPrice: assetPrice,
-      paymentDate: paymentDate
+      paymentDate: paymentDate,
+      customerID: customerID
     };
 
     return this.http

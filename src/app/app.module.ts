@@ -16,6 +16,7 @@ import { PrivateUserLoanReportComponent } from './private-user-loan-report/priva
 import {DataStoreService} from './services/data-store.service';
 import {PrivateUserService} from './services/private-user.service';
 import {VehicleLoanService} from './services/vehicle-loan.service';
+import {BusinessUserService} from './services/business-user.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {VehicleLoanService} from './services/vehicle-loan.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, VehicleLoanService],
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
