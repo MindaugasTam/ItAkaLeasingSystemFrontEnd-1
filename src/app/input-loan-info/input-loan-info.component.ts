@@ -111,6 +111,4 @@ export class InputLoanInfoComponent implements OnInit {
     }
   }
 
-
-
 }
