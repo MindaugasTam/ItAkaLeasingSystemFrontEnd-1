@@ -94,8 +94,12 @@
                         <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h5>
                         <h5>Contract fee: {{calculateContractFee()}}</h5>
                         <div class="form-footer">
-                        <button class="btn btn-outline-warning  form-buttons btn-block" type="reset">Reset</button>
-                        <button class="btn btn-warning form-buttons btn-block" [disabled]="!this.loanForm.valid" type="submit" >Next</button>
+
+                                <div class="row">              
+                           <button class="btn btn-outline-warning form-buttons  btn-margin" type="reset">Reset</button>
+                           <button class="btn btn-warning form-buttons btn-margin" [disabled]="!this.loanForm.valid" type="submit" >Next</button>
+   
+                        </div>
                         </div>
                 </form>     
         </div>
