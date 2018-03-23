@@ -3,7 +3,6 @@ import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
 import {Http, Response } from '@angular/http'
-import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-input-loan-info',
@@ -16,28 +15,31 @@ export class InputLoanInfoComponent implements OnInit {
     public loanForm: FormGroup;
     private userType: String;
     private minAssetPrice: number = 5000;
+  
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
+
+      
     
       this.loanForm = fb.group({
-        customerType:['Private', Validators.required],
-        assetType:['Vehicle', Validators.required],
-        carBrand:['Not selected', Validators.required],
-        carModel:['Not selected', Validators.required],
+        customerType:[null, Validators.required],
+        assetType:[null, Validators.required],
+        carBrand:[null, Validators.required],
+        carModel:[null, Validators.required],
         year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4), Validators.max(new Date().getFullYear())]],
         enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3), Validators.min(0)]],
         assetPrice:[5000, [Validators.required, Validators.min(5000)]],
         paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100)]],
-        leasePeriod:[12, Validators.required],
-        margin:[10, Validators.required],
+        leasePeriod:[null, Validators.required],
+        margin:[null, Validators.required],
         contractFee:[200, Validators.required],
-        paymentDay:[15, Validators.required]
+        paymentDay:[null, Validators.required]
+
+        
         
       })        
     }
 
- 
-   
     calculateAdvancedPaymentAmount(){
       let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
       return firstPaymentPrice;
@@ -50,7 +52,6 @@ export class InputLoanInfoComponent implements OnInit {
         return 200;
       }else return contractFee;
     }
-    
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
     get customerType(){return this.loanForm.get('customerType') as FormControl};
@@ -72,7 +73,7 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     send(){
-      this.dataStore.saveLoanFormInfo(this.loanForm);
+      this.dataStore.saveLoanFormInfo(this.loanForm, this.calculateContractFee(), this.calculateAdvancedPaymentAmount());
       if(this.loanForm.value.customerType==='Private'){
           this.router.navigate(['/input-private-user-info']);
       }else {
@@ -107,4 +108,7 @@ export class InputLoanInfoComponent implements OnInit {
       return this.minAssetPrice;
     }
   }
+
+
+
 }

@@ -6,8 +6,7 @@ import { DataStoreService } from '../services/data-store.service';
 @Component({
   selector: 'app-input-private-user-info',
   templateUrl: './input-private-user-info.component.html',
-  styleUrls: ['./input-private-user-info.component.css'],
-  styles:['input.ng-invalid.ng-dirty {border:3px solid red}']
+  styleUrls: ['./input-private-user-info.component.css']
 })
 export class InputPrivateUserInfoComponent implements OnInit {
 
