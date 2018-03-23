@@ -7,8 +7,7 @@ import { DataStoreService } from '../services/data-store.service';
   selector: 'app-input-business-user-info',
   providers: [RouterModule],
   templateUrl: './input-business-user-info.component.html',
-  styleUrls: ['./input-business-user-info.component.css'],
-  styles:['input.ng-invalid.ng-dirty {border:3px solid red}']
+  styleUrls: ['./input-business-user-info.component.css']
 })
 export class InputBusinessUserInfoComponent implements OnInit {
 
@@ -20,7 +19,7 @@ export class InputBusinessUserInfoComponent implements OnInit {
       companyCode: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       phoneNumber: [null, Validators.required],
-      adress: [null, Validators.required]
+      address: [null, Validators.required]
     })
    }
 
@@ -28,7 +27,7 @@ export class InputBusinessUserInfoComponent implements OnInit {
   get companyCode(){return this.businessUserInputForm.get('companyCode') as FormControl;}
   get email(){return this.businessUserInputForm.get('email') as FormControl;}
   get phoneNumber(){return this.businessUserInputForm.get('phoneNumber') as FormControl;}
-  get adress(){return this.businessUserInputForm.get('adress') as FormControl;}
+  get address(){return this.businessUserInputForm.get('address') as FormControl;}
 
   reset(){
     this.businessUserInputForm.reset();
