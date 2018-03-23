@@ -39,6 +39,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="year">Year</label>
+                                
 
                                         <input type="text" class="form-control" id="year" name="year" formControlName="year">
                                         <small *ngIf="year.invalid && year.dirty" class="form-text text-danger">Please enter valid year (starting from 2000).</small>
@@ -92,10 +93,11 @@
                         </div>
                         <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h5>
                         <h5>Contract fee: {{calculateContractFee()}}</h5>
-
-                        <button class="btn btn-danger form-buttons" type="reset">Reset</button>
-                        <button class="btn btn-primary form-buttons" [disabled]="!this.loanForm.valid" type="submit">Next</button>
-                </form>
+                        <div class="form-footer">
+                        <button class="btn btn-outline-warning  form-buttons btn-block" type="reset">Reset</button>
+                        <button class="btn btn-warning form-buttons btn-block" [disabled]="!this.loanForm.valid" type="submit" >Next</button>
+                        </div>
+                </form>     
         </div>
-  <div class="form-footer"></div>
+  
 </div>

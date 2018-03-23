@@ -1,6 +1,7 @@
-<div class="container container_margins">
+<div class='container container_margins'>
+    <div class="form-header">Private user</div>
+    <div class="inner-container">
 <form [formGroup]="privateUserInfoForm">
-  <h1>Please write needed information below</h1>
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" placeholder = "First Name" class="form-control" id="firstName" formControlName = "firstName" required>
@@ -43,8 +44,12 @@
         Address is required
       </small>
     </div>
-    <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
-   <button class="btn btn-primary form-buttons" (click)="send()" type="submit"
+    <div class="form-footer">
+    <button class="btn btn-outline-warning  form-buttons btn-block" (click)="toPreviousPage()">Back</button>
+   <button class="btn btn-warning  form-buttons btn-block" (click)="send()" type="submit"
    [disabled]="!this.privateUserInfoForm.valid">Next</button>
+  </div>
   </form>
 </div>
+</div>
+

@@ -15,6 +15,7 @@ export class InputLoanInfoComponent implements OnInit {
     public loanForm: FormGroup;
     private userType: String;
     private minAssetPrice: number = 5000;
+  
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
 
@@ -33,8 +34,11 @@ export class InputLoanInfoComponent implements OnInit {
         leasePeriod:[null, Validators.required],
         margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         contractFee:[200, Validators.required],
+        paymentDay:[null, Validators.required]
 
-      })
+        
+        
+      })        
     }
 
     calculateAdvancedPaymentAmount(){
@@ -106,4 +110,7 @@ export class InputLoanInfoComponent implements OnInit {
       return this.minAssetPrice;
     }
   }
+
+
+
 }
