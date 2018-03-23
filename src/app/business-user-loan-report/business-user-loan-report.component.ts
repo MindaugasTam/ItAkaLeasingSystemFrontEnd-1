@@ -10,9 +10,21 @@ import { DataStoreService } from '../services/data-store.service';
 })
 export class BusinessUserLoanReportComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private dataStore: DataStoreService) { }
+
+    companyName = this.dataStore.getBusinessUserData().companyName;
+    companyCode = this.dataStore.getBusinessUserData().companyCode;
+    email = this.dataStore.getBusinessUserData().email;
+    phoneNumber = this.dataStore.getBusinessUserData().phoneNumber;
+    address = this.dataStore.getBusinessUserData().adress;
+
+    userInfo = this.dataStore.getBusinessUserData();
+    loanInfo = this.dataStore.getLoanFormInfo();
+    contractFee = this.dataStore.getContractFee();
+    advancedPaymentAmount = this.dataStore.getAdvancedPaymentAmount();
 
   ngOnInit() {
+    console.log(this.dataStore.getBusinessUserData);
   }
   submit() {
     //this.router.navigate(['/input-private-user-info']);

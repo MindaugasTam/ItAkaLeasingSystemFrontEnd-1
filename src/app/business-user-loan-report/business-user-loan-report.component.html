@@ -1,57 +1,39 @@
-<div class="container container_margins">
+<div class="container-fluid">
   <h1>Business customer application summary</h1>
-  <div class="form-group">
-    <label for="customerType">Customer type</label>
-    <input type="text" class="form-control" id="customerType" formControlName = "customerType" readonly>
-  </div>
-  <div class="form-group">
-    <label for="assetType">Asset type</label>
-    <input type="text" class="form-control" id="assetType" formControlName ="assetType" readonly>
-  </div>
-  <div class="form-group">
-    <label for="vehicleMake">Vehicle make</label>
-    <input type="text" class="form-control" id="vehicleMake" formControlName ="vehicleMake" readonly>
-  </div>
-  <div class="form-group">
-    <label for="vehicleModel">Vehicle model</label>
-    <input type="text" class="form-control" id="vehicleModel" formControlName = "vehicleModel" readonly>
-  </div>
-  <div class="form-group">
-    <label for="vehicleYear">Vehicle year</label>
-    <input type="text" class="form-control" id="vehicleYear" formControlName = "vehicleYear" readonly>
-  </div>
-  <div class="form-group">
-    <label for="enginePower">Vehicle engine power</label>
-    <input type="text" class="form-control" id="enginePower" formControlName = "enginePower" readonly>
-  </div>
-  <div class="form-group">
-    <label for="assetPrice">Asset price</label>
-    <input type="text" class="form-control" id="assetPrice" formControlName = "assetPrice" readonly>
-  </div>
-  <div class="form-group">
-    <label for="paymentPercantage">Advance payment percentage</label>
-    <input type="text" class="form-control" id="paymentPercantage" formControlName = "paymentPercantage" readonly>
-  </div>
-  <div class="form-group">
-    <label for="advancedPaymentAmount">Advance payment amount</label>
-    <input type="text" class="form-control" id="advancedPaymentAmount" formControlName = "advancedPaymentAmount" readonly>
-  </div>
-  <div class="form-group">
-    <label for="leasePeriod">Lease period</label>
-    <input type="text" class="form-control" id="leasePeriod" formControlName = "leasePeriod" readonly>
-  </div>
-  <div class="form-group">
-    <label for="margin">Margin</label>
-    <input type="text" class="form-control" id="margin" formControlName = "margin" readonly>
-  </div>
-  <div class="form-group">
-    <label for="contractFee">Contract fee</label>
-    <input type="text" class="form-control" id="contractFee" formControlName = "contractFee" readonly>
-  </div>
-  <div class="form-group">
-    <label for="paymentDat">Payment date</label>
-    <input type="text" class="form-control" id="paymentDat" formControlName = "paymentDat" readonly>
-  </div>
+
+<div class="row">
+<div class="col-md-3" ng-if="this.userInfo" style="display:none">
+    <h2>Business user Info</h2>
+      <p class="list-group-item"><small>Company name: </small>{{this.companyName}}</p>
+      <p class="list-group-item"><small>Company code: </small>{{this.companyCode}}</p>
+      <p class="list-group-item"><small>Email: </small>{{this.email}}</p>
+      <p class="list-group-item"><small>Phone number: </small>{{this.phoneNumber}}</p>
+      <p class="list-group-item"><small>Address: </small>{{this.address}}</p>
+</div> 
+
+<div class="col-md-9"   ng-if="this.loanInfo">
+    <h2>User Loan Info</h2>   
+    <div class="row">
+      <div class="col-md-6">
+        <p class="list-group-item"><small>Customer type: </small>{{this.loanInfo.customerType}}</p>
+        <p class="list-group-item"><small>Asset type: </small>{{this.loanInfo.assetType}}</p>
+        <p class="list-group-item"><small>Car brand: </small>{{this.loanInfo.carBrand}}</p>
+        <p class="list-group-item"><small>Car model: </small>{{this.loanInfo.carModel}}</p>
+        <p class="list-group-item"><small>Car year: </small>{{this.loanInfo.year}}</p>
+        <p class="list-group-item"><small>Engine Power: </small>{{this.loanInfo.enginePower}}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="list-group-item"><small>Asset price: </small>{{this.loanInfo.assetPrice}}</p>
+        <p class="list-group-item"><small>Advanced payment percentage: </small>{{ this.loanInfo.paymentPercentage }}</p>
+        <p class="list-group-item"><small>Advanced payment amount: </small>{{ this.advancedPaymentAmount }}</p>
+        <p class="list-group-item"><small>Contract fee: </small>{{ this.contractFee }}</p>
+        <p class="list-group-item"><small>margin: </small>{{this.loanInfo.margin}}</p>
+        <p class="list-group-item"><small>Lease Period: </small>{{this.loanInfo.leasePeriod}}</p>
+        <p class="list-group-item"><small>Payment day: </small>{{this.loanInfo.paymentDay}}</p>
+      </div>
+    </div>
+</div>
+</div>
   <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
   <button class="btn btn-success btn-lg" (click)="submit()" >Submit</button>
 </div>
