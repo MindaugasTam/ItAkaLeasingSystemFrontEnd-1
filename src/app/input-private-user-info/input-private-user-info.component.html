@@ -45,9 +45,11 @@
       </small>
     </div>
     <div class="form-footer">
-    <button class="btn btn-outline-warning  form-buttons btn-block" (click)="toPreviousPage()">Back</button>
-   <button class="btn btn-warning  form-buttons btn-block" (click)="send()" type="submit"
+        <div class="row">     
+    <button class="btn btn-outline-warning  form-buttons btn-margin" (click)="toPreviousPage()">Back</button>
+   <button class="btn btn-warning form-buttons btn-margin " (click)="send()" type="submit"
    [disabled]="!this.privateUserInfoForm.valid">Next</button>
+   </div>
   </div>
   </form>
 </div>

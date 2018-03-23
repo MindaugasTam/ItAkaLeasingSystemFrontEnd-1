@@ -4,7 +4,7 @@
     width: 35%;
     background: #fff;
     font-weight: 500;
-    color: #f35b1c;
+    color: #757473;
     padding: 0px !important;
     font-size: 20px;
     box-shadow: 5px 5px 30px rgba(168, 168, 168, 0.897);
@@ -14,6 +14,10 @@
 body {
     background: #eaedf1;
 }
+
+
+
+
 
 .container_margins {
     margin-top: 50px;
@@ -27,10 +31,13 @@ body {
     border-radius: 5px 5px 0px 0px;
     font-size: 30px;
     font-weight: 500;
+    background-color: #ffc107;
+    color: ghostwhite;
 }
 
 .form-footer {
-    padding: 20px 5px;
+    padding: 30px 5px;
+    margin: 0px 40px;
 }
 
 
@@ -38,6 +45,25 @@ body {
 .inner-container {
 
     margin: 20px 10px;
+
 }
+
+.btn-margin {
+
+    width: 45%;
+    margin: auto;
+       
+}
+
+input[type=text] {
+
+    color: black;
+    font-weight: 500;
+
+}
+
+
+
+
 
  
