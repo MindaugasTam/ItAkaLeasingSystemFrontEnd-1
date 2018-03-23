@@ -39,62 +39,63 @@
                         </div>
                         <div class="form-group">
                                 <label for="year">Year</label>
-                               
+
                                         <input type="text" class="form-control" id="year" name="year" formControlName="year">
                                         <small *ngIf="year.invalid && year.dirty" class="form-text text-danger">Please enter valid year (starting from 2000).</small>
-                              
+
                         </div>
                         <div class="form-group">
                                 <label for="enginePower">Engine power</label>
-                                
+
                                         <input type="text" class="form-control" id="enginePower" name="enginePower" formControlName="enginePower">
                                         <small *ngIf="enginePower.invalid && enginePower.dirty" class="form-text text-danger">Engine power is invalid.</small>
-                                
+
                         </div>
                         <div class="form-group">
                                 <label for="assetPrice" >Asset price</label>
 
                                         <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
                                         <small *ngIf="assetPrice.invalid" class="form-text text-danger">Asset price is invalid.</small>
-                                
+
                         </div>
                         <div class="form-group">
                                 <label for="paymentPercentage" >Advanced payment percentage</label>
-                               
+
                                         <input type="text" class="form-control" id="paymentPercentage" name="paymentPercentage" formControlName="paymentPercentage">
-                                        <small *ngIf="paymentPercentage.invalid && paymentPercentage.dirty" class="form-text text-danger">Advanced payment percentage is invalid.</small>
-                                
+                                        <small *ngIf="paymentPercentage.invalid && paymentPercentage.dirty" class="form-text text-danger">Advanced payment percentage is invalid. Minimum 10 percent</small>
+
                         </div>
                         <div class="form-group ">
                                 <label for="leasePeriod">Lease period</label>
-                               
+
                                         <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
-                                
+
                         </div>
 
 
                         <div class="form-group">
                                 <label for="margin" >Margin</label>
-                              
+
                                         <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
-                             
+                                        <small *ngIf="margin.invalid&&margin.dirty" class = "form-text text-danger">Margin is invalid. Minimum 3.2 percent </small>
                         </div>
+
                         <div class="form-group">
                                 <label for="paymentDay" >Payment day</label>
-                             
+
                                         <select class="form-control" id="paymentDay" formControlName="paymentDay">
                                                 <option name="paymentDay">15</option>
                                                 <option name="paymentDay">30</option>
                                         </select>
                                         <small *ngIf="paymentDay.invalid && paymentDay.dirty" class="form-text text-danger">Payment day is invalid.</small>
-                              
+
                         </div>
                         <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h5>
                         <h5>Contract fee: {{calculateContractFee()}}</h5>
 
                         <button class="btn btn-danger form-buttons" type="reset">Reset</button>
                         <button class="btn btn-primary form-buttons" [disabled]="!this.loanForm.valid" type="submit">Next</button>
-                </form>     
+                </form>
         </div>
   <div class="form-footer"></div>
 </div>

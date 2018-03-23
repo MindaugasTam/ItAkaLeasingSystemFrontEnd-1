@@ -16,7 +16,7 @@ export class InputPrivateUserInfoComponent implements OnInit {
     this.privateUserInfoForm = fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      privateID: [null, [Validators.required, Validators.minLength(11)]],
+      privateID: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
       email: [null, [Validators.required, Validators.email]],
       phoneNumber: [null, Validators.required],
       address: [null, Validators.required]
