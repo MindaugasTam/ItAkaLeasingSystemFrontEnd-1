@@ -1,8 +1,10 @@
-<div class="container-fluid">
-    <h1>Private customer application summary</h1>
+<div class='container container_margins'>
+    <div class="form-header">Business user</div>
+    <div class="inner-container">
+    
 
 <div class="row">
-  <div class="col-md-3" ng-if="this.userInfo">
+  <div class="col-md-3" ng-if="this.userInfo" style="display:none">
       <h2>User Info</h2>
         <p class="list-group-item"><small>Firstname: </small>{{this.firstName}}</p>
         <p class="list-group-item"><small>Lastname: </small>{{this.lastName}}</p>
@@ -38,3 +40,5 @@
     <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
     <button class="btn btn-success btn-lg" (click)="submit()" >Submit</button>
 </div>
+</div>
+

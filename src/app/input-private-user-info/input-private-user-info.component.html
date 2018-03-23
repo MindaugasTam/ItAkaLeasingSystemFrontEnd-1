@@ -1,6 +1,7 @@
-<div class="container container_margins">
+<div class='container container_margins'>
+    <div class="form-header">Private user</div>
+    <div class="inner-container">
 <form [formGroup]="privateUserInfoForm">
-  <h1>Please write needed information below</h1>
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" placeholder = "First Name" class="form-control" id="firstName" formControlName = "firstName" required>
@@ -19,7 +20,7 @@
       <label for="privateID">ID code</label>
       <input type="text" placeholder = "Private ID" class="form-control" id="privateId" formControlName ="privateID">
       <small *ngIf="privateID.invalid&&privateID.dirty" class="form-text text-danger">
-        Private customer ID must not be shorter than 11 numbers
+        Private customer ID must be specified and contain only numbers
       </small>
     </div>
     <div class="form-group">
@@ -37,14 +38,20 @@
       </small>
     </div>
     <div class="form-group">
-      <label for="adress">Adress</label>
+      <label for="address">Address</label>
       <input type="text" placeholder = "Address" class="form-control" id="address" formControlName = "address">
       <small *ngIf="address.invalid && address.dirty" class="form-text text-danger">
         Address is required
       </small>
     </div>
-    <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
-   <button class="btn btn-primary form-buttons" (click)="send()" type="submit"
+    <div class="form-footer">
+        <div class="row">     
+    <button class="btn btn-outline-warning  form-buttons btn-margin" (click)="toPreviousPage()">Back</button>
+   <button class="btn btn-warning form-buttons btn-margin " (click)="send()" type="submit"
    [disabled]="!this.privateUserInfoForm.valid">Next</button>
+   </div>
+  </div>
   </form>
 </div>
+</div>
+
