@@ -1,5 +1,5 @@
 <div class='container container_margins'>
-        <div class="form-header">Car loan</div>
+        <div class="form-header">Loan info</div>
         <div class="inner-container">
         <form [formGroup]="loanForm" (ngSubmit)="send()">
                 <div class="form-group">
@@ -66,21 +66,15 @@
                                         <small *ngIf="paymentPercentage.invalid && paymentPercentage.dirty" class="form-text text-danger">Advanced payment percentage is invalid. Minimum 10 percent</small>
 
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group form-inline period">
                                 <label for="leasePeriod">Lease period</label>
-
-                                        <input type="text" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod">
-
-                        </div>
-
-
+                                <input type="number" step = "6" min = "6" max = "84" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod" onkeydown="return false">
+                               </div>
                         <div class="form-group">
                                 <label for="margin" >Margin</label>
-
                                         <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
                                         <small *ngIf="margin.invalid&&margin.dirty" class = "form-text text-danger">Margin is invalid. Minimum 3.2 percent </small>
                         </div>
-
                         <div class="form-group">
                                 <label for="paymentDay" >Payment day</label>
 
@@ -89,7 +83,6 @@
                                                 <option name="paymentDay">30</option>
                                         </select>
                                         <small *ngIf="paymentDay.invalid && paymentDay.dirty" class="form-text text-danger">Payment day is invalid.</small>
-
                         </div>
                         <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h5>
                         <h5>Contract fee: {{calculateContractFee()}}</h5>
