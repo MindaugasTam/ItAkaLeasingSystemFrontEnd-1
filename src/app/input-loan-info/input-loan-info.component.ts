@@ -43,9 +43,9 @@ export class InputLoanInfoComponent implements OnInit {
         contractFee:[200, Validators.required],
         paymentDay:[null, Validators.required]
 
-        
-        
-      })        
+
+
+      })
     }
 
     calculateAdvancedPaymentAmount(){
@@ -63,8 +63,8 @@ export class InputLoanInfoComponent implements OnInit {
 
     findModels(){
       for (let i=0; i< this.cars.length; i++){
-        if (this.cars[i].make === this.loanForm.get('carBrand').value){     
-              this.models=this.cars[i].model;          
+        if (this.cars[i].make === this.loanForm.get('carBrand').value){
+              this.models=this.cars[i].model;
         }
       }
     }
@@ -111,7 +111,7 @@ export class InputLoanInfoComponent implements OnInit {
   userTypeChange(userTypeT: string){
     this.userType = userTypeT;  // "Private" or "Business"
     this.loanForm.patchValue({"assetPrice": this.findMinAssetPrice()})
-    this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice())]);
+    this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice()), Validators.pattern("^[0-9]*$")]);
     this.loanForm.controls['assetPrice'].updateValueAndValidity();
  }
 
@@ -125,7 +125,5 @@ export class InputLoanInfoComponent implements OnInit {
       return this.minAssetPrice;
     }
   }
-
-
 
 }
