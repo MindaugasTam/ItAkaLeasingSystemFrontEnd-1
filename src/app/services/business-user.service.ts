@@ -16,13 +16,13 @@ export class BusinessUserService {
     };
 
     return this.http
-      .post("http://localhost:8100/businessCustomers/add", businessUser)
+      .post("https://javacoursefinal.herokuapp.com/businessCustomers/add", businessUser)
       .toPromise();
   }
 
   getAllBusinessUsers(){
     return this.http
-      .get("http://localhost:8100/businessCustomers")
+      .get("https://javacoursefinal.herokuapp.com/businessCustomers")
       .toPromise();
   }
 
