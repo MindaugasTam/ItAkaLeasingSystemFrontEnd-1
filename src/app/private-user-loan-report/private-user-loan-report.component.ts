@@ -23,6 +23,8 @@ export class PrivateUserLoanReportComponent implements OnInit {
   contractFee = this.dataStore.getContractFee();
   advancedPaymentAmount = this.dataStore.getAdvancedPaymentAmount();
 
+  privateUserID = null;
+
   @Output()
   newPrivateUser = new EventEmitter<Object>();
 
@@ -40,8 +42,8 @@ export class PrivateUserLoanReportComponent implements OnInit {
 
   submit() {
     //this.router.navigate(['/input-private-user-info']);
-    this.addPrivateUserToDB();
-    this.addVehicleLoanToDB();
+    this.addPrivateUserToDB().then(() => this.addVehicleLoanToDB());
+    //this.addVehicleLoanToDB();
     console.log('SUBMITTED');
   }
 
@@ -50,23 +52,26 @@ export class PrivateUserLoanReportComponent implements OnInit {
   }
 
   addPrivateUserToDB() {
-    this.privateUserService.createPrivateUser(this.firstName, this.lastName, this.privateID, this.email, this.phoneNumber, this.address)
+    return this.privateUserService.createPrivateUser(this.firstName, this.lastName, this.privateID, this.email, this.phoneNumber, this.address)
       .then(data => {
-        console.log('create private user callback');
+        //console.log('create private user callback');
         this.newPrivateUser.emit(data);
+        let temp = JSON.stringify(data);
+        let parseTemp = JSON.parse(temp);
+        this.privateUserID = parseTemp.id;
       });
   }
 
   addVehicleLoanToDB() {
     let loanForm = this.dataStore.getLoanFormInfo();
-    this.vehicleLoanService.createVehicleLeasing(loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
-                                                 loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
-                                                 loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay)
+    return this.vehicleLoanService.createVehicleLeasing(
+      loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
+      loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
+      loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.privateUserID)
       .then(data => {
-        console.log("create vehicle loan callback");
+        //console.log("create vehicle loan callback");
         this.newVehicleLoan.emit(data);
       })
-
   }
 
 }

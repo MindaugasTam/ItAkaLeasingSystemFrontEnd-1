@@ -1,6 +1,7 @@
+<div class='container container_margins'>
+    <div class="form-header">Business customer info</div>
+    <div class="inner-container">
 <form [formGroup]="businessUserInputForm">
-<div class="container">
-  <h1>Please write needed information below</h1>
     <div class="form-group">
       <label for="companyName">Company Name</label>
       <input type="text" placeholder="Company Name" class="form-control" id="companyName" formControlName = "companyName" required>
@@ -22,13 +23,17 @@
       <small *ngIf="phoneNumber.invalid&&phoneNumber.dirty" class="form-text text-danger">Phone number is invalid</small>
     </div>
     <div class="form-group">
-      <label for="adress">Adress</label>
-      <input type="text" placeholder="Address" class="form-control" id="adress" formControlName = "adress">
-      <small *ngIf="adress.invalid&&adress.dirty" class="form-text text-danger">Address is invalid</small>
+      <label for="address">Address</label>
+      <input type="text" placeholder="Address" class="form-control" id="address" formControlName = "address">
+      <small *ngIf="address.invalid&&address.dirty" class="form-text text-danger">Address is invalid</small>
     </div>
-    <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
-
-    <button class="btn btn-primary form-buttons" (click)="send()" type="submit"
+    <div class="form-footer">
+      <div class="row">
+    <button class="btn btn-outline-warning  form-buttons btn-margin" (click)="toPreviousPage()">Back</button>
+    <button class="btn btn-warning  form-buttons btn-margin" (click)="send()" type="submit"
             [disabled]="!this.businessUserInputForm.valid" >Next</button>
-    </div>
+            </div>
+            </div>
 </form>
+</div>
+</div>

@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { VehicleLoanService } from './vehicle-loan.service';
 
 describe('VehicleLoanService', () => {
