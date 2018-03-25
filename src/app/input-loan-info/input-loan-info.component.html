@@ -22,11 +22,8 @@
 
                         <div class="form-group">
                                 <label for="carBrand">Car brand</label>
-                                <select class="form-control" id="carBrand" formControlName="carBrand">
-                                        <option name="Audi">Audi</option>
-                                        <option name="WV">Volkswagen</option>
-                                        <option name="BMW">BMW</option>
-                                        <option name="Seat">Seat</option>
+                                <select class="form-control" id="carBrand" formControlName="carBrand" (change)="findModels()">
+                                        <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
                                 </select>
                                 <small *ngIf="carBrand.invalid && carBrand.dirty" class="form-text text-danger">Please select car brand.</small>
                         </div>
@@ -34,12 +31,12 @@
                         <div class="form-group">
                                 <label for="carModel">Car Model</label>
                                 <select class="form-control" id="carModel" formControlName="carModel">
-                                        <option name="Audi">Audi</option>
+                                        <option *ngFor="let selectedModels of models" [value]="selectedModels">{{selectedModels}}</option>
                                 </select>
                         </div>
                         <div class="form-group">
                                 <label for="year">Year</label>
-                                
+
 
                                         <input type="text" class="form-control" id="year" name="year" formControlName="year">
                                         <small *ngIf="year.invalid && year.dirty" class="form-text text-danger">Please enter valid year (starting from 2000).</small>
@@ -56,7 +53,7 @@
                                 <label for="assetPrice" >Asset price</label>
 
                                         <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
-                                        <small *ngIf="assetPrice.invalid" class="form-text text-danger">Asset price is invalid.</small>
+                                        <small *ngIf="assetPrice.invalid&&assetPrice.dirty" class="form-text text-danger">Asset price is invalid.</small>
 
                         </div>
                         <div class="form-group">
@@ -88,13 +85,13 @@
                         <h5>Contract fee: {{calculateContractFee()}}</h5>
                         <div class="form-footer">
 
-                                <div class="row">              
+                                <div class="row">
                            <button class="btn btn-outline-warning form-buttons  btn-margin" type="reset">Reset</button>
                            <button class="btn btn-warning form-buttons btn-margin" [disabled]="!this.loanForm.valid" type="submit" >Next</button>
-   
+
                         </div>
                         </div>
-                </form>     
+                </form>
         </div>
-  
+
 </div>

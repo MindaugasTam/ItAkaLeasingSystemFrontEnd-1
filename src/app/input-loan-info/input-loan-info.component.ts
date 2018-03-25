@@ -3,6 +3,8 @@ import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
 import {Http, Response } from '@angular/http'
+import { CarList } from './CarList';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-input-loan-info',
@@ -15,9 +17,14 @@ export class InputLoanInfoComponent implements OnInit {
     public loanForm: FormGroup;
     private userType: String;
     private minAssetPrice: number = 5000;
-  
+
+    private cars;
+   models;
+    private i: number = 0;
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
+     this.cars =new CarList().cars;
+
 
       this.loanForm = fb.group({
         customerType:[null, Validators.required],
@@ -36,9 +43,9 @@ export class InputLoanInfoComponent implements OnInit {
         contractFee:[200, Validators.required],
         paymentDay:[null, Validators.required]
 
-        
-        
-      })        
+
+
+      })
     }
 
     calculateAdvancedPaymentAmount(){
@@ -52,6 +59,14 @@ export class InputLoanInfoComponent implements OnInit {
       if(contractFee<200){
         return 200;
       }else return contractFee;
+    }
+
+    findModels(){
+      for (let i=0; i< this.cars.length; i++){
+        if (this.cars[i].make === this.loanForm.get('carBrand').value){
+              this.models=this.cars[i].model;
+        }
+      }
     }
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
@@ -96,7 +111,7 @@ export class InputLoanInfoComponent implements OnInit {
   userTypeChange(userTypeT: string){
     this.userType = userTypeT;  // "Private" or "Business"
     this.loanForm.patchValue({"assetPrice": this.findMinAssetPrice()})
-    this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice())]);
+    this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice()), Validators.pattern("^[0-9]*$")]);
     this.loanForm.controls['assetPrice'].updateValueAndValidity();
  }
 
