@@ -52,4 +52,36 @@ describe('InputBusinessUserInfoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('is form valid when empty',()=>{
+    let companyName = component.businessUserInputForm.controls["companyName"];
+    companyName.setValue("");
+    let companyCode = component.businessUserInputForm.controls["companyCode"];
+    companyCode.setValue("");
+    let email = component.businessUserInputForm.controls["email"];
+    email.setValue("");
+    let phoneNumber = component.businessUserInputForm.controls["phoneNumber"];
+    phoneNumber.setValue("");
+    let address = component.businessUserInputForm.controls["address"];
+    address.setValue("");
+
+    expect(component.businessUserInputForm.invalid).toBeTruthy();
+  })
+
+  it('is form invalid when email is badly formated',()=>{
+    let companyName = component.businessUserInputForm.controls["companyName"];
+    companyName.setValue("Traidenis");
+    let companyCode = component.businessUserInputForm.controls["companyCode"];
+    companyCode.setValue("565464575476435");
+    let email = component.businessUserInputForm.controls["email"];
+    email.setValue("traidenis");
+    let phoneNumber = component.businessUserInputForm.controls["phoneNumber"];
+    phoneNumber.setValue("432525432");
+    let address = component.businessUserInputForm.controls["address"];
+    address.setValue("Vilnius, sv. stepono 22-43");
+
+    expect(component.businessUserInputForm.valid).toBeFalsy();
+    expect(component.businessUserInputForm.controls["email"].valid).toBeFalsy();
+    expect(email.errors["email"]).toBeDefined();
+  })
 });
