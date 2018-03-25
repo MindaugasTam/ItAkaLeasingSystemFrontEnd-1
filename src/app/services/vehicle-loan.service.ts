@@ -23,13 +23,13 @@ export class VehicleLoanService {
     };
 
     return this.http
-      .post("http://localhost:8080/vehicleLeasings/add", vehicleLeasing)
+      .post("http://localhost:8100/vehicleLeasings/add", vehicleLeasing)
       .toPromise();
   }
 
   getAllVehicleLeasingsUsers(){
     return this.http
-      .get("http://localhost:8080/vehicleLeasings")
+      .get("http://localhost:8100/vehicleLeasings")
       .toPromise();
   }
 
