@@ -59,4 +59,96 @@ describe('InputLoanInfoComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('is form valid when empty',()=>{
+    let customerType = component.loanForm.controls["customerType"];
+    customerType.setValue("");
+    let assetType = component.loanForm.controls["assetType"];
+    assetType.setValue("");
+    let carBrand = component.loanForm.controls["carBrand"];
+    carBrand.setValue("");
+    let carModel = component.loanForm.controls["carModel"];
+    carModel.setValue("");
+    let year = component.loanForm.controls["year"];
+    year.setValue("");
+    let enginePower = component.loanForm.controls["enginePower"];
+    enginePower.setValue("");
+    let assetPrice = component.loanForm.controls["assetPrice"];
+    assetPrice.setValue("");
+    let paymentPercentage = component.loanForm.controls["paymentPercentage"];
+    paymentPercentage.setValue("");
+    let leasePeriod = component.loanForm.controls["leasePeriod"];
+    leasePeriod.setValue("");
+    let margin = component.loanForm.controls["margin"];
+    margin.setValue("");
+    let contractFee = component.loanForm.controls["contractFee"];
+    contractFee.setValue("");
+    let paymentDay = component.loanForm.controls["paymentDay"];
+    paymentDay.setValue("");
+
+    expect(component.loanForm.invalid).toBeTruthy();
+  })
+
+  it('is form invalid when year is more than year today.',()=>{
+    let customerType = component.loanForm.controls["customerType"];
+    customerType.setValue("Private");
+    let assetType = component.loanForm.controls["assetType"];
+    assetType.setValue("Vehicle");
+    let carBrand = component.loanForm.controls["carBrand"];
+    carBrand.setValue("Audi");
+    let carModel = component.loanForm.controls["carModel"];
+    carModel.setValue("A1");
+    let year = component.loanForm.controls["year"];
+    year.setValue("2020");
+    let enginePower = component.loanForm.controls["enginePower"];
+    enginePower.setValue("999");
+    let assetPrice = component.loanForm.controls["assetPrice"];
+    assetPrice.setValue("5000");
+    let paymentPercentage = component.loanForm.controls["paymentPercentage"];
+    paymentPercentage.setValue("10");
+    let leasePeriod = component.loanForm.controls["leasePeriod"];
+    leasePeriod.setValue("36");
+    let margin = component.loanForm.controls["margin"];
+    margin.setValue("3.2");
+    let contractFee = component.loanForm.controls["contractFee"];
+    contractFee.setValue("500");
+    let paymentDay = component.loanForm.controls["paymentDay"];
+    paymentDay.setValue("15");
+
+    expect(component.loanForm.valid).toBeFalsy();
+    expect(component.loanForm.controls["year"].valid).toBeFalsy();
+    expect(year.errors["max"]).toBeDefined();
+  })
+
+  it('is form calculating advanced payment amount correctly',()=>{
+    let customerType = component.loanForm.controls["customerType"];
+    customerType.setValue("Private");
+    let assetType = component.loanForm.controls["assetType"];
+    assetType.setValue("Vehicle");
+    let carBrand = component.loanForm.controls["carBrand"];
+    carBrand.setValue("Audi");
+    let carModel = component.loanForm.controls["carModel"];
+    carModel.setValue("A1");
+    let year = component.loanForm.controls["year"];
+    year.setValue("2020");
+    let enginePower = component.loanForm.controls["enginePower"];
+    enginePower.setValue("999");
+    let assetPrice = component.loanForm.controls["assetPrice"];
+    assetPrice.setValue("5000");
+    let paymentPercentage = component.loanForm.controls["paymentPercentage"];
+    paymentPercentage.setValue("10");
+    let leasePeriod = component.loanForm.controls["leasePeriod"];
+    leasePeriod.setValue("36");
+    let margin = component.loanForm.controls["margin"];
+    margin.setValue("3.2");
+    let contractFee = component.loanForm.controls["contractFee"];
+    contractFee.setValue("500");
+    let paymentDay = component.loanForm.controls["paymentDay"];
+    paymentDay.setValue("15");
+
+    let firstPaymentPrice = component.calculateAdvancedPaymentAmount();
+
+    expect(component.calculateAdvancedPaymentAmount()).toBe(500);
+    expect(component.calculateAdvancedPaymentAmount()).toBeDefined;
+  })
+
 });
