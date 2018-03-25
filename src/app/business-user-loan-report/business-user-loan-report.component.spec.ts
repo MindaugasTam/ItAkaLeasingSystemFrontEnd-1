@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { DataStoreService } from '../services/data-store.service';
+import { VehicleLoanService } from '../services/vehicle-loan.service';
+import { BusinessUserService } from '../services/business-user.service';
+import { PrivateUserService } from '../services/private-user.service';
 
 describe('BusinessUserLoanReportComponent', () => {
   let component: BusinessUserLoanReportComponent;
@@ -41,7 +44,7 @@ describe('BusinessUserLoanReportComponent', () => {
       ],
       providers:[
         {provide:APP_BASE_HREF, useValue:'/'},
-        DataStoreService
+        DataStoreService, VehicleLoanService, PrivateUserService, BusinessUserService
       ]
     }).compileComponents();
   }));
