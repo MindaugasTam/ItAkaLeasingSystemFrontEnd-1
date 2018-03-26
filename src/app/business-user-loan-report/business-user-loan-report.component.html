@@ -2,16 +2,9 @@
     <div class="form-header">Business customer application summary</div>
     <div class="inner-container">
 
-<div class="row">
-<div class="col-md-3" ng-if="this.userInfo" style="display:none">
-      <p class="list-group-item"><small>Company name: </small>{{this.companyName}}</p>
-      <p class="list-group-item"><small>Company code: </small>{{this.companyCode}}</p>
-      <p class="list-group-item"><small>Email: </small>{{this.email}}</p>
-      <p class="list-group-item"><small>Phone number: </small>{{this.phoneNumber}}</p>
-      <p class="list-group-item"><small>Address: </small>{{this.address}}</p>
-</div> 
 
-<div class="col-md-9"   ng-if="this.loanInfo">
+
+<div ng-if="this.loanInfo">
     <div class="row">
       <div class="col-md-6">
         <p class="list-group-item"><small>Customer type: </small>{{this.loanInfo.customerType}}</p>
@@ -32,10 +25,16 @@
       </div>
     </div>
 </div>
-</div>
 
-  <button class="btn btn-success" (click)="toPreviousPage()">Back</button>
-  <button class="btn btn-success btn-lg" (click)="submit()" >Submit</button>
+
+<div class="form-footer">
+
+  <div class="row">
+<button class="btn btn-outline-warning form-buttons  btn-margin" (click)="toPreviousPage()">Back</button>
+<button class="btn btn-warning form-buttons btn-margin" (click)="submit()" >Submit</button>
+
+</div>
+</div>
 </div>
 </div>
 

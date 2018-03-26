@@ -81,8 +81,8 @@
                                         </select>
                                         <small *ngIf="paymentDay.invalid && paymentDay.dirty" class="form-text text-danger">Payment day is invalid.</small>
                         </div>
-                        <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: {{calculateAdvancedPaymentAmount()}}</h5>
-                        <h5>Contract fee: {{calculateContractFee()}}</h5>
+                        <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: <span class="calculated">{{calculateAdvancedPaymentAmount()}}</span></h5>
+                        <h5>Contract fee: <span class="calculated">{{calculateContractFee()}}</span></h5>
                         <div class="form-footer">
 
                                 <div class="row">
