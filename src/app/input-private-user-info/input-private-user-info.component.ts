@@ -48,4 +48,6 @@ export class InputPrivateUserInfoComponent implements OnInit {
       this.privateUserInfoForm = this.dataStore.getPrivateUserForm();
     }
   }
+
+
 }

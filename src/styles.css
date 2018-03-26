@@ -4,7 +4,7 @@
     width: 35%;
     background: #fff;
     font-weight: 500;
-    color: #757473;
+    color: #626262;
     padding: 0px !important;
     font-size: 20px;
     box-shadow: 5px 5px 30px rgba(168, 168, 168, 0.897);
@@ -48,6 +48,13 @@ body {
 
 }
 
+.btn {
+    font-weight: 500;
+}
+.btn-warning {
+    color: #4d4d4d;
+}
+
 .btn-margin {
 
     width: 45%;
@@ -55,11 +62,42 @@ body {
        
 }
 
-input[type=text] {
+input[type=text], input[type=number] {
 
-    color: black;
+    color: #495057;
     font-weight: 500;
 
+}
+
+option {
+    color: #495057;
+    font-weight: 500;
+}
+
+select {
+    color: #495057;
+    font-weight: 500;
+}
+
+.calculated {
+
+    border-bottom: 3px solid #ffc107;
+}
+
+
+
+input[type=text]:focus {
+    box-shadow: inset 0 -2px 0 #ffc107 !important;
+}
+
+select:focus, select.form-control:focus {
+
+    box-shadow: inset 0 -2px 0 #ffc107 !important;
+}
+
+
+input[type=number]:focus {
+    box-shadow: inset 0 -2px 0 #ffc107 !important;
 }
 
 

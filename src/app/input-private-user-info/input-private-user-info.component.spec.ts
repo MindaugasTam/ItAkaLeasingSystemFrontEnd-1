@@ -14,6 +14,9 @@ import { DataStoreService } from '../services/data-store.service';
 
 import { InputPrivateUserInfoComponent } from './input-private-user-info.component';
 import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.component';
+import { VehicleLoanService } from '../services/vehicle-loan.service';
+import { PrivateUserService } from '../services/private-user.service';
+import { BusinessUserService } from '../services/business-user.service';
 
 describe('InputPrivateUserInfoComponent', () => {
   let component: InputPrivateUserInfoComponent;
@@ -23,7 +26,7 @@ describe('InputPrivateUserInfoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        InputLoanInfoComponent,
+        InputLoanInfoComponent ,
         InputBusinessUserInfoComponent,
         InputPrivateUserInfoComponent,
         BusinessUserLoanReportComponent,
@@ -39,7 +42,7 @@ describe('InputPrivateUserInfoComponent', () => {
       ],
       providers:[
         {provide:APP_BASE_HREF, useValue:'/'},
-        DataStoreService
+        DataStoreService, VehicleLoanService, PrivateUserService, BusinessUserService
       ]
     }).compileComponents();
   }));

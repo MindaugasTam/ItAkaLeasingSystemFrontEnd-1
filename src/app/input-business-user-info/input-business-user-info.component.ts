@@ -16,7 +16,7 @@ export class InputBusinessUserInfoComponent implements OnInit {
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService) {
     this.businessUserInputForm = fb.group({
       companyName: [null, Validators.required],
-      companyCode: [null, Validators.required],
+      companyCode: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
       email: [null, [Validators.required, Validators.email]],
       phoneNumber: [null, Validators.required],
       address: [null, Validators.required]
