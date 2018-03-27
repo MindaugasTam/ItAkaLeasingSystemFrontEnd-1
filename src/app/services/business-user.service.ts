@@ -12,17 +12,18 @@ export class BusinessUserService {
       companyName: companyName,
       email: email,
       phoneNumber: phoneNumber,
-      address: address
+      address: address,
+      customerType: "BUSINESS"
     };
 
     return this.http
-      .post("http://localhost:8080/businessCustomers/add", businessUser)
+      .post("http://localhost:8080/customers/addBusinessCustomer", businessUser)
       .toPromise();
   }
 
   getAllBusinessUsers(){
     return this.http
-      .get("http://localhost:8080/businessCustomers")
+      .get("http://localhost:8080/customers")
       .toPromise();
   }
 

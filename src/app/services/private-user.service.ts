@@ -13,17 +13,18 @@ export class PrivateUserService {
       privateID: privateID,
       email: email,
       phoneNumber: phoneNumber,
-      address: address
+      address: address,
+      customerType: "PRIVATE"
     };
 
     return this.http
-      .post("http://localhost:8080/privateCustomers/add", businessUser)
+      .post("http://localhost:8080//customers/addPrivateCustomer", businessUser)
       .toPromise();
   }
 
   getAllPrivateUsers(){
     return this.http
-      .get("http://localhost:8080/privateCustomers")
+      .get("http://localhost:8080/customers")
       .toPromise();
   }
 }
