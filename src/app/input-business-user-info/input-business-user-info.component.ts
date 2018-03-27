@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { DataStoreService } from '../services/data-store.service';
+import { CountryList } from '../CountryList';
 
 @Component({
   selector: 'app-input-business-user-info',
@@ -12,18 +13,23 @@ import { DataStoreService } from '../services/data-store.service';
 export class InputBusinessUserInfoComponent implements OnInit {
 
   public businessUserInputForm: FormGroup;
+  public countries: CountryList;
 
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService) {
     this.businessUserInputForm = fb.group({
       companyName: [null, [Validators.required, Validators.maxLength(100)]],
+      country: [null, Validators.required],
       companyCode: [null, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
       email: [null, [Validators.required, Validators.email]],
       phoneNumber: [null, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
-      address: [null, Validators.required, Validators.maxLength(500)]
+      address: [null, [Validators.required, Validators.maxLength(500)]]
     })
+    this.countries = new CountryList();
+
    }
 
   get companyName(){return this.businessUserInputForm.get('companyName') as FormControl;}
+  get country(){return this.businessUserInputForm.get('country') as FormControl;}
   get companyCode(){return this.businessUserInputForm.get('companyCode') as FormControl;}
   get email(){return this.businessUserInputForm.get('email') as FormControl;}
   get phoneNumber(){return this.businessUserInputForm.get('phoneNumber') as FormControl;}
