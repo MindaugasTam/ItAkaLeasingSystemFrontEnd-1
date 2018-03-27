@@ -20,6 +20,7 @@ import {BusinessUserService} from './services/business-user.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LoginService } from './services/login.service';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LoginService } from './services/login.service';
     PrivateUserLoanReportComponent,
     LoginComponent,
     HomeComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
