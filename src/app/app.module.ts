@@ -17,6 +17,8 @@ import {DataStoreService} from './services/data-store.service';
 import {PrivateUserService} from './services/private-user.service';
 import {VehicleLoanService} from './services/vehicle-loan.service';
 import {BusinessUserService} from './services/business-user.service';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import {BusinessUserService} from './services/business-user.service';
     InputPrivateUserInfoComponent,
     BusinessUserLoanReportComponent,
     PrivateUserLoanReportComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
