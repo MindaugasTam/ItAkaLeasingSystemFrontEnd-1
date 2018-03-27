@@ -19,6 +19,7 @@ import {VehicleLoanService} from './services/vehicle-loan.service';
 import {BusinessUserService} from './services/business-user.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService],
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

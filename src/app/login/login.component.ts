@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public loginForm: FormGroup;
+
+  constructor(fb: FormBuilder, private router: Router, private loginService: LoginService) {
+
+    this.loginForm = fb.group({
+      userId: [null, [Validators.required, Validators.maxLength(20)] ],
+      password:[null, [Validators.required, Validators.maxLength(20) ]]
+    })
+   }
+
+  get userId(){ return this.loginForm.get('userId') as FormControl;}
+  get password(){ return this.loginForm.get('password') as FormControl;}
+
+  @Output()
+  newLoginRequest = new EventEmitter<Object>();
 
   ngOnInit() {
+    
+  }
+
+  goToMain(){
+    this.router.navigate(['/']);
+  }
+
+  login(){
+    this.tryToLogin();
+  }
+
+  tryToLogin(){
+    return this.loginService.createLoginRequest(this.userId.value, this.password.value)
+    .then(data => {
+      this.newLoginRequest.emit(data);
+      let temp = JSON.stringify(data);
+      let response = JSON.parse(temp);
+      console.log(response);
+        if(response.data=='userDoesNotExist'){
+            console.log('user does not exist');
+        } else if(response.data=='firstLogin'){
+          console.log('change your password!');
+        } else if(response.data.loanList){
+          console.log(response.data);
+        }
+    })
   }
 
 }
