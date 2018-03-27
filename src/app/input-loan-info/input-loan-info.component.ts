@@ -33,15 +33,15 @@ export class InputLoanInfoComponent implements OnInit {
         carModel:[null, Validators.required],
         year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4),
           Validators.max(new Date().getFullYear()), Validators.pattern("^[0-9]*$")]],
-        enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3),
+        enginePower:[0, [Validators.required, Validators.max(1000), Validators.maxLength(3),
           Validators.min(0), Validators.pattern("^[0-9]*$")]],
-        assetPrice:[5000, [Validators.required, Validators.min(5000), Validators.pattern("^[0-9]*$")]],
+        assetPrice:[5000, [Validators.required, Validators.min(5000), Validators.max(1000000000), Validators.pattern("^[0-9]*$")]],
         paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100),
                           Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         leasePeriod:[null, Validators.required],
         margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
-        contractFee:[200, Validators.required],
-        paymentDay:[null, Validators.required]
+        contractFee:[200, [Validators.required, Validators.max(1000000000)]],
+        paymentDay:[null, [Validators.required, Validators.min(15), Validators.max(30)]]
 
 
 

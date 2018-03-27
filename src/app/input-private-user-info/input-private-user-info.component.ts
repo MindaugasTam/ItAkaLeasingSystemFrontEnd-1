@@ -14,12 +14,12 @@ export class InputPrivateUserInfoComponent implements OnInit {
 
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService) {
     this.privateUserInfoForm = fb.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+      firstName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern("[a-zA-Z ]*")]],
+      lastName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern("[a-zA-Z ]*")]],
       privateID: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
-      email: [null, [Validators.required, Validators.email]],
-      phoneNumber: [null, Validators.required],
-      address: [null, Validators.required]
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(70)]],
+      phoneNumber: [null, [Validators.required, Validators.maxLength(20), Validators.pattern("^[0-9]*$")]],
+      address: [null, [Validators.required, Validators.maxLength(500)]]
     })
   }
 

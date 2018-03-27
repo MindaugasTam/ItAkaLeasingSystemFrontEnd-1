@@ -15,11 +15,11 @@ export class InputBusinessUserInfoComponent implements OnInit {
 
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService) {
     this.businessUserInputForm = fb.group({
-      companyName: [null, Validators.required],
-      companyCode: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      companyName: [null, [Validators.required, Validators.maxLength(100)]],
+      companyCode: [null, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
       email: [null, [Validators.required, Validators.email]],
-      phoneNumber: [null, Validators.required],
-      address: [null, Validators.required]
+      phoneNumber: [null, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
+      address: [null, Validators.required, Validators.maxLength(500)]
     })
    }
 
