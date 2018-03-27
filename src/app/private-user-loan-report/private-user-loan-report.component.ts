@@ -44,7 +44,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
     //this.router.navigate(['/input-private-user-info']);
     this.addPrivateUserToDB().then(() => this.addVehicleLoanToDB());
     //this.addVehicleLoanToDB();
-    console.log('SUBMITTED');
+    console.log(this.dataStore.getPrivateUserData());
   }
 
   toPreviousPage() {
