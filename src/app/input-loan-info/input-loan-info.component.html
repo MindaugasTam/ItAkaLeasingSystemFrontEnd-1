@@ -5,6 +5,7 @@
                 <div class="form-group">
                         <label for="customerType">Customer Type</label>
                                 <select class="form-control" id="customerType" (input) ="userTypeChange($event.target.value)" formControlName="customerType">
+                                        <option disabled value="null" selected>Please Choose Customer Type</option>
                                         <option name="Private">Private</option>
                                         <option name="Business">Business</option>
                                 </select>
@@ -15,6 +16,7 @@
                         <div class="form-group">
                                 <label for="assetType">Asset Type</label>
                                 <select class="form-control" id="assetType" formControlName="assetType">
+                                        <option disabled value="null" selected>Please Choose Asset Type</option>
                                         <option value="vehicle" selected>Vehicle</option>
                                 </select>
                                 <small *ngIf="assetType.invalid && assetType.dirty" class="form-text text-danger">Asset type is invalid.</small>
@@ -23,6 +25,7 @@
                        <div class="form-group">
                                 <label for="carBrand">Car brand</label>
                                 <select class="form-control" id="carBrand" formControlName="carBrand" (change)="findModels()">
+                                        <option disabled value="null" selected>Please Choose Car Brand</option>
                                         <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
                                 </select>
                                 <small *ngIf="carBrand.invalid && carBrand.dirty" class="form-text text-danger">Please select car brand.</small>
@@ -31,6 +34,7 @@
                         <div class="form-group">
                                 <label for="carModel">Car Model</label>
                                 <select class="form-control" id="carModel" formControlName="carModel">
+                                        <option disabled value="null" selected>Please Choose Car Model</option>
                                         <option *ngFor="let selectedModels of models" [value]="selectedModels">{{selectedModels}}</option>
                                 </select>
                         </div>
@@ -43,7 +47,7 @@
 
                         </div>
                         <div class="form-group">
-                                <label for="enginePower">Engine power</label>
+                                <label for="enginePower">Engine power (kW)</label>
 
                                         <input type="text" class="form-control" id="enginePower" name="enginePower" formControlName="enginePower">
                                         <small *ngIf="enginePower.invalid && enginePower.dirty" class="form-text text-danger">Engine power is invalid.</small>
@@ -76,6 +80,7 @@
                                 <label for="paymentDay" >Payment day</label>
 
                                         <select class="form-control" id="paymentDay" formControlName="paymentDay">
+                                                <option disabled value="null" selected>Please Choose Payment Day</option>
                                                 <option name="paymentDay">15</option>
                                                 <option name="paymentDay">30</option>
                                         </select>
@@ -86,7 +91,7 @@
                         <div class="form-footer">
 
                                 <div class="row">
-                           <button class="btn btn-outline-warning form-buttons  btn-margin" type="reset">Reset</button>
+                           <button class="btn btn-outline-warning form-buttons  btn-margin" (click) = "this.reset()" type = "button" >Reset</button>
                            <button class="btn btn-warning form-buttons btn-margin" [disabled]="!this.loanForm.valid" type="submit" >Next</button>
 
                         </div>

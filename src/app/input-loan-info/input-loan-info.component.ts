@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
@@ -15,19 +15,22 @@ export class InputLoanInfoComponent implements OnInit {
 
 
     public loanForm: FormGroup;
-    private userType: String;
+    private userType: String = undefined;
     private minAssetPrice: number = 5000;
 
     private cars;
    models;
     private i: number = 0;
+    fb: FormBuilder;
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
      this.cars =new CarList().cars;
+      this.fb = fb;    
+    }
 
-
-      this.loanForm = fb.group({
-        customerType:[null, Validators.required],
+    createForm(userType){ //constructor
+      return this.fb.group({
+        customerType:[userType, Validators.required],
         assetType:[null, Validators.required],
         carBrand:[null, Validators.required],
         carModel:[null, Validators.required],
@@ -42,9 +45,6 @@ export class InputLoanInfoComponent implements OnInit {
         margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         contractFee:[200, Validators.required],
         paymentDay:[null, Validators.required]
-
-
-
       })
     }
 
@@ -97,12 +97,18 @@ export class InputLoanInfoComponent implements OnInit {
           this.router.navigate(['/input-business-user-info']);
       }
     }
-
-    reset(){
-      this.loanForm.reset();
+    reset(){ // after reset button
+      this.userType = undefined;
+      this._reset();
+    }
+    _reset(){       
+     this.loanForm = this.createForm(this.userType);
+     this.loanForm.updateValueAndValidity;   
     }
 
   ngOnInit() {
+
+    this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
     }
@@ -110,6 +116,7 @@ export class InputLoanInfoComponent implements OnInit {
 
   userTypeChange(userTypeT: string){
     this.userType = userTypeT;  // "Private" or "Business"
+    this._reset();
     this.loanForm.patchValue({"assetPrice": this.findMinAssetPrice()})
     this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice()), Validators.pattern("^[0-9]*$")]);
     this.loanForm.controls['assetPrice'].updateValueAndValidity();
