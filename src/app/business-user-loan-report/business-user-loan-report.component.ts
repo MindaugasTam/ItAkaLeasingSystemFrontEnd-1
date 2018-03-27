@@ -36,8 +36,8 @@ export class BusinessUserLoanReportComponent implements OnInit {
     newVehicleLoan = new EventEmitter<Object>();
 
   ngOnInit() {
-    console.log(this.dataStore.getBusinessUserData);
   }
+  
   submit() {
     //this.router.navigate(['/input-private-user-info']);
     this.addBusinessUserToDB().then(() => this.addVehicleLoanToDB());
