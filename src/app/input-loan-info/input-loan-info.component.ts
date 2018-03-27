@@ -19,7 +19,7 @@ export class InputLoanInfoComponent implements OnInit {
     private minAssetPrice: number = 5000;
 
     private cars;
-   models;
+     models;
     private i: number = 0;
     fb: FormBuilder;
 
