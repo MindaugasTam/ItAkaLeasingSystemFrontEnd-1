@@ -46,11 +46,9 @@ export class LoginComponent implements OnInit {
       this.newLoginRequest.emit(data);
       let temp = JSON.stringify(data);
       let response = JSON.parse(temp);
-      
-      console.log(response);
       if(!response){
         this.badUserData = true;
-      } else if (response.id!=null){
+      } else if (response=='Password exists'){
         this.badUserData = false;
         this.router.navigate(['/change-password']);
       }
