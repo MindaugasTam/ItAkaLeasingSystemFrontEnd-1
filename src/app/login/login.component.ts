@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
     })
    }
 
+   badUserData = false;
+
   get userId(){ return this.loginForm.get('userId') as FormControl;}
   get password(){ return this.loginForm.get('password') as FormControl;}
 
@@ -44,19 +46,12 @@ export class LoginComponent implements OnInit {
       this.newLoginRequest.emit(data);
       let temp = JSON.stringify(data);
       let response = JSON.parse(temp);
-      console.log(response);
-        if(response.data=='userDoesNotExist'){
-            console.log('user does not exist');
-            this.router.navigate(['']);
-        } else if(response.data=='firstLogin'){
-          console.log('change your password!');
-            this.router.navigate(['change-password-component']);
-        } else if(response.data.loanList){
-          console.log(response.data);
-          this.router.navigate(['loan-status-component']);
-        } else {
-          console.log('Error. Something went wrong');
-        }
+      if(!response){
+        this.badUserData = true;
+      } else if (response=='Password exists'){
+        this.badUserData = false;
+        this.router.navigate(['/change-password']);
+      }
     })
   }
 
