@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LoginService } from './services/login.service';
 import { MenuComponent } from './menu/menu.component';
+import { LoanStatusComponent } from './loan-status/loan-status.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MenuComponent } from './menu/menu.component';
     LoginComponent,
     HomeComponent,
     MenuComponent,
+    LoanStatusComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
