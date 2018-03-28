@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class BusinessUserService {
@@ -15,15 +16,17 @@ export class BusinessUserService {
       address: address
     };
 
+    
+
     return this.http
       .post("http://localhost:8080/businessCustomers/add", businessUser)
       .toPromise();
   }
 
-  getAllBusinessUsers(){
-    return this.http
-      .get("http://localhost:8080/businessCustomers")
-      .toPromise();
+  ngOnInit(): void {
+    this.http.get('https://api.github.com/users/seeschweiler').subscribe(data => {
+      console.log(data);
+    });
   }
 
 
