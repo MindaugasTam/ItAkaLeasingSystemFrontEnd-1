@@ -47,10 +47,15 @@ export class LoginComponent implements OnInit {
       console.log(response);
         if(response.data=='userDoesNotExist'){
             console.log('user does not exist');
+            this.router.navigate(['']);
         } else if(response.data=='firstLogin'){
           console.log('change your password!');
+            this.router.navigate(['change-password-component']);
         } else if(response.data.loanList){
           console.log(response.data);
+          this.router.navigate(['loan-status-component']);
+        } else {
+          console.log('Error. Something went wrong');
         }
     })
   }
