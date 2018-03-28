@@ -42,9 +42,19 @@ export class PrivateUserLoanReportComponent implements OnInit {
 
   submit() {
     //this.router.navigate(['/input-private-user-info']);
-    this.addPrivateUserToDB().then(() => this.addVehicleLoanToDB());
-    //this.addVehicleLoanToDB();
-    console.log('SUBMITTED');
+
+    this.addPrivateUserToDB()
+      .then(data => {
+        this.newPrivateUser.emit(data);
+        let temp = JSON.stringify(data);
+        let parseTemp = JSON.parse(temp);
+        this.privateUserID = parseTemp.id;
+      })
+      .then(() => {
+        this.addVehicleLoanToDB().then(() => {
+          this.newVehicleLoan.emit();
+        })
+      });
   }
 
   toPreviousPage() {
@@ -52,14 +62,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
   }
 
   addPrivateUserToDB() {
-    return this.privateUserService.createPrivateUser(this.firstName, this.lastName, this.privateID, this.email, this.phoneNumber, this.address)
-      .then(data => {
-        //console.log('create private user callback');
-        this.newPrivateUser.emit(data);
-        let temp = JSON.stringify(data);
-        let parseTemp = JSON.parse(temp);
-        this.privateUserID = parseTemp.id;
-      });
+    return this.privateUserService.createPrivateUser(this.firstName, this.lastName, this.privateID, this.email, this.phoneNumber, this.address);
   }
 
   addVehicleLoanToDB() {
@@ -67,13 +70,9 @@ export class PrivateUserLoanReportComponent implements OnInit {
     return this.vehicleLoanService.createVehicleLeasing(
       loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
       loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
-      loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.privateUserID)
-      .then(data => {
-        //console.log("create vehicle loan callback");
-        this.newVehicleLoan.emit(data);
-      })
+      loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.privateUserID);
   }
 
-  
+
 
 }

@@ -17,6 +17,10 @@ import {DataStoreService} from './services/data-store.service';
 import {PrivateUserService} from './services/private-user.service';
 import {VehicleLoanService} from './services/vehicle-loan.service';
 import {BusinessUserService} from './services/business-user.service';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { LoginService } from './services/login.service';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import {BusinessUserService} from './services/business-user.service';
     InputPrivateUserInfoComponent,
     BusinessUserLoanReportComponent,
     PrivateUserLoanReportComponent,
+    LoginComponent,
+    HomeComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import {BusinessUserService} from './services/business-user.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService],
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

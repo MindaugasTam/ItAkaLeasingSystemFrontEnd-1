@@ -30,17 +30,29 @@ export class BusinessUserLoanReportComponent implements OnInit {
     businessUserID = null;
 
     @Output()
-    newBusinessUser = new EventEmitter<Object>();
+    newBusinessUser = new EventEmitter<any>();
 
     @Output()
     newVehicleLoan = new EventEmitter<Object>();
 
   ngOnInit() {
-    console.log(this.dataStore.getBusinessUserData);
   }
+
   submit() {
     //this.router.navigate(['/input-private-user-info']);
-    this.addBusinessUserToDB().then(() => this.addVehicleLoanToDB());
+    this.addBusinessUserToDB()
+      .then(data  => {
+        this.newBusinessUser.emit(data);
+        let temp = JSON.stringify(data);
+        let parseTemp = JSON.parse(temp);
+        this.businessUserID = parseTemp.id;
+        //console.log("create business user callback");
+      })
+      .then(() => {
+        this.addVehicleLoanToDB().then(() => {
+          this.newVehicleLoan.emit();
+        })
+      });
     console.log("SUBMITTED")
   }
 
@@ -51,14 +63,7 @@ export class BusinessUserLoanReportComponent implements OnInit {
 
   addBusinessUserToDB(){
     return this.businessUserService.createBusinessUser(this.companyCode, this.companyName, this.email,
-      this.phoneNumber, this.address)
-      .then(data => {
-        this.newBusinessUser.emit(data);
-        let temp = JSON.stringify(data);
-        let parseTemp = JSON.parse(temp);
-        this.businessUserID = parseTemp.id;
-        //console.log("create business user callback");
-      });
+      this.phoneNumber, this.address);
   }
 
   addVehicleLoanToDB() {
@@ -66,10 +71,6 @@ export class BusinessUserLoanReportComponent implements OnInit {
     return this.vehicleLoanService.createVehicleLeasing(
       loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
       loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
-      loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.businessUserID)
-      .then(data => {
-        this.newVehicleLoan.emit(data);
-        //console.log("create vehicle loan callback");
-      })
+      loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.businessUserID);
   }
 }
