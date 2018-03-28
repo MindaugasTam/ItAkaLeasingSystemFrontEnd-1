@@ -8,6 +8,8 @@ import { BusinessUserLoanReportComponent } from './business-user-loan-report/bus
 import { PrivateUserLoanReportComponent } from './private-user-loan-report/private-user-loan-report.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoanStatusComponent } from './loan-status/loan-status.component';
 
 const routes: Routes = [
     {
@@ -42,6 +44,14 @@ const routes: Routes = [
       path: 'home',
             component: HomeComponent,
     },
+    {
+      path: 'change-password',
+            component: ChangePasswordComponent,
+    },
+    {
+      path: 'loan-status',
+            component: LoanStatusComponent,
+    }
 ];
 
 @NgModule({
