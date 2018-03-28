@@ -17,7 +17,7 @@ export class BusinessUserService {
     };
 
     return this.http
-      .post("https://leasingcourseproject.herokuapp.com/addBusinessCustomer", businessUser)
+      .post("https://leasingcourseproject.herokuapp.com/customers/addBusinessCustomer", businessUser)
       .toPromise();
   }
 
