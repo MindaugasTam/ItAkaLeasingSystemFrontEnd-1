@@ -23,6 +23,7 @@ import { LoginService } from './services/login.service';
 import { MenuComponent } from './menu/menu.component';
 import { LoanStatusComponent } from './loan-status/loan-status.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { VehicleList } from './services/vehicle-list.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService, LoginService],
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, 
+    VehicleLoanService, LoginService, VehicleList],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

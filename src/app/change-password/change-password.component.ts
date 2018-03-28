@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  public changeForm: FormGroup;
+
+  constructor(fb: FormBuilder, private router: Router) {
+     this.changeForm = fb.group({
+        oldPass: [null, [Validators.required, Validators.maxLength(20)] ],
+        newPass: [null, [Validators.required, Validators.maxLength(20)] ]
+     })
+   }
 
   ngOnInit() {
   }
