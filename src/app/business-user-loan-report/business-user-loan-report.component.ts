@@ -10,8 +10,10 @@ import {BusinessUserService} from '../services/business-user.service';
   templateUrl: './business-user-loan-report.component.html',
   styleUrls: ['./business-user-loan-report.component.css']
 })
-export class BusinessUserLoanReportComponent implements OnInit {
 
+
+export class BusinessUserLoanReportComponent implements OnInit {
+  responseText : String;
   constructor(public router: Router, private dataStore: DataStoreService,
               private businessUserService: BusinessUserService,
               private vehicleLoanService: VehicleLoanService) { }
@@ -41,12 +43,15 @@ export class BusinessUserLoanReportComponent implements OnInit {
   submit() {
     //this.router.navigate(['/input-private-user-info']);
     this.addBusinessUserToDB()
-      .then(data  => {
-        this.newBusinessUser.emit(data);
+      .then(data  => { 
+        this.newBusinessUser.emit(data);  
+      
         let temp = JSON.stringify(data);
         let parseTemp = JSON.parse(temp);
+        this.responseText = temp;
         this.businessUserID = parseTemp.id;
         //console.log("create business user callback");
+        console.log(this.responseText);
       })
       .then(() => {
         this.addVehicleLoanToDB().then(() => {

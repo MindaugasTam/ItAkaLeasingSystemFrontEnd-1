@@ -17,17 +17,15 @@ export class BusinessUserService {
       customerType: "BUSINESS"
     };
 
-    interface LoginResponse {
-      accessToken: Object;
-      accessExpiration: Object;
-    }
+ 
 
     return this.http
       .post("http://localhost:8080/customers/addBusinessCustomer", businessUser)
-      .toPromise()
-      .then( (res) => {
-          console.log(businessUser);
-      })
+      .toPromise().catch(function(e){
+        console.log("got an error in initial processing",e.status);
+        
+     })
+           
   }
 
   getAllBusinessUsers(){
