@@ -53,6 +53,6 @@ describe('PrivateUserLoanReportComponent', () => {
     fixture.detectChanges();
   });
 
-  
+
 
 });

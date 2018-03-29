@@ -26,7 +26,7 @@
                                 <label for="carBrand">Car brand</label>
                                 <select class="form-control" id="carBrand" formControlName="carBrand" (change)="findModels()">
                                         <option disabled value="null" selected>Please Choose Car Brand</option>
-                                        <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.groupValue">{{selectedBrand.groupValue}}</option>
+                                        <option *ngFor="let selectedBrand of brands" [value]="selectedBrand">{{selectedBrand}}</option>
                                 </select>
                                 <small *ngIf="carBrand.invalid && carBrand.dirty" class="form-text text-danger">Please select car brand.</small>
                         </div>
