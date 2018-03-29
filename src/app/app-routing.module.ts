@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoanStatusComponent } from './loan-status/loan-status.component';
+import {ForgetPasswordComponent} from './forget-password/forget-password.component';
 
 const routes: Routes = [
     {
@@ -51,7 +52,11 @@ const routes: Routes = [
     {
       path: 'loan-status',
             component: LoanStatusComponent,
-    }
+    },
+   {
+     path: 'forget-password',
+            component: ForgetPasswordComponent,
+   }
 ];
 
 @NgModule({
