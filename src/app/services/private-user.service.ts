@@ -6,7 +6,7 @@ export class PrivateUserService {
 
   constructor(private http: HttpClient) { }
 
-  createPrivateUser(firstName, lastName, privateID, email, phoneNumber, address){
+  createPrivateUser(firstName, lastName, privateID, email, phoneNumber, address, country){
     let businessUser = {
       firstName: firstName,
       lastName: lastName,
@@ -14,6 +14,7 @@ export class PrivateUserService {
       email: email,
       phoneNumber: phoneNumber,
       address: address,
+      country: country,
       customerType: "PRIVATE"
     };
 

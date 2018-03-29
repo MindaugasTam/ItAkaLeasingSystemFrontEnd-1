@@ -6,13 +6,14 @@ export class BusinessUserService {
 
   constructor(private http: HttpClient) { }
 
-  createBusinessUser(companyID, companyName, email, phoneNumber, address){
+  createBusinessUser(companyID, companyName, email, phoneNumber, address, country){
     let businessUser = {
       companyID: companyID,
       companyName: companyName,
       email: email,
       phoneNumber: phoneNumber,
       address: address,
+      country: country,
       customerType: "BUSINESS"
     };
 

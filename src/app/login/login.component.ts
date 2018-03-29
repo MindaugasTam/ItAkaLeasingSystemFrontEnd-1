@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   newLoginRequest = new EventEmitter<Object>();
 
   ngOnInit() {
-    
+
   }
 
   goToMain(){
@@ -48,9 +48,13 @@ export class LoginComponent implements OnInit {
       let response = JSON.parse(temp);
       if(!response){
         this.badUserData = true;
-      } else if (response=='Password exists'){
+      }
+      else if (response=='Password exists'){
         this.badUserData = false;
         this.router.navigate(['/change-password']);
+      }
+      else{
+        console.log(response)
       }
     })
   }
