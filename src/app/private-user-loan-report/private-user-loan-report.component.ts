@@ -17,6 +17,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
   email = this.dataStore.getPrivateUserData().email;
   phoneNumber = this.dataStore.getPrivateUserData().phoneNumber;
   privateID = this.dataStore.getPrivateUserData().privateID;
+  country = this.dataStore.getPrivateUserData().country;
 
   userInfo = this.dataStore.getPrivateUserData();
   loanInfo = this.dataStore.getLoanFormInfo();
@@ -62,7 +63,8 @@ export class PrivateUserLoanReportComponent implements OnInit {
   }
 
   addPrivateUserToDB() {
-    return this.privateUserService.createPrivateUser(this.firstName, this.lastName, this.privateID, this.email, this.phoneNumber, this.address);
+    return this.privateUserService.createPrivateUser(this.firstName, this.lastName, this.privateID, this.email,
+      this.phoneNumber, this.address, this.country);
   }
 
   addVehicleLoanToDB() {

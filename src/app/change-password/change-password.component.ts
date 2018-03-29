@@ -32,7 +32,7 @@ export class ChangePasswordComponent implements OnInit {
   newLoginRequest = new EventEmitter<Object>();
 
   ngOnInit() {
-    
+
   }
 
   goToMain(){
@@ -50,7 +50,6 @@ export class ChangePasswordComponent implements OnInit {
       let temp = JSON.stringify(data);
       let response = JSON.parse(temp);
       console.log(response);
-    
     })
   }
 

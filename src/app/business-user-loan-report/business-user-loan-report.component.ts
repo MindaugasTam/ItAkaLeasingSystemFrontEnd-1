@@ -21,6 +21,7 @@ export class BusinessUserLoanReportComponent implements OnInit {
     email = this.dataStore.getBusinessUserData().email;
     phoneNumber = this.dataStore.getBusinessUserData().phoneNumber;
     address = this.dataStore.getBusinessUserData().address;
+    country = this.dataStore.getBusinessUserData().country;
 
     userInfo = this.dataStore.getBusinessUserData();
     loanInfo = this.dataStore.getLoanFormInfo();
@@ -63,7 +64,7 @@ export class BusinessUserLoanReportComponent implements OnInit {
 
   addBusinessUserToDB(){
     return this.businessUserService.createBusinessUser(this.companyCode, this.companyName, this.email,
-      this.phoneNumber, this.address);
+      this.phoneNumber, this.address, this.country);
   }
 
   addVehicleLoanToDB() {
