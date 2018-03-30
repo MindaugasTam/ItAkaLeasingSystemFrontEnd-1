@@ -3,6 +3,7 @@ import {Router, RouterModule} from '@angular/router';
 import {DataStoreService} from '../services/data-store.service';
 import {PrivateUserService} from '../services/private-user.service';
 import {VehicleLoanService} from '../services/vehicle-loan.service';
+declare var $:any;
 
 @Component({
   selector: 'app-private-user-loan-report',
@@ -10,6 +11,9 @@ import {VehicleLoanService} from '../services/vehicle-loan.service';
   styleUrls: ['./private-user-loan-report.component.css']
 })
 export class PrivateUserLoanReportComponent implements OnInit {
+  responseText : String;
+  addPrivateUser : Boolean;
+  addPrivateVehicle : Boolean;
 
   firstName = this.dataStore.getPrivateUserData().firstName;
   lastName = this.dataStore.getPrivateUserData().lastName;
@@ -49,13 +53,46 @@ export class PrivateUserLoanReportComponent implements OnInit {
         this.newPrivateUser.emit(data);
         let temp = JSON.stringify(data);
         let parseTemp = JSON.parse(temp);
+        this.responseText = temp;
         this.privateUserID = parseTemp.id;
+        if(this.responseText.length > 0 ){
+          this.addPrivateUser = true;
+       }else{
+         this.addPrivateUser = false;
+                }
       })
       .then(() => {
-        this.addVehicleLoanToDB().then(() => {
-          this.newVehicleLoan.emit();
+        this.addVehicleLoanToDB().then(data => {
+          this.newVehicleLoan.emit(data);
+          let temp = JSON.stringify(data);
+          let parseTemp = JSON.parse(temp);
+          this.responseText = temp;
+      
+          
+
+          if(this.responseText.length > 0 ){
+            this.addPrivateVehicle = true;
+         }else{
+           this.addPrivateVehicle = false;
+                  }
+                  console.log(this.addPrivateUser + "add business user");
+                  console.log(this.addPrivateVehicle + "add business vehicle");
+                  console.log(temp);
+
+                  var successMessage = " ";  
+                  if(this.addPrivateUser == true && this.addPrivateVehicle == true){
+                    successMessage = $('<div>').text('Successfully saved to database...').css('color', 'green');
+                  }else{
+                    successMessage = $('<div>').text('denied...').css('color', 'red');
+                  }
+                      
+                  $('.modal-footer').html(successMessage);
+                  window.setTimeout(function() { 
+                  $('#exampleModal').modal('hide'); }, 5000);
+                  console.log("asdsasad");
+
         })
-      });
+      })
   }
 
   toPreviousPage() {

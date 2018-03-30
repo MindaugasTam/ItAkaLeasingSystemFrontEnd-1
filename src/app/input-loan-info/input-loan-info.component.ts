@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 
+
 @Component({
   selector: 'app-input-loan-info',
   templateUrl: './input-loan-info.component.html',
@@ -131,6 +132,7 @@ export class InputLoanInfoComponent implements OnInit {
     reset(){ // after reset button
       this.userType = undefined;
       this._reset();
+      
     }
     _reset(){
      this.loanForm = this.createForm(this.userType);
