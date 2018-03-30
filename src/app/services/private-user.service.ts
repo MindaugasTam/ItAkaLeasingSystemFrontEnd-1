@@ -19,13 +19,13 @@ export class PrivateUserService {
     };
 
     return this.http
-      .post("https://localhost:8080/customers/addPrivateCustomer", businessUser)
+      .post("http://localhost:8080/customers/addPrivateCustomer", businessUser)
       .toPromise();
   }
 
   getAllPrivateUsers(){
     return this.http
-      .get("https://localhost:8080/customers")
+      .get("http://localhost:8080/customers")
       .toPromise();
   }
 }
