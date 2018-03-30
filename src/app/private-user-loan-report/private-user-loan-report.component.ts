@@ -29,6 +29,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
   advancedPaymentAmount = this.dataStore.getAdvancedPaymentAmount();
 
   privateUserID = null;
+  privateUserLoginID = null;
 
   @Output()
   newPrivateUser = new EventEmitter<Object>();
@@ -55,6 +56,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
         let parseTemp = JSON.parse(temp);
         this.responseText = temp;
         this.privateUserID = parseTemp.id;
+        this.privateUserLoginID = parseTemp.userID;
         if(this.responseText.length > 0 ){
           this.addPrivateUser = true;
        }else{
@@ -67,8 +69,8 @@ export class PrivateUserLoanReportComponent implements OnInit {
           let temp = JSON.stringify(data);
           let parseTemp = JSON.parse(temp);
           this.responseText = temp;
-      
-          
+
+
 
           if(this.responseText.length > 0 ){
             this.addPrivateVehicle = true;
@@ -79,15 +81,16 @@ export class PrivateUserLoanReportComponent implements OnInit {
                   console.log(this.addPrivateVehicle + "add business vehicle");
                   console.log(temp);
 
-                  var successMessage = " ";  
+                  var successMessage = " ";
                   if(this.addPrivateUser == true && this.addPrivateVehicle == true){
-                    successMessage = $('<div>').text('Successfully saved to database...').css('color', 'green');
+                    successMessage = $('<div>').text('Loan registration successful\n User login id: '
+                    + this.privateUserLoginID).css('color', 'green');
                   }else{
-                    successMessage = $('<div>').text('denied...').css('color', 'red');
+                    successMessage = $('<div>').text('Loan registration denied').css('color', 'red');
                   }
-                      
+
                   $('.modal-footer').html(successMessage);
-                  window.setTimeout(function() { 
+                  window.setTimeout(function() {
                   $('#exampleModal').modal('hide'); }, 5000);
                   console.log("asdsasad");
 

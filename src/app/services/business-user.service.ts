@@ -18,12 +18,12 @@ export class BusinessUserService {
       customerType: "BUSINESS"
     };
 
- 
+
 
     return this.http
       .post("https://leasingcourseproject.herokuapp.com/customers/addBusinessCustomer", businessUser)
       .toPromise();
-           
+
   }
 
   getAllBusinessUsers(){
