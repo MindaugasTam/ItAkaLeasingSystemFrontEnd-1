@@ -1,3 +1,22 @@
-<p>
-  loan-status works!
-</p>
+<div class='container container_margins'>
+  <div class="form-header">Your current loans</div>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">Submission Date</th>
+              <th scope="col">Asset</th>
+              <th scope="col">Asset Price</th>
+              <th scope="col">Leasing Period</th>
+              <th scope="col">Leasing Status</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let loan of loanData">
+              <td>{{loan.submissionDate}}</td>
+              <td>{{loan.manufacturer}} {{loan.model}}</td>
+              <td>{{loan.assetPrice}}</td>
+              <td>{{loan.leasingPeriod}}</td>
+              <td>{{loan.leasingStatus}}</td>
+          </tbody>
+    </table>
+
+</div>

@@ -14,7 +14,7 @@ export class LoginService {
     };
 
     return this.http
-      .post("localhost:4200/customers/login", loginRequest)
+      .post("http://localhost:8080/customers/login", loginRequest)
       .toPromise();
   }
 
@@ -25,7 +25,7 @@ export class LoginService {
       newPassword: newPassword
     };
     return this.http
-      .post("localhost:8080/customers/change/password", passwordChangeRequest)
+      .post("http://localhost:8080/customers/change/password", passwordChangeRequest)
       .toPromise();
   }
 
