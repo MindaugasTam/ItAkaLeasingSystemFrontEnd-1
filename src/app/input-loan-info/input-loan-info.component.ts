@@ -74,6 +74,7 @@ export class InputLoanInfoComponent implements OnInit {
     get year(){return this.loanForm.get('year') as FormControl};
     get paymentAmount(){return this.loanForm.get('paymentAmount') as FormControl};
     get carBrand(){return this.loanForm.get('carBrand') as FormControl};
+    get carModel() {return this.loanForm.get('carModel') as FormControl};
     get advancedPaymentAmount(){return this.advancedPaymentAmount};
     get enginePower(){return this.loanForm.get('enginePower') as FormControl};
     get assetPrice(){return this.loanForm.get('assetPrice') as FormControl};
@@ -106,6 +107,7 @@ export class InputLoanInfoComponent implements OnInit {
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
     }
+    this.findModels()
   }
 
   userTypeChange(userTypeT: string){

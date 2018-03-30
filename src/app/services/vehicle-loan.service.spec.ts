@@ -15,7 +15,6 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BusinessUserService } from './business-user.service';
-
 beforeEach(async(() => {
   TestBed.configureTestingModule({
     declarations: [
@@ -45,4 +44,4 @@ beforeEach(async(() => {
   it('should be created', inject([VehicleLoanService], (service: VehicleLoanService) => {
     expect(service).toBeTruthy();
   }));
-});
+/*});*/

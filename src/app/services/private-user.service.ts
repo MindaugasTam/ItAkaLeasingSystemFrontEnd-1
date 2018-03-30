@@ -17,13 +17,13 @@ export class PrivateUserService {
     };
 
     return this.http
-      .post("https://leasingcourseproject.herokuapp.com/privateCustomers/add", businessUser)
+      .post("https://leasingcourseprojectapp.herokuapp.com/privateCustomers/add", businessUser)
       .toPromise();
   }
 
   getAllPrivateUsers(){
     return this.http
-      .get("https://leasingcourseproject.herokuapp.com/privateCustomers")
+      .get("https://leasingcourseprojectapp.herokuapp.com/privateCustomers")
       .toPromise();
   }
 }
