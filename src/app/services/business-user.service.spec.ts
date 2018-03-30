@@ -44,9 +44,4 @@ beforeEach(async(() => {
 
   it('should be created', inject([BusinessUserService], (service: BusinessUserService) => {
     expect(service).toBeTruthy();
-  })
-<<<<<<< HEAD
-);
-=======
-
->>>>>>> 16a4e2d3a4db05c27990ed6f8606edc5d7f0a999
+  }));
