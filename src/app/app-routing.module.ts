@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoanStatusComponent } from './loan-status/loan-status.component';
+import { LoanListComponent } from './loan-list/loan-list.component';
+
 
 const routes: Routes = [
     {
@@ -51,6 +53,10 @@ const routes: Routes = [
     {
       path: 'loan-status',
             component: LoanStatusComponent,
+    },
+    {
+      path: 'loan-list',
+            component: LoanListComponent,
     }
 ];
 

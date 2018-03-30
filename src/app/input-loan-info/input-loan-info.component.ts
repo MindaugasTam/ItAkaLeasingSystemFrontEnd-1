@@ -37,8 +37,6 @@ export class InputLoanInfoComponent implements OnInit {
             this.brands = this.cars.groupValue;
           }
         });
-        
-        
       this.fb = fb;    
       
     }
