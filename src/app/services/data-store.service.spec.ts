@@ -45,4 +45,3 @@ beforeEach(async(() => {
   it('should be created', inject([DataStoreService], (service: DataStoreService) => {
     expect(service).toBeTruthy();
   }));
-});

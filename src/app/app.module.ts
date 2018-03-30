@@ -17,6 +17,16 @@ import {DataStoreService} from './services/data-store.service';
 import {PrivateUserService} from './services/private-user.service';
 import {VehicleLoanService} from './services/vehicle-loan.service';
 import {BusinessUserService} from './services/business-user.service';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { LoginService } from './services/login.service';
+import { MenuComponent } from './menu/menu.component';
+import { LoanStatusComponent } from './loan-status/loan-status.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { VehicleList } from './services/vehicle-list.service';
+import { LoanListComponent } from './loan-list/loan-list.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import {BackValidationService} from './services/back-validation.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +36,13 @@ import {BusinessUserService} from './services/business-user.service';
     InputPrivateUserInfoComponent,
     BusinessUserLoanReportComponent,
     PrivateUserLoanReportComponent,
+    LoginComponent,
+    HomeComponent,
+    MenuComponent,
+    LoanStatusComponent,
+    ChangePasswordComponent,
+    LoanListComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +52,8 @@ import {BusinessUserService} from './services/business-user.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, VehicleLoanService],
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, BackValidationService,
+    VehicleLoanService, LoginService, VehicleList],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

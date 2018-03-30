@@ -6,24 +6,26 @@ export class PrivateUserService {
 
   constructor(private http: HttpClient) { }
 
-  createPrivateUser(firstName, lastName, privateID, email, phoneNumber, address){
+  createPrivateUser(firstName, lastName, privateID, email, phoneNumber, address, country){
     let businessUser = {
       firstName: firstName,
       lastName: lastName,
       privateID: privateID,
       email: email,
       phoneNumber: phoneNumber,
-      address: address
+      address: address,
+      country: country,
+      customerType: "PRIVATE"
     };
 
     return this.http
-      .post("https://leasingcourseprojectapp.herokuapp.com/privateCustomers/add", businessUser)
+      .post("https://localhost:8080/customers/addPrivateCustomer", businessUser)
       .toPromise();
   }
 
   getAllPrivateUsers(){
     return this.http
-      .get("https://leasingcourseprojectapp.herokuapp.com/privateCustomers")
+      .get("https://localhost:8080/customers")
       .toPromise();
   }
 }

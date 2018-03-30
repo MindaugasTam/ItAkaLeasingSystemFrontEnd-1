@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
 import {Http, Response } from '@angular/http'
-import { CarList } from './CarList';
+//import { CarList } from './CarList';
 import { forEach } from '@angular/router/src/utils/collection';
+import { VehicleList} from '../services/vehicle-list.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+
+
 
 @Component({
   selector: 'app-input-loan-info',
@@ -15,33 +20,54 @@ export class InputLoanInfoComponent implements OnInit {
 
 
     public loanForm: FormGroup;
-    private userType: String;
+    private userType: String = undefined;
     private minAssetPrice: number = 5000;
 
-    private cars;
-   models;
+    private cars: any;
+    private brands: any;
+    private models = [];
     private i: number = 0;
+    fb: FormBuilder;
+    private carList;
 
-    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
-     this.cars =new CarList().cars;
+    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService,
+      private vehicleList: VehicleList ){
 
+        vehicleList.getAllVehicleList().then(data => {
+          let dataIt : any;
+          dataIt = data;
+          let carBrands = [];
+          let i = 0;
+          for(let carData of dataIt){
+            carBrands[i] = carData.groupValue;
+            i++;
+          }
+          carBrands = Array.from(new Set(carBrands));
+          carBrands.sort();
+          this.brands = carBrands;
+          this.cars = data;
+        });
+      this.fb = fb;
 
-      this.loanForm = fb.group({
-        customerType:[null, Validators.required],
+    }
+
+    createForm(userType){ //constructor
+      return this.fb.group({
+        customerType:[userType, Validators.required],
         assetType:[null, Validators.required],
         carBrand:[null, Validators.required],
         carModel:[null, Validators.required],
         year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4),
           Validators.max(new Date().getFullYear()), Validators.pattern("^[0-9]*$")]],
-        enginePower:[0, [Validators.required, Validators.max(999), Validators.maxLength(3),
+        enginePower:[0, [Validators.required, Validators.max(1000), Validators.maxLength(3),
           Validators.min(0), Validators.pattern("^[0-9]*$")]],
-        assetPrice:[5000, [Validators.required, Validators.min(5000), Validators.pattern("^[0-9]*$")]],
+        assetPrice:[5000, [Validators.required, Validators.min(5000), Validators.max(1000000000), Validators.pattern("^[0-9]*$")]],
         paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100),
                           Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         leasePeriod:[null, Validators.required],
         margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
-        contractFee:[200, Validators.required],
-        paymentDay:[null, Validators.required]
+        contractFee:[200, [Validators.required, Validators.max(1000000000)]],
+        paymentDay:[null, [Validators.required, Validators.min(15), Validators.max(30)]]
 
 
 
@@ -62,9 +88,14 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     findModels(){
+
+      let a = 0;
+      this.models = [];
+
       for (let i=0; i< this.cars.length; i++){
-        if (this.cars[i].make === this.loanForm.get('carBrand').value){
-              this.models=this.cars[i].model;
+        if (this.cars[i].groupValue === this.loanForm.get('carBrand').value){
+              this.models[a]=this.cars[i].value;
+              a++;
         }
       }
     }
@@ -98,20 +129,45 @@ export class InputLoanInfoComponent implements OnInit {
           this.router.navigate(['/input-business-user-info']);
       }
     }
-
-    reset(){
-      this.loanForm.reset();
+    reset(){ // after reset button
+      this.userType = undefined;
+      this._reset();
+      
+    }
+    _reset(){
+     this.loanForm = this.createForm(this.userType);
+     this.loanForm.updateValueAndValidity;
     }
 
   ngOnInit() {
+    this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
+      console.log(this.loanForm);
+      console.log(this.loanForm.get('carBrand').value);
+      this.vehicleList.getAllVehicleList().then(data => {
+        let dataIt : any;
+        dataIt = data;
+        let carBrands = [];
+        let i = 0;
+        for(let carData of dataIt){
+          carBrands[i] = carData.groupValue;
+          i++;
+        }
+        carBrands = Array.from(new Set(carBrands));
+        carBrands.sort();
+        console.log("innit");
+        this.brands = carBrands;
+        this.cars = data;
+         this.findModels();
+      });
     }
     this.findModels()
   }
 
   userTypeChange(userTypeT: string){
     this.userType = userTypeT;  // "Private" or "Business"
+    this._reset();
     this.loanForm.patchValue({"assetPrice": this.findMinAssetPrice()})
     this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice()), Validators.pattern("^[0-9]*$")]);
     this.loanForm.controls['assetPrice'].updateValueAndValidity();
@@ -127,5 +183,7 @@ export class InputLoanInfoComponent implements OnInit {
       return this.minAssetPrice;
     }
   }
+
+
 
 }

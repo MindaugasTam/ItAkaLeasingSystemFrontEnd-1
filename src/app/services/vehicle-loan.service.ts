@@ -24,13 +24,13 @@ export class VehicleLoanService {
     };
 
     return this.http
-      .post("https://leasingcourseprojectapp.herokuapp.com/vehicleLeasings/add", vehicleLeasing)
+      .post("https://localhost:8080/vehicleLeasings/add", vehicleLeasing)
       .toPromise();
   }
 
   getAllVehicleLeasingsUsers(){
     return this.http
-      .get("https://leasingcourseprojectapp.herokuapp.com/vehicleLeasings")
+      .get("https://localhost:8080/vehicleLeasings")
       .toPromise();
   }
 

@@ -6,11 +6,17 @@ import { InputBusinessUserInfoComponent } from './input-business-user-info/input
 import { InputPrivateUserInfoComponent } from './input-private-user-info/input-private-user-info.component';
 import { BusinessUserLoanReportComponent } from './business-user-loan-report/business-user-loan-report.component';
 import { PrivateUserLoanReportComponent } from './private-user-loan-report/private-user-loan-report.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoanStatusComponent } from './loan-status/loan-status.component';
+import { LoanListComponent } from './loan-list/loan-list.component';
+
 
 const routes: Routes = [
     {
       path: '',
-            component: InputLoanInfoComponent,
+            component: HomeComponent,
     },
     {
       path: 'input-loan-info',
@@ -31,6 +37,26 @@ const routes: Routes = [
     {
       path: 'private-user-loan-report',
             component: PrivateUserLoanReportComponent,
+    },
+    {
+      path: 'login',
+            component: LoginComponent,
+    },
+    {
+      path: 'home',
+            component: HomeComponent,
+    },
+    {
+      path: 'change-password',
+            component: ChangePasswordComponent,
+    },
+    {
+      path: 'loan-status',
+            component: LoanStatusComponent,
+    },
+    {
+      path: 'loan-list',
+            component: LoanListComponent,
     },
 ];
 

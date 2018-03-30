@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Loans list</h1>
+  <div class="loanListTitle">
+    <form>
+    <table class="table">
+      <tr>
+        <th>Date</th>
+        <th>Veachle brand</th>
+        <th>Veachle model</th>
+        <th>Summary</th>
+        <th>Status</th>
+      </tr>
+      <tr *ngFor="let loan of loans; let i = index">
+        <td>{{loan.date}}</td>
+        <td>{{loan.veachleBrand}}</td>
+        <td>{{loan.veachleModel}}</td>
+        <td>{{loan.summary}}</td>
+        <td class="status">{{loan.status}}</td>
+      </tr>
+    </table>
+    <button class="btn btn-outline-warning  form-buttons btn-margin">Back</button>
+    <button class="btn btn-warning  form-buttons btn-margin" type="submit">Next</button>
+    </form>
+  </div>
+</div>
