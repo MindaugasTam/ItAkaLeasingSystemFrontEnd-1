@@ -21,22 +21,14 @@ export class BusinessUserService {
 
 
     return this.http
-<<<<<<< HEAD
       .post("http://localhost:8080/customers/addBusinessCustomer", businessUser)
-=======
-      .post("https://localhost:8080/customers/addBusinessCustomer", businessUser)
->>>>>>> e5d353ed23bce0ad173c7a544b244c090d070284
       .toPromise();
 
   }
 
   getAllBusinessUsers(){
     return this.http
-<<<<<<< HEAD
       .get("http://localhost:8080/customers")
-=======
-      .get("https://localhost:8080/customers")
->>>>>>> e5d353ed23bce0ad173c7a544b244c090d070284
       .toPromise();
   }
 }
