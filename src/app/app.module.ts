@@ -24,6 +24,7 @@ import { MenuComponent } from './menu/menu.component';
 import { LoanStatusComponent } from './loan-status/loan-status.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { VehicleList } from './services/vehicle-list.service';
+import { LoanListComponent } from './loan-list/loan-list.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {BackValidationService} from './services/back-validation.service';
 
@@ -40,6 +41,7 @@ import {BackValidationService} from './services/back-validation.service';
     MenuComponent,
     LoanStatusComponent,
     ChangePasswordComponent,
+    LoanListComponent,
     ForgetPasswordComponent,
   ],
   imports: [

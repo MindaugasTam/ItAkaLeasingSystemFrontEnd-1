@@ -1,0 +1,16 @@
+.container {
+    width:80%;
+}
+
+.loanDate, .veachleBrand, .veachleModel, .leasingSummary, .loanStatus {
+    
+    width: 15%;
+}
+
+.loanListTitle{
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}

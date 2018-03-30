@@ -8,7 +8,7 @@ export class VehicleList {
 
   getAllVehicleList(){
     return this.http
-      .get("http://localhost:8080/vehicles")
+      .get("https://leasingcourseproject.herokuapp.com/vehicles")
       .toPromise();
   }
 

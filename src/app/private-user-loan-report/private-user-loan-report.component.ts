@@ -115,6 +115,4 @@ export class PrivateUserLoanReportComponent implements OnInit {
       loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.privateUserID);
   }
 
-
-
 }
