@@ -25,6 +25,7 @@ import { LoanStatusComponent } from './loan-status/loan-status.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { VehicleList } from './services/vehicle-list.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import {BackValidationService} from './services/back-validation.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService,
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, BackValidationService,
     VehicleLoanService, LoginService, VehicleList],
   bootstrap: [AppComponent]
 })
