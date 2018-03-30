@@ -57,7 +57,7 @@ const routes: Routes = [
     {
       path: 'loan-list',
             component: LoanListComponent,
-    }
+    },
 ];
 
 @NgModule({

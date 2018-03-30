@@ -24,19 +24,13 @@ export class LoanListComponent implements OnInit {
     status: string
   }];
   constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ) {
+    //Demonstration data
     this.loans =[{
       date: "2018-01-02",
       veachleBrand: "Audi",
       veachleModel: "Q7",
       summary: "27624",
       status: "Valid"
-    },
-    {
-      date: "2018-03-02",
-      veachleBrand: "Bmw",
-      veachleModel: "m5",
-      summary: "27865",
-      status: "Invalid"
     }]
   }
 

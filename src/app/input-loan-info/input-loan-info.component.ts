@@ -6,8 +6,9 @@ import {Http, Response } from '@angular/http'
 //import { CarList } from './CarList';
 import { forEach } from '@angular/router/src/utils/collection';
 import { VehicleList} from '../services/vehicle-list.service';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+
 
 
 @Component({
@@ -23,22 +24,31 @@ export class InputLoanInfoComponent implements OnInit {
     private minAssetPrice: number = 5000;
 
     private cars: any;
-    private brands;
+    private brands: any;
     private models = [];
     private i: number = 0;
     fb: FormBuilder;
     private carList;
 
-    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService, 
+    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService,
       private vehicleList: VehicleList ){
+
         vehicleList.getAllVehicleList().then(data => {
-          this.cars = data;
-          for (let car of this.cars){
-            this.brands = this.cars.groupValue;
+          let dataIt : any;
+          dataIt = data;
+          let carBrands = [];
+          let i = 0;
+          for(let carData of dataIt){
+            carBrands[i] = carData.groupValue;
+            i++;
           }
+          carBrands = Array.from(new Set(carBrands));
+          carBrands.sort();
+          this.brands = carBrands;
+          this.cars = data;
         });
-      this.fb = fb;    
-      
+      this.fb = fb;
+
     }
 
     createForm(userType){ //constructor
@@ -78,13 +88,16 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     findModels(){
-      let a =0;
+
+      let a = 0;
+      this.models = [];
+
       for (let i=0; i< this.cars.length; i++){
         if (this.cars[i].groupValue === this.loanForm.get('carBrand').value){
               this.models[a]=this.cars[i].value;
               a++;
         }
-      }  
+      }
     }
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
@@ -92,6 +105,7 @@ export class InputLoanInfoComponent implements OnInit {
     get year(){return this.loanForm.get('year') as FormControl};
     get paymentAmount(){return this.loanForm.get('paymentAmount') as FormControl};
     get carBrand(){return this.loanForm.get('carBrand') as FormControl};
+    get carModel() {return this.loanForm.get('carModel') as FormControl};
     get advancedPaymentAmount(){return this.advancedPaymentAmount};
     get enginePower(){return this.loanForm.get('enginePower') as FormControl};
     get assetPrice(){return this.loanForm.get('assetPrice') as FormControl};
@@ -118,16 +132,35 @@ export class InputLoanInfoComponent implements OnInit {
     reset(){ // after reset button
       this.userType = undefined;
       this._reset();
+      
     }
-    _reset(){       
+    _reset(){
      this.loanForm = this.createForm(this.userType);
-     this.loanForm.updateValueAndValidity;   
+     this.loanForm.updateValueAndValidity;
     }
 
   ngOnInit() {
     this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
+      console.log(this.loanForm);
+      console.log(this.loanForm.get('carBrand').value);
+      this.vehicleList.getAllVehicleList().then(data => {
+        let dataIt : any;
+        dataIt = data;
+        let carBrands = [];
+        let i = 0;
+        for(let carData of dataIt){
+          carBrands[i] = carData.groupValue;
+          i++;
+        }
+        carBrands = Array.from(new Set(carBrands));
+        carBrands.sort();
+        console.log("innit");
+        this.brands = carBrands;
+        this.cars = data;
+         this.findModels();
+      });
     }
   }
 

@@ -40,5 +40,15 @@ export class LoginService {
       .toPromise();
   }
 
+  existsUser(userId, email) {
+    let credentialsRequest = {
+      userId: userId,
+      email: email
+    };
+
+    return this.http.post('http://localhost:8080/customers/check', credentialsRequest)
+      .toPromise();
+  }
+
 
 }

@@ -40,6 +40,14 @@ export class LoginComponent implements OnInit {
     this.tryToLogin();
   }
 
+  forgotPassword(){
+    this.forgotPasswordPrompt();
+  }
+
+  forgotPasswordPrompt(){
+    this.router.navigate(['/forget-password'])
+  }
+
   tryToLogin(){
     return this.loginService.createLoginRequest(this.userId.value, this.password.value)
     .then(data => {
@@ -54,7 +62,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/change-password']);
       }
       else{
-        console.log(response)
+        console.log(response);
+        this.router.navigate(['/loan-status']);
       }
     })
   }

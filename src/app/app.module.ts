@@ -25,7 +25,7 @@ import { LoanStatusComponent } from './loan-status/loan-status.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { VehicleList } from './services/vehicle-list.service';
 import { LoanListComponent } from './loan-list/loan-list.component';
-
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +41,7 @@ import { LoanListComponent } from './loan-list/loan-list.component';
     LoanStatusComponent,
     ChangePasswordComponent,
     LoanListComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +51,7 @@ import { LoanListComponent } from './loan-list/loan-list.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, 
+  providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService,
     VehicleLoanService, LoginService, VehicleList],
   bootstrap: [AppComponent]
 })

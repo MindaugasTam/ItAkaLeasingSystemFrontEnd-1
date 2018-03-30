@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class BusinessUserService {
@@ -17,9 +18,12 @@ export class BusinessUserService {
       customerType: "BUSINESS"
     };
 
+ 
+
     return this.http
       .post("https://leasingcourseproject.herokuapp.com/customers/addBusinessCustomer", businessUser)
       .toPromise();
+           
   }
 
   getAllBusinessUsers(){
