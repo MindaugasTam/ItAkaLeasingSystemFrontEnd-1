@@ -18,12 +18,12 @@ export class BusinessUserService {
       customerType: "BUSINESS"
     };
 
- 
+
 
     return this.http
       .post("http://localhost:8080/customers/addBusinessCustomer", businessUser)
       .toPromise();
-           
+
   }
 
   getAllBusinessUsers(){
