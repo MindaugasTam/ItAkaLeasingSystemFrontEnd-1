@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class LoginService {
 
-  
+
   constructor(private http: HttpClient) { }
 
   createLoginRequest(userId, password){
@@ -25,7 +25,7 @@ export class LoginService {
       newPassword: newPassword
     };
     return this.http
-      .post("http://localhost:8080/customers/change/password", passwordChangeRequest)
+      .post("http://localhost:8080/customers/changepassword", passwordChangeRequest)
       .toPromise();
   }
 

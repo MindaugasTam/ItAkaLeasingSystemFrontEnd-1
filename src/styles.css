@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 .container {
-    width: 35%;
+    width: 100%;
     background: #fff;
     font-weight: 500;
     color: #626262;
@@ -102,7 +102,109 @@ input[type=number]:focus {
 }
 
 
+.modal {
+    text-align: center;
+    padding: 0!important;
+  }
+  
+  .modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px; /* Adjusts for spacing */
+  }
+  
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .modal-header {
+
+    border-bottom: none;
+   
+  }
+
+  .modal-footer{
+    border-top: none !important;
+  }
+
+  .modal-dialog {
+      width: 20% !important;
+  }
+
+
+
+
+
+
+
 
 
 
  
+  .icon {
+    width: 100px;
+    height: 100px;
+    display: block;
+    border-radius: 50%;
+    stroke: #50E38E;
+    margin: 50px auto;
+    -webkit-animation: bounceIcon .1700s ease-in-out;
+    animation: bounceIcon .1700s ease-in-out;
+    -webkit-animation-delay: .100s;
+    animation-delay: .1000s;
+  }
+  
+  .circle {
+    stroke-dasharray: 190;
+    stroke-dashoffset: 190;
+    stroke-width: 9;
+    stroke: #ECE8E8;
+    fill: none;
+    -webkit-animation: drawCircle .2s linear;
+    animation: drawCircle .2s linear;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+  
+  .check {
+    stroke-width: 7;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    -webkit-animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67);
+    animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67) forwards;
+    -webkit-animation-delay: .2000s;
+    animation-delay: .2000s;
+  
+  }
+  
+  @keyframes drawCircle {
+   100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes drawCheckmark {
+    100% {
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes bounceIcon {
+    0% {
+      transform: none;
+    }
+    50% {
+      transform: scale3D(.9, .9, 1);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  
+  
+  

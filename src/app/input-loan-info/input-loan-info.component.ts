@@ -3,8 +3,13 @@ import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
 import {Http, Response } from '@angular/http'
-import { CarList } from './CarList';
+//import { CarList } from './CarList';
 import { forEach } from '@angular/router/src/utils/collection';
+import { VehicleList} from '../services/vehicle-list.service';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
+
+
 
 @Component({
   selector: 'app-input-loan-info',
@@ -18,14 +23,25 @@ export class InputLoanInfoComponent implements OnInit {
     private userType: String = undefined;
     private minAssetPrice: number = 5000;
 
-    private cars;
-     models;
+    private cars: any;
+    private brands;
+    private models = [];
     private i: number = 0;
     fb: FormBuilder;
+    private carList;
 
-    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService ){
-     this.cars =new CarList().cars;
+    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService, 
+      private vehicleList: VehicleList ){
+        vehicleList.getAllVehicleList().then(data => {
+          this.cars = data;
+          for (let car of this.cars){
+            this.brands = this.cars.groupValue;
+          }
+        });
+        
+        
       this.fb = fb;    
+      
     }
 
     createForm(userType){ //constructor
@@ -65,11 +81,13 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     findModels(){
+      let a =0;
       for (let i=0; i< this.cars.length; i++){
-        if (this.cars[i].make === this.loanForm.get('carBrand').value){
-              this.models=this.cars[i].model;
+        if (this.cars[i].groupValue === this.loanForm.get('carBrand').value){
+              this.models[a]=this.cars[i].value;
+              a++;
         }
-      }
+      }  
     }
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
@@ -103,6 +121,7 @@ export class InputLoanInfoComponent implements OnInit {
     reset(){ // after reset button
       this.userType = undefined;
       this._reset();
+      
     }
     _reset(){       
      this.loanForm = this.createForm(this.userType);
@@ -110,7 +129,6 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
   ngOnInit() {
-
     this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();

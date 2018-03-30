@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { DataStoreService } from '../services/data-store.service';
 import {VehicleLoanService} from '../services/vehicle-loan.service';
 import {BusinessUserService} from '../services/business-user.service';
+declare var $:any;
 
 @Component({
   selector: 'app-business-user-loan-report',
@@ -14,6 +15,8 @@ import {BusinessUserService} from '../services/business-user.service';
 
 export class BusinessUserLoanReportComponent implements OnInit {
   responseText : String;
+  addBusinessUser : Boolean;
+  addBusinessVehicle : Boolean;
   constructor(public router: Router, private dataStore: DataStoreService,
               private businessUserService: BusinessUserService,
               private vehicleLoanService: VehicleLoanService) { }
@@ -23,6 +26,7 @@ export class BusinessUserLoanReportComponent implements OnInit {
     email = this.dataStore.getBusinessUserData().email;
     phoneNumber = this.dataStore.getBusinessUserData().phoneNumber;
     address = this.dataStore.getBusinessUserData().address;
+    country = this.dataStore.getBusinessUserData().country;
 
     userInfo = this.dataStore.getBusinessUserData();
     loanInfo = this.dataStore.getLoanFormInfo();
@@ -42,6 +46,7 @@ export class BusinessUserLoanReportComponent implements OnInit {
 
   submit() {
     //this.router.navigate(['/input-private-user-info']);
+    this.responseText ="";
     this.addBusinessUserToDB()
       .then(data  => { 
         this.newBusinessUser.emit(data);  
@@ -51,15 +56,50 @@ export class BusinessUserLoanReportComponent implements OnInit {
         this.responseText = temp;
         this.businessUserID = parseTemp.id;
         //console.log("create business user callback");
-        console.log(this.responseText);
+        if(this.responseText.length > 0 ){
+           this.addBusinessUser = true;
+        }else{
+          this.addBusinessUser = false;
+                 }
       })
       .then(() => {
-        this.addVehicleLoanToDB().then(() => {
-          this.newVehicleLoan.emit();
+        this.addVehicleLoanToDB().then(data => {
+          this.newVehicleLoan.emit(data);
+          let temp = JSON.stringify(data);
+          let parseTemp = JSON.parse(temp);
+          this.responseText = temp;
+      
+          
+
+          if(this.responseText.length > 0 ){
+            this.addBusinessVehicle = true;
+         }else{
+           this.addBusinessVehicle = false;
+                  }
+                  console.log(this.addBusinessUser + "add business user");
+                  console.log(this.addBusinessVehicle + "add business vehicle");
+                  console.log(temp);
+
+                  var successMessage = " ";  
+                  if(this.addBusinessUser == true && this.addBusinessVehicle == true){
+                    successMessage = $('<div>').text('Successfully saved to database...').css('color', 'green');
+                  }else{
+                    successMessage = $('<div>').text('denied...').css('color', 'red');
+                  }
+                      
+                  $('.modal-footer').html(successMessage);
+                  window.setTimeout(function() { 
+                  $('#exampleModal').modal('hide'); }, 5000);
+                  console.log("asdsasad");
+
         })
-      });
+      })
+    
     console.log("SUBMITTED")
   }
+
+
+
 
   toPreviousPage(){
     //console.log("Back");
@@ -68,7 +108,7 @@ export class BusinessUserLoanReportComponent implements OnInit {
 
   addBusinessUserToDB(){
     return this.businessUserService.createBusinessUser(this.companyCode, this.companyName, this.email,
-      this.phoneNumber, this.address);
+      this.phoneNumber, this.address, this.country);
   }
 
   addVehicleLoanToDB() {
