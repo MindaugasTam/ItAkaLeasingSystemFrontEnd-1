@@ -16,21 +16,19 @@ export class BusinessUserService {
       address: address,
       country: country,
       customerType: "BUSINESS"
-    };
+    }
 
 
 
     return this.http
-      .post("https://leasingcourseproject.herokuapp.com/customers/addBusinessCustomer", businessUser)
+      .post("http://localhost:8080/customers/addBusinessCustomer", businessUser)
       .toPromise();
 
   }
 
   getAllBusinessUsers(){
     return this.http
-      .get("https://leasingcourseproject.herokuapp.com/customers")
+      .get("http://localhost:8080/customers")
       .toPromise();
   }
-
-
 }

@@ -14,7 +14,7 @@ export class LoginService {
     };
 
     return this.http
-      .post("https://leasingcourseproject.herokuapp.com/customers/login", loginRequest)
+      .post("http://localhost:8080/customers/login", loginRequest)
       .toPromise();
   }
 
@@ -25,18 +25,19 @@ export class LoginService {
       newPassword: newPassword
     };
     return this.http
-      .post("https://leasingcourseproject.herokuapp.com/customers/change/password", passwordChangeRequest)
+      .post("http://localhost:8080/customers/change/password", passwordChangeRequest)
       .toPromise();
   }
 
-  firstTimePasswordChange(userId, newPassword){
-      let firstTimeLoginPasswordRequest={
+  forgottenPassword(userId, newPassword){
+      let forgotPasswordRequest={
         userId: userId,
+        oldPassword: null,
         newPassword: newPassword
-      }
+      };
 
     return this.http
-      .post("https://leasingcourseproject.herokuapp.com/customers/first/login", firstTimeLoginPasswordRequest)
+      .post("http://localhost:8080/customers/change/forgot", forgotPasswordRequest)
       .toPromise();
   }
 
