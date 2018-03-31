@@ -50,6 +50,7 @@ export class ChangePasswordComponent implements OnInit {
       let temp = JSON.stringify(data);
       let response = JSON.parse(temp);
       console.log(response);
+      this.goToMain();
     })
   }
 

@@ -34,21 +34,25 @@ export class InputLoanInfoComponent implements OnInit {
       private vehicleList: VehicleList ){
 
         vehicleList.getAllVehicleList().then(data => {
-          let dataIt : any;
-          dataIt = data;
-          let carBrands = [];
-          let i = 0;
-          for(let carData of dataIt){
-            carBrands[i] = carData.groupValue;
-            i++;
-          }
-          carBrands = Array.from(new Set(carBrands));
-          carBrands.sort();
-          this.brands = carBrands;
-          this.cars = data;
+          this.initalizeCarLists(data);
         });
       this.fb = fb;
 
+    }
+
+    private initalizeCarLists(data){
+      let dataIt : any;
+      dataIt = data;
+      let carBrands = [];
+      let i = 0;
+      for(let carData of dataIt){
+        carBrands[i] = carData.groupValue;
+        i++;
+      }
+      carBrands = Array.from(new Set(carBrands));
+      carBrands.sort();
+      this.brands = carBrands;
+      this.cars = data;
     }
 
     createForm(userType){ //constructor
@@ -132,7 +136,7 @@ export class InputLoanInfoComponent implements OnInit {
     reset(){ // after reset button
       this.userType = undefined;
       this._reset();
-      
+
     }
     _reset(){
      this.loanForm = this.createForm(this.userType);
@@ -143,23 +147,9 @@ export class InputLoanInfoComponent implements OnInit {
     this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
-      console.log(this.loanForm);
-      console.log(this.loanForm.get('carBrand').value);
       this.vehicleList.getAllVehicleList().then(data => {
-        let dataIt : any;
-        dataIt = data;
-        let carBrands = [];
-        let i = 0;
-        for(let carData of dataIt){
-          carBrands[i] = carData.groupValue;
-          i++;
-        }
-        carBrands = Array.from(new Set(carBrands));
-        carBrands.sort();
-        console.log("innit");
-        this.brands = carBrands;
-        this.cars = data;
-         this.findModels();
+        this.initalizeCarLists(data);
+        this.findModels();
       });
     }
     this.findModels()
