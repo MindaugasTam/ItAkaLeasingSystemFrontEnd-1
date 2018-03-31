@@ -78,9 +78,6 @@ export class BusinessUserLoanReportComponent implements OnInit {
          }else{
            this.addBusinessVehicle = false;
                   }
-                  console.log(this.addBusinessUser + "add business user");
-                  console.log(this.addBusinessVehicle + "add business vehicle");
-                  console.log(temp);
 
                   var successMessage = " ";
                   if(this.addBusinessUser == true && this.addBusinessVehicle == true){
@@ -98,14 +95,9 @@ export class BusinessUserLoanReportComponent implements OnInit {
         })
       })
 
-    console.log("SUBMITTED")
   }
 
-
-
-
   toPreviousPage(){
-    //console.log("Back");
     this.router.navigate(['/input-business-user-info']);
   }
 

@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { DataStoreService } from '../services/data-store.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  constructor(fb: FormBuilder, private router: Router, private loginService: LoginService) {
+  constructor(fb: FormBuilder, private router: Router, private loginService: LoginService, public dataStore: DataStoreService) {
 
     this.loginForm = fb.group({
       userId: [null, [Validators.required, Validators.maxLength(20)] ],
@@ -61,8 +62,9 @@ export class LoginComponent implements OnInit {
         this.badUserData = false;
         this.router.navigate(['/change-password']);
       }
-      else{
-        console.log(response);
+      else if(response){
+        this.badUserData = false;
+        this.dataStore.storeLoanResponse(response);
         this.router.navigate(['/loan-status']);
       }
     })
