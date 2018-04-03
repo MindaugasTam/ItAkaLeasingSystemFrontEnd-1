@@ -51,5 +51,14 @@ export class LoginService {
       .toPromise();
   }
 
+  sendRecoveryMail(email){
+    return this.http.post('http://localhost:8080/customers/forgotpassword' + email, email)
+      .toPromise();
+  }
+
+  validateToken(token){
+    return this.http.get('http://localhost:8080/customers/resetpasswordval?token=' + token)
+      .toPromise();
+  }
 
 }
