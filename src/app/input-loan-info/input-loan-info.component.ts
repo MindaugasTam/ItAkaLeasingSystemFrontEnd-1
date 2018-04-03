@@ -32,7 +32,6 @@ export class InputLoanInfoComponent implements OnInit {
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService,
       private vehicleList: VehicleList ){
-
         vehicleList.getAllVehicleList().then(data => {
           this.initalizeCarLists(data);
         });
