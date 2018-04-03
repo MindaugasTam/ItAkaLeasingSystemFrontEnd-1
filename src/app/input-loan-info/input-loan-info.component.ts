@@ -34,12 +34,28 @@ export class InputLoanInfoComponent implements OnInit {
       private vehicleList: VehicleList ){
 
         vehicleList.getAllVehicleList().then(data => {
+<<<<<<< HEAD
           this.initalizeCarLists(data);
+=======
+          let dataIt : any;
+          dataIt = data;
+          let carBrands = [];
+          let i = 0;
+          for(let carData of dataIt){
+            carBrands[i] = carData.groupValue;
+            i++;
+          }
+          carBrands = Array.from(new Set(carBrands));
+          carBrands.sort();
+          this.brands = carBrands;
+          this.cars = data;
+>>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
         });
       this.fb = fb;
 
     }
 
+<<<<<<< HEAD
     private initalizeCarLists(data){
       let dataIt : any;
       dataIt = data;
@@ -55,6 +71,8 @@ export class InputLoanInfoComponent implements OnInit {
       this.cars = data;
     }
 
+=======
+>>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
     createForm(userType){ //constructor
       return this.fb.group({
         customerType:[userType, Validators.required],
@@ -136,7 +154,11 @@ export class InputLoanInfoComponent implements OnInit {
     reset(){ // after reset button
       this.userType = undefined;
       this._reset();
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
     }
     _reset(){
      this.loanForm = this.createForm(this.userType);
@@ -147,9 +169,29 @@ export class InputLoanInfoComponent implements OnInit {
     this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
+<<<<<<< HEAD
       this.vehicleList.getAllVehicleList().then(data => {
         this.initalizeCarLists(data);
         this.findModels();
+=======
+      console.log(this.loanForm);
+      console.log(this.loanForm.get('carBrand').value);
+      this.vehicleList.getAllVehicleList().then(data => {
+        let dataIt : any;
+        dataIt = data;
+        let carBrands = [];
+        let i = 0;
+        for(let carData of dataIt){
+          carBrands[i] = carData.groupValue;
+          i++;
+        }
+        carBrands = Array.from(new Set(carBrands));
+        carBrands.sort();
+        console.log("innit");
+        this.brands = carBrands;
+        this.cars = data;
+         this.findModels();
+>>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
       });
     }
     this.findModels()

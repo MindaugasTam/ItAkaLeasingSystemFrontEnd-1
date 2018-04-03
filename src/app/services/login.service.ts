@@ -29,6 +29,7 @@ export class LoginService {
       .toPromise();
   }
 
+<<<<<<< HEAD
   forgottenPassword(userId, newPassword){
       let forgotPasswordRequest={
         userId: userId,
@@ -38,6 +39,16 @@ export class LoginService {
 
     return this.http
       .post("http://localhost:8080/customers/change/forgot", forgotPasswordRequest)
+=======
+  firstTimePasswordChange(userId, newPassword){
+      let firstTimeLoginPasswordRequest={
+        userId: userId,
+        newPassword: newPassword
+      }
+
+    return this.http
+      .post("http://localhost:8080/customers/first/login", firstTimeLoginPasswordRequest)
+>>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
       .toPromise();
   }
 
