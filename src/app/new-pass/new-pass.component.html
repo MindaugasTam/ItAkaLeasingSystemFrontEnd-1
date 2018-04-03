@@ -1,0 +1,37 @@
+<div class='container container_margins'>
+  <div class="form-header">Pretend this is accessed through generated email link</div>
+  <form [formGroup]="newPasswordForm">
+    <div class="form-group">
+      <label for="userId">User ID</label>
+      <input type="text" placeholder = "User ID" class="form-control" id="userId" formControlName = "userId">
+      <small *ngIf="userId.invalid && userId.dirty" class="form-text text-danger">
+        12 symbol user ID is required.
+      </small>
+      <small *ngIf="!validUser" class="form-text text-danger">
+        No such user exists.
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="newPassword">New Password</label>
+      <input type="password" placeholder = "New Password" class="form-control" id="newPassword" formControlName = "newPassword">
+      <small *ngIf="newPassword.invalid && newPassword.dirty" class="form-text text-danger">
+        Password is required
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="repeatPassword">Repeat New Password</label>
+      <input type="password" placeholder = "Repeat New Password" class="form-control" id="repeatPassword" formControlName = "repeatPassword">
+      <small *ngIf="repeatPassword.invalid && repeatPassword.dirty" class="form-text text-danger">
+        Please repeat password
+      </small>
+    </div>
+
+    <button class="btn btn-warning form-buttons btn-margin " type="submit" (click)="submit()"
+            [disabled]="!this.newPasswordForm.valid">Submit</button>
+    <button class="btn btn-warning form-buttons btn-margin " type="submit" (click)="close()">Close</button>
+    <small *ngIf="!validInput" class="form-text text-danger">
+      Input passwords do not match
+    </small>
+  </form>
+</div>

@@ -1,0 +1,76 @@
+<div class='container container_margins'>
+  <div class="form-header">Business customer application summary</div>
+  <div class="inner-container">
+
+
+
+    <div ng-if="this.loanInfo">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="list-group-item">
+            <small>Customer type: </small>{{this.loanInfo.customerType}}</p>
+          <p class="list-group-item">
+            <small>Asset type: </small>{{this.loanInfo.assetType}}</p>
+          <p class="list-group-item">
+            <small>Car brand: </small>{{this.loanInfo.carBrand}}</p>
+          <p class="list-group-item">
+            <small>Car model: </small>{{this.loanInfo.carModel}}</p>
+          <p class="list-group-item">
+            <small>Car year: </small>{{this.loanInfo.year}}</p>
+          <p class="list-group-item">
+            <small>Engine Power: </small>{{this.loanInfo.enginePower}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="list-group-item">
+            <small>Asset price: </small>{{this.loanInfo.assetPrice}}</p>
+          <p class="list-group-item">
+            <small>Advanced payment percentage: </small>{{ this.loanInfo.paymentPercentage }}</p>
+          <p class="list-group-item">
+            <small>Advanced payment amount: </small>{{ this.advancedPaymentAmount }}</p>
+          <p class="list-group-item">
+            <small>Contract fee: </small>{{ this.contractFee }}</p>
+          <p class="list-group-item">
+            <small>margin: </small>{{this.loanInfo.margin}}</p>
+          <p class="list-group-item">
+            <small>Lease Period: </small>{{this.loanInfo.leasePeriod}}</p>
+          <p class="list-group-item">
+            <small>Payment day: </small>{{this.loanInfo.paymentDay}}</p>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        
+        
+        </div>
+        <div class="modal-body">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle class="circle" cx="30" cy="30" r="30" fill="none"/><path class="check" fill="none" d="m12.5 28l10.0 13 24-22.2"/></svg>
+            <!--d="m12.5 28l10.0 13 24-22.2"-->
+            
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+
+    <div class="form-footer">
+
+      <div class="row">
+        <button class="btn btn-outline-warning form-buttons  btn-margin" (click)="toPreviousPage()">Back</button>
+        <button class="btn btn-warning form-buttons btn-margin" (click)="submit()" data-toggle="modal" data-target="#exampleModal">Submit</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>
