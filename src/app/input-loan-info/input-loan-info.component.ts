@@ -32,7 +32,6 @@ export class InputLoanInfoComponent implements OnInit {
 
     constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService,
       private vehicleList: VehicleList ){
-
         vehicleList.getAllVehicleList().then(data => {
           this.initalizeCarLists(data);
         });
@@ -72,15 +71,12 @@ export class InputLoanInfoComponent implements OnInit {
         margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         contractFee:[200, [Validators.required, Validators.max(1000000000)]],
         paymentDay:[null, [Validators.required, Validators.min(15), Validators.max(30)]]
-
-
-
       })
     }
 
     calculateAdvancedPaymentAmount(){
       let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
-      return firstPaymentPrice;
+      return firstPaymentPrice.toFixed(2);
     }
 
     calculateContractFee(){
@@ -88,7 +84,7 @@ export class InputLoanInfoComponent implements OnInit {
       let contractFee = this.assetPriceValue*perc;
       if(contractFee<200){
         return 200;
-      }else return contractFee;
+      }else return contractFee.toFixed(2);
     }
 
     findModels(){
