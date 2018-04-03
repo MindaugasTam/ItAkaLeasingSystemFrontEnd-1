@@ -1,4 +1,4 @@
-<div class='container container_margins'>
+<div class='container container_margins col-sm-6'>
   <div class="form-header">Business customer application summary</div>
   <div class="inner-container">
 
@@ -6,7 +6,7 @@
 
     <div ng-if="this.loanInfo">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
           <p class="list-group-item">
             <small>Customer type: </small>{{this.loanInfo.customerType}}</p>
           <p class="list-group-item">
@@ -20,7 +20,7 @@
           <p class="list-group-item">
             <small>Engine Power: </small>{{this.loanInfo.enginePower}}</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
           <p class="list-group-item">
             <small>Asset price: </small>{{this.loanInfo.assetPrice}}</p>
           <p class="list-group-item">
@@ -44,8 +44,7 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-        
+        <div class="modal-header">       
         
         </div>
         <div class="modal-body">
@@ -60,14 +59,11 @@
     </div>
   </div>
 
-    
-
-
     <div class="form-footer">
 
       <div class="row">
-        <button class="btn btn-outline-warning form-buttons  btn-margin" (click)="toPreviousPage()">Back</button>
-        <button class="btn btn-warning form-buttons btn-margin" (click)="submit()" data-toggle="modal" data-target="#exampleModal">Submit</button>
+        <button class="btn btn-outline-warning form-buttons  btn-margin col-sm-3" (click)="toPreviousPage()">Back</button>
+        <button class="btn btn-warning form-buttons btn-margin col-sm-3" (click)="submit()" data-toggle="modal" data-target="#exampleModal">Submit</button>
 
       </div>
     </div>

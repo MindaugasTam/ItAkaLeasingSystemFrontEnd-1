@@ -77,7 +77,7 @@ export class InputLoanInfoComponent implements OnInit {
 
     calculateAdvancedPaymentAmount(){
       let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
-      return firstPaymentPrice;
+      return firstPaymentPrice.toFixed(2);
     }
 
     calculateContractFee(){
@@ -85,7 +85,7 @@ export class InputLoanInfoComponent implements OnInit {
       let contractFee = this.assetPriceValue*perc;
       if(contractFee<200){
         return 200;
-      }else return contractFee;
+      }else return contractFee.toFixed(2);
     }
 
     findModels(){
