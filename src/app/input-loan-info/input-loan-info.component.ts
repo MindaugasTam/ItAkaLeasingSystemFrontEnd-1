@@ -136,7 +136,6 @@ export class InputLoanInfoComponent implements OnInit {
     reset(){ // after reset button
       this.userType = undefined;
       this._reset();
-
     }
     _reset(){
      this.loanForm = this.createForm(this.userType);
