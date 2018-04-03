@@ -72,9 +72,6 @@ export class InputLoanInfoComponent implements OnInit {
         margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
         contractFee:[200, [Validators.required, Validators.max(1000000000)]],
         paymentDay:[null, [Validators.required, Validators.min(15), Validators.max(30)]]
-
-
-
       })
     }
 

@@ -8,7 +8,7 @@ html {
     color: #626262;
     padding: 0px !important;
     font-size: 20px;
-    box-shadow: 2px 2px 10px rgba(255, 239, 14, 0.4);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     background: rgb(255, 255, 255, 0.6);
@@ -133,29 +133,37 @@ input[type=number]:focus {
   }
   
   @keyframes drawCircle {
-   100% {
-      stroke-dashoffset: 0;
-    }
+   100% {stroke-dashoffset: 0;}
   }
   
   @keyframes drawCheckmark {
     100% {
-      opacity: 1;
-      stroke-dashoffset: 0;
+    opacity: 1;
+    stroke-dashoffset: 0;
     }
   }
   
   @keyframes bounceIcon {
-    0% {
-      transform: none;
-    }
-    50% {
-      transform: scale3D(.9, .9, 1);
-    }
-    100% {
-      transform: none;
-    }
+    0% {transform: none;}
+    50% {transform: scale3D(.9, .9, 1);}
+    100% {transform: none;}
   }
+
+  input{
+      background-color: rgba(255,255,255,0.4) !important;
+      border: none !important;
+      height: 2.4rem !important;
+  }
+
+  select {
+    background-color: rgba(255,255,255,0.4) !important;
+    border: none !important;
+  }
+
+  .form-buttons {
+      color:#495057;
+  }
+
   
   
   
