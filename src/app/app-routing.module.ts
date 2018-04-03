@@ -11,11 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoanStatusComponent } from './loan-status/loan-status.component';
 import { LoanListComponent } from './loan-list/loan-list.component';
-<<<<<<< HEAD
 import {ForgetPasswordComponent} from './forget-password/forget-password.component';
 import {NewPassComponent} from './new-pass/new-pass.component';
-=======
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
 
 
 const routes: Routes = [
@@ -63,7 +60,6 @@ const routes: Routes = [
       path: 'loan-list',
             component: LoanListComponent,
     },
-<<<<<<< HEAD
   {
     path: 'forget-password',
           component: ForgetPasswordComponent,
@@ -72,8 +68,6 @@ const routes: Routes = [
     path: 'new-pass',
           component: NewPassComponent,
   }
-=======
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
 ];
 
 @NgModule({

@@ -21,16 +21,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-<<<<<<< HEAD
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
-=======
-    "angular": "^1.6.9",
-    "bootstrap": "^4.0.0-beta.3",
-    "core-js": "^2.4.1",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.1",
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

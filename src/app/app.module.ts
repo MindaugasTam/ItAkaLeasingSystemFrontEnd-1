@@ -27,10 +27,7 @@ import { VehicleList } from './services/vehicle-list.service';
 import { LoanListComponent } from './loan-list/loan-list.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {BackValidationService} from './services/back-validation.service';
-<<<<<<< HEAD
 import {NewPassComponent} from './new-pass/new-pass.component';
-=======
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
 
 @NgModule({
   declarations: [
@@ -47,10 +44,7 @@ import {NewPassComponent} from './new-pass/new-pass.component';
     ChangePasswordComponent,
     LoanListComponent,
     ForgetPasswordComponent,
-<<<<<<< HEAD
     NewPassComponent,
-=======
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
   ],
   imports: [
     BrowserModule,

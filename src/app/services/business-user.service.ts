@@ -31,8 +31,4 @@ export class BusinessUserService {
       .get("http://localhost:8080/customers")
       .toPromise();
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721

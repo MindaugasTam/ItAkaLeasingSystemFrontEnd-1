@@ -2,10 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../services/login.service';
-<<<<<<< HEAD
 import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
-=======
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
 
 @Component({
   selector: 'app-forget-password',
@@ -38,7 +35,6 @@ export class ForgetPasswordComponent implements OnInit {
     return this.forgetPasswordForm.get('email') as FormControl;
   }
 
-<<<<<<< HEAD
   submit(){
     this.checkIfCustomerExists()
       .then(data => {
@@ -51,8 +47,6 @@ export class ForgetPasswordComponent implements OnInit {
   back(){
     this.router.navigate(['/login']);
   }
-=======
->>>>>>> 69f7094390886651d3ad4ec29830fc6f05b89721
 
   ngOnInit() {
   }

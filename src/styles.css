@@ -16,6 +16,10 @@ html {
 
 body {
     background: linear-gradient(to bottom right, rgb(161, 77, 7), rgb(235, 206, 44));
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .alert-danger {
