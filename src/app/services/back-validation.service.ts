@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import {Http} from '@angular/http';
 
 @Injectable()
 export class BackValidationService {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
-  existsEmail(email){
-
+  checkEmailUnique(email){
+    return this.http
+      .get("http://localhost:8080/customers/" + email)
+      .toPromise();
   }
-
 }

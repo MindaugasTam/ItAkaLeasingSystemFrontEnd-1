@@ -94,12 +94,8 @@ export class BusinessUserLoanReportComponent implements OnInit {
                   $('.modal-body').html("");
                   $('.modal-body').append(statusMessage);
                   $('.modal-body').append(successMessage);
-                
                   document.getElementById('modal-bodys').innerHTML += userIdText ; 
-                  window.setTimeout(function() {
-                  $('#confirmationPop').modal('hide'); }, 8000);
-                 
-
+                                
         })
       })
 

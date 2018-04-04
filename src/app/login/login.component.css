@@ -1,0 +1,20 @@
+.center-login-btns {
+    margin-left:40%;
+    padding-bottom:20px;
+}
+
+.forgot-link {
+    cursor: pointer;
+}
+
+input {
+    margin: 0 auto !important;
+}
+
+#password {
+    margin-left: -10px !important;
+}
+
+#userId {
+    margin-right: -10px !important;
+}

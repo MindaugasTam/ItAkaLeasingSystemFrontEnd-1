@@ -95,8 +95,7 @@ export class PrivateUserLoanReportComponent implements OnInit {
                   $('.modal-body').append(successMessage);
                   document.getElementById('modal-bodys').innerHTML += userIdText ; 
                   
-                  window.setTimeout(function() {
-                  $('#confirmationPop').modal('hide'); }, 8000);
+                  
         })
       })
   }

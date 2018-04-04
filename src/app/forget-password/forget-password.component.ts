@@ -34,6 +34,24 @@ export class ForgetPasswordComponent implements OnInit {
     return this.forgetPasswordForm.get('email') as FormControl;
   }
 
+  submit(){
+    this.checkIfCustomerExists()
+      .then(data => {
+        if(this.customerFound){
+          this.loginService.sendRecoveryMail(this.email.value)
+            .then(data  => {
+              console.log("should show success message")
+            })
+            .catch((error: any) => {
+            });
+          //this.router.navigate(['/new-pass']);
+        }
+      });
+  }
+
+  back(){
+    this.router.navigate(['/login']);
+  }
 
   ngOnInit() {
   }

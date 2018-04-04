@@ -29,14 +29,15 @@ export class LoginService {
       .toPromise();
   }
 
-  firstTimePasswordChange(userId, newPassword){
-      let firstTimeLoginPasswordRequest={
+  forgottenPassword(userId, newPassword){
+      let forgotPasswordRequest={
         userId: userId,
+        oldPassword: null,
         newPassword: newPassword
-      }
+      };
 
     return this.http
-      .post("http://localhost:8080/customers/first/login", firstTimeLoginPasswordRequest)
+      .post("http://localhost:8080/customers/change/forgot", forgotPasswordRequest)
       .toPromise();
   }
 
@@ -50,5 +51,14 @@ export class LoginService {
       .toPromise();
   }
 
+  sendRecoveryMail(email){
+    return this.http.post('http://localhost:8080/customers/forgotpassword' + email, email)
+      .toPromise();
+  }
+
+  validateToken(token){
+    return this.http.get('http://localhost:8080/customers/resetpasswordval?token=' + token)
+      .toPromise();
+  }
 
 }
