@@ -53,12 +53,6 @@ body {
 .btn {font-weight: 500;}
 .btn-warning {color: #4d4d4d;}
 
-.btn-margin {
-    width: 45%;
-    margin: auto;
-       
-}
-
 input[type=text], input[type=number], option, select {
     color: #495057;
     font-weight: 500;
