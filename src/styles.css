@@ -12,7 +12,7 @@ html {
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     background: rgb(255, 255, 255, 0.6);
-    max-width:600px !important;
+    max-width:700px !important;
 }
 
 body {
@@ -31,6 +31,10 @@ body {
     margin-top: 50px;
     margin-bottom: 20px;
  }
+
+.wide {
+    max-width: 900px !important;
+}
  
  .form-header {
     padding: 20px 5px;

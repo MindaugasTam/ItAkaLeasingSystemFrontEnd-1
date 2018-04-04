@@ -1,4 +1,4 @@
-<div class='container container_margins'>
+<div class='container wide container_margins'>
   <div class="form-header">Your current loans</div>
     <table class="table">
         <thead>
@@ -11,11 +11,11 @@
             </tr>
           </thead>
           <tbody *ngFor="let loan of loanData">
-              <td>{{loan.submissionDate}}</td>
-              <td>{{loan.manufacturer}} {{loan.model}}</td>
-              <td>{{loan.assetPrice}}</td>
-              <td>{{loan.leasingPeriod}}</td>
-              <td>{{loan.leasingStatus}}</td>
+              <td><small>{{loan.submissionDate}}</small></td>
+              <td><small>{{loan.manufacturer}} {{loan.model}}</small></td>
+              <td><small>{{loan.assetPrice}}</small></td>
+              <td><small>{{loan.leasingPeriod}}</small></td>
+              <td><small>{{loan.leasingStatus}}</small></td>
           </tbody>
     </table>
 
