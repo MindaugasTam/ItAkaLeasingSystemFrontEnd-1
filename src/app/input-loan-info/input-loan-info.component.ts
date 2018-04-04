@@ -147,7 +147,6 @@ export class InputLoanInfoComponent implements OnInit {
         this.findModels();
       });
     }
-    this.findModels()
   }
 
   userTypeChange(userTypeT: string){
