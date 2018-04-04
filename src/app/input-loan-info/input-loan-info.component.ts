@@ -153,7 +153,6 @@ export class InputLoanInfoComponent implements OnInit {
         
       });
     }
-
   }
 
   userTypeChange(userTypeT: string){
