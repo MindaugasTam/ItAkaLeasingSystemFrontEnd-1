@@ -12,6 +12,7 @@ html {
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     background: rgb(255, 255, 255, 0.6);
+    max-width:600px !important;
 }
 
 body {
@@ -53,7 +54,7 @@ body {
 .btn {font-weight: 500;}
 .btn-warning {color: #4d4d4d;}
 
-input[type=text], input[type=number], option, select {
+input[type=text],input[type=password], input[type=number], option, select {
     color: #495057;
     font-weight: 500;
 }
@@ -63,7 +64,8 @@ input[type=text], input[type=number], option, select {
 input[type=text]:focus, 
 select:focus, 
 select.form-control:focus,
-input[type=number]:focus {
+input[type=number]:focus,
+input[type=password]:focus{
     box-shadow: inset 0 -2px 0 #ffc107 !important;
 }
 
@@ -156,6 +158,10 @@ input[type=number]:focus {
 
   .form-buttons {
       color:#495057;
+  }
+
+  button {
+    margin-bottom:20px;
   }
 
   .alert-danger {

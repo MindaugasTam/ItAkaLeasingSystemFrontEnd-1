@@ -2,7 +2,7 @@
     <div class="form-header">Login</div>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="row text-center">
-          <div class="form-group col-sm-6">
+          <div class="form-group col-sm-6 login-form">
               <small>User ID</small>
               <input type="text" placeholder = "User ID" class="form-control" id="userId" formControlName = "userId">
               <small *ngIf="userId.invalid && userId.dirty" class="form-text alert alert-danger">
@@ -12,6 +12,7 @@
           <div class="form-group col-sm-6">
               <small>Password</small>
               <input type="password" placeholder ="Password" class="form-control" id="password" formControlName = "password">
+              <small (click)="forgotPassword()" class="forgot-link">Forgot password?</small>
               <small *ngIf="password.invalid && password.dirty" class="form-text alert alert-danger">
                 Password is required.
               </small>
@@ -19,7 +20,6 @@
         </div>
         <div class='wrapper text-center'>
         <div class="btn-group">
-            <button class="btn btn-warning btn-sx" (click)="forgotPassword()">Forgot Password?</button>
             <button class="btn btn-warning btn-sx" type="submit"
             [disabled]="!this.loginForm.valid">Login</button>
           <button class="btn btn-warning btn-sx" (click)="goToMain()">Back</button>
