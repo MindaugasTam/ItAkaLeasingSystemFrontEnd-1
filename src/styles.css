@@ -44,7 +44,7 @@ body {
     font-size: 1em;
     letter-spacing: 6px;
     font-weight: 500;
-    background-color: #ec8e22;
+    background-color: #4e3e88;
     color: ghostwhite;
 }
 
@@ -63,14 +63,14 @@ input[type=text],input[type=password], input[type=number], option, select {
     font-weight: 500;
 }
 
-.calculated {border-bottom: 3px solid #ffc107;}
+.calculated {border-bottom: 1px solid #4e3e88;}
 
 input[type=text]:focus, 
 select:focus, 
 select.form-control:focus,
 input[type=number]:focus,
 input[type=password]:focus{
-    box-shadow: inset 0 -2px 0 #ffc107 !important;
+    box-shadow: inset 0 -2px 0 #4e3e88 !important;
 }
 
 .modal {
@@ -129,7 +129,6 @@ input[type=password]:focus{
     animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67) forwards;
     -webkit-animation-delay: .2000s;
     animation-delay: .2000s;
-  
   }
   
   @keyframes drawCircle {
@@ -150,14 +149,16 @@ input[type=password]:focus{
   }
 
   input{
-      background-color: rgba(255,255,255,0.4) !important;
       border: none !important;
-      height: 2.4rem !important;
   }
 
-  select {
-    background-color: rgba(255,255,255,0.4) !important;
+  textarea, textarea.form-control, input.form-control, input[type=text], input[type=password], input[type=email], input[type=number], [type=text].form-control, [type=password].form-control, [type=email].form-control, [type=tel].form-control, [contenteditable].form-control {
+    box-shadow: inset 0 -1px 0 rgb(126, 125, 125);
+}
+
+  select, select.form-control {
     border: none !important;
+    box-shadow: inset 0 -1px 0 rgb(126, 125, 125);
   }
 
   .form-buttons {
@@ -169,6 +170,7 @@ input[type=password]:focus{
   }
 
   .alert-danger {
+    color:black;
     animation-name: danger-alert;
     transition:0.7s linear all;
     animation-duration: 0.7s;
@@ -186,6 +188,9 @@ input[type=password]:focus{
         }
   }
 
+.btn, button, .btn-warning, .btn-primary {
+    border-radius:0px !important;
+    text-transform: capitalize !important;}
 
 
 
