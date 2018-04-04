@@ -80,21 +80,29 @@ export class BusinessUserLoanReportComponent implements OnInit {
                   }
 
                   var successMessage = " ";
+                  var statusMessage  = " ";
+                  var userId = " ";
+                  var userIdText = " ";
                   if(this.addBusinessUser == true && this.addBusinessVehicle == true){
-                    successMessage = $('<div>').text('Loan registration successful\n User login id: '
-                      + this.businessUserLoginID).css('color', 'green');
+                    successMessage = $('<p>').text('Your application has been accepted and is being processed right now. You should receive decision within 3 days. Use your ID to login');
+                    userId = "<span>" + this.businessUserLoginID + "</span>";
+                    userIdText = '<div>User login id: ' + userId +'</div>';
+                    statusMessage = "<div id='statusMessage'>Succes!</div>";
                   }else{
                     successMessage = $('<div>').text('Loan registration denied').css('color', 'red');
                   }
-
-                  $('.modal-footer').html(successMessage);
-                  window.setTimeout(function() {
-                  $('#exampleModal').modal('hide'); }, 5000);
-                  console.log("asdsasad");
-
+                  $('.modal-body').html("");
+                  $('.modal-body').append(statusMessage);
+                  $('.modal-body').append(successMessage);
+                  document.getElementById('modal-bodys').innerHTML += userIdText ; 
+                                
         })
       })
 
+  }
+
+  closeModal(){
+    $('#confirmationPop').modal('hide');
   }
 
   toPreviousPage(){

@@ -8,7 +8,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { VehicleList} from '../services/vehicle-list.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
+declare var $:any;
 
 
 @Component({
@@ -22,7 +22,7 @@ export class InputLoanInfoComponent implements OnInit {
     public loanForm: FormGroup;
     private userType: String = undefined;
     private minAssetPrice: number = 5000;
-
+    
     private cars: any;
     private brands: any;
     private models = [];
@@ -37,6 +37,7 @@ export class InputLoanInfoComponent implements OnInit {
         });
       this.fb = fb;
 
+    
     }
 
     private initalizeCarLists(data){
@@ -112,6 +113,7 @@ export class InputLoanInfoComponent implements OnInit {
     get paymentDay(){return this.loanForm.get('paymentDay') as FormControl};
     get paymentPercentage(){return this.loanForm.get('paymentPercentage') as FormControl};
     get margin() {return this.loanForm.get('margin') as FormControl};
+    
 
 
     get assetPriceValue(){return this.loanForm.get('assetPrice').value}
@@ -138,13 +140,17 @@ export class InputLoanInfoComponent implements OnInit {
      this.loanForm.updateValueAndValidity;
     }
 
+    
+
   ngOnInit() {
+    this.rangeSlider();
     this.loanForm = this.createForm(this.userType);
     if(this.dataStore.loanFormInfo){
       this.loanForm = this.dataStore.getLoanForm();
       this.vehicleList.getAllVehicleList().then(data => {
         this.initalizeCarLists(data);
-        this.findModels();
+        this.findModels()
+        
       });
     }
   }
@@ -168,6 +174,35 @@ export class InputLoanInfoComponent implements OnInit {
     }
   }
 
+  rangeSlider(){
+    var abs = 42;
+    var slider = $('.range-slider'),
+        range = $('.range-slider__range'),
+        value = $('.range-slider__value');
+     
+     
+      
+    slider.each(function(){
+  
+      value.each(function(){
+        var value = $(this).prev().attr('value');
+        $(this).html(value);
+        console.log(value);
+      });
+  
+      range.on('input', function(){
+        $(this).next(value).html(this.value);
+      });
+    });
+  };
+  
+  
 
+  
+  
+  
+    
+  
+ 
 
 }
