@@ -101,6 +101,7 @@ input[type=number]:focus {
     box-shadow: inset 0 -2px 0 #ffc107 !important;
 }
 
+/*Confirmation pop up styles */
 
 .modal {
     text-align: center;
@@ -113,98 +114,173 @@ input[type=number]:focus {
     height: 100%;
     vertical-align: middle;
     margin-right: -4px; /* Adjusts for spacing */
-  }
+}
   
-  .modal-dialog {
-    display: inline-block;
-    text-align: left;
-    vertical-align: middle;
-  }
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
 
-  .modal-header {
+.modal-header {
 
-    border-bottom: none;
-   
-  }
-
-  .modal-footer{
-    border-top: none !important;
-  }
-
-  .modal-dialog {
-      width: 20% !important;
-  }
-
-
-
-
-
-
-
-
-
-
+  border-bottom: none;
  
-  .icon {
-    width: 100px;
-    height: 100px;
-    display: block;
-    border-radius: 50%;
-    stroke: #50E38E;
-    margin: 50px auto;
-    -webkit-animation: bounceIcon .1700s ease-in-out;
-    animation: bounceIcon .1700s ease-in-out;
-    -webkit-animation-delay: .100s;
-    animation-delay: .1000s;
+}
+
+.modal-footer{
+  border-top: none !important;
+}
+
+.modal-dialog {
+    width: 30% !important;
+}
+
+
+
+.period input{
+  padding-left: 10px;
+}
+
+input[type=number]{-moz-appearance: textfield;}
+
+.modal-header {
+  background: #30b97e;
+  padding: 0px !important;
+}
+
+.modal-body {
+  font-size: 15px;
+  text-align: center;
+}
+
+.modal-body span {
+
+  border-bottom:2px solid #30b97e;
+}
+
+#statusMessage {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-footer {padding-top: 0px}
+
+#modalClose {
+  border-radius: 20px;
+  background: #f35757;
+  margin: 0 auto;
+  color: white;
+  width: 25%;
+  border: none;
+  line-height: 35px;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  display: block;
+  border-radius: 50%;
+  stroke: #ffff;
+  margin: 50px auto;
+  -webkit-animation: bounceIcon .1700s ease-in-out;
+  animation: bounceIcon .1700s ease-in-out;
+  -webkit-animation-delay: .100s;
+  animation-delay: .1000s;
+}
+
+.circle {
+  stroke-dasharray: 190;
+  stroke-dashoffset: 190;
+  stroke-width: 9;
+  stroke: #ffff;
+  fill: none;
+  -webkit-animation: drawCircle .2s linear;
+  animation: drawCircle .2s linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.check {
+  stroke-width: 7;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  -webkit-animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67);
+  animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67) forwards;
+  -webkit-animation-delay: .2000s;
+  animation-delay: .2000s;
+}
+
+@keyframes drawCircle {
+ 100% {
+    stroke-dashoffset: 0;
   }
-  
-  .circle {
-    stroke-dasharray: 190;
-    stroke-dashoffset: 190;
-    stroke-width: 9;
-    stroke: #ECE8E8;
-    fill: none;
-    -webkit-animation: drawCircle .2s linear;
-    animation: drawCircle .2s linear;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+}
+
+@keyframes drawCheckmark {
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
   }
-  
-  .check {
-    stroke-width: 7;
-    stroke-dasharray: 120;
-    stroke-dashoffset: 120;
-    -webkit-animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67);
-    animation: drawCheckmark .2000s cubic-bezier(.89,.09,.91,.67) forwards;
-    -webkit-animation-delay: .2000s;
-    animation-delay: .2000s;
-  
+}
+
+@keyframes bounceIcon {
+  0% {
+    transform: none;
   }
-  
-  @keyframes drawCircle {
-   100% {
-      stroke-dashoffset: 0;
-    }
+  50% {
+    transform: scale3D(.9, .9, 1);
   }
-  
-  @keyframes drawCheckmark {
-    100% {
-      opacity: 1;
-      stroke-dashoffset: 0;
-    }
+  100% {
+    transform: none;
   }
+}
+
+.cross__svg {
+  border-radius: 50%;
+  display: block;
+  height: 100px;
+  margin: 4rem auto;
+  stroke-width: 3;
+  width: 100px;
+}
+
+.cross__circle {
+  animation: 0.6s ease 0s normal forwards 1 running stroke;
+  fill: none;
+  margin: 0 auto;
+  stroke: #fff;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 6;
+}
+
+.cross__path {
+  stroke: #fff;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  transform-origin: 50% 50% 0;
+  stroke-width: 4;
   
-  @keyframes bounceIcon {
-    0% {
-      transform: none;
-    }
-    50% {
-      transform: scale3D(.9, .9, 1);
-    }
-    100% {
-      transform: none;
-    }
+}
+.cross__path--right {
+  animation: 0.3s ease 0.8s normal forwards 1 running stroke;
+}
+.cross__path--left {
+  animation: 1s ease 0.8s normal forwards 1 running stroke;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
   }
-  
-  
-  
+}
+
+/* Confirmation pop up ends */
+
+
+
+
+
+

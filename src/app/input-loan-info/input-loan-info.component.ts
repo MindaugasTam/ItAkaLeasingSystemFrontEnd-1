@@ -8,7 +8,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { VehicleList} from '../services/vehicle-list.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
+declare var $:any;
 
 
 @Component({
@@ -183,6 +183,7 @@ export class InputLoanInfoComponent implements OnInit {
       return this.minAssetPrice;
     }
   }
+
 
 
 
