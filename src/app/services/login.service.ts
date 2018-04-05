@@ -14,7 +14,7 @@ export class LoginService {
     };
 
     return this.http
-      .post("http://localhost:8060/customers/login", loginRequest)
+      .post("http://localhost:8080/customers/login", loginRequest)
       .toPromise();
   }
 
@@ -25,7 +25,7 @@ export class LoginService {
     };
 
     return this.http
-      .post("http://localhost:8060/officer/login", loginRequest)
+      .post("http://localhost:8080/officer/login", loginRequest)
       .toPromise();
   }
 
@@ -36,7 +36,7 @@ export class LoginService {
       newPassword: newPassword
     };
     return this.http
-      .post("http://localhost:8060/customers/change/password", passwordChangeRequest)
+      .post("http://localhost:8080/customers/change/password", passwordChangeRequest)
       .toPromise();
   }
 
@@ -48,7 +48,7 @@ export class LoginService {
       };
 
     return this.http
-      .post("http://localhost:8060/customers/change/forgot", forgotPasswordRequest)
+      .post("http://localhost:8080/customers/change/forgot", forgotPasswordRequest)
       .toPromise();
   }
 
@@ -58,17 +58,17 @@ export class LoginService {
       email: email
     };
 
-    return this.http.post("http://localhost:8060/customers/check", credentialsRequest)
+    return this.http.post("http://localhost:8080/customers/check", credentialsRequest)
       .toPromise();
   }
 
   sendRecoveryMail(email){
-    return this.http.post('http://localhost:8060/customers/forgotpassword' + email, email)
+    return this.http.post('http://localhost:8080/customers/forgotpassword' + email, email)
       .toPromise();
   }
 
   validateToken(token){
-    return this.http.get('http://localhost:8060/customers/resetpasswordval?token=' + token)
+    return this.http.get('http://localhost:8080/customers/resetpasswordval?token=' + token)
       .toPromise();
   }
 
