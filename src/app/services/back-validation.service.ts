@@ -8,7 +8,7 @@ export class BackValidationService {
 
   checkEmailUnique(email){
     return this.http
-      .get("http://localhost:8080/customers/" + email)
+      .get("http://localhost:8060/customers/" + email)
       .toPromise();
   }
 }
