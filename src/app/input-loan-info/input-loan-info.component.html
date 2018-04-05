@@ -72,16 +72,21 @@
                                 </div>
                         </div>
 
-                        <div class="form-group form-inline period col-sm-4 text-center">
+                        <div class="form-group form-inline period col-sm-12 ">
                                         <small>Lease period</small>
-                                        <input type="number" step = "6" min = "6" max = "84" class="form-control" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod" onkeydown="return false">
-                                       </div>
+                                        <div class="range-slider row" >
+                                                <input class="range-slider__range" type="range" value="48" min="6" max="84" step="6" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod" >
+                                               <span class="range-slider__value">0</span>
+                                              </div>
+
+
+                                </div>
 
                 <div class="row">
                         <div class="form-group col-sm-6 text-center">
                                 <small >Margin</small>
                                         <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
-                                        <small *ngIf="margin.invalid&&margin.dirty" class = "form-text alert alert-danger">Margin is invalid. Minimum 3.2 percent </small>
+                                        <small *ngIf="margin.invalid && margin.dirty" class = "form-text alert alert-danger">Margin is invalid. Minimum 3.2 percent </small>
                         </div>
                         <div class="form-group col-sm-6 text-center">
                                 <small>Payment day</small>
@@ -97,14 +102,12 @@
                         <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: <span class="calculated">{{calculateAdvancedPaymentAmount()}}</span></h5>
                         <h5>Contract fee: <span class="calculated">{{calculateContractFee()}}</span></h5>
 
-
                         <div class="form-footer">
                                 <div class="row">
                            <button class="btn btn-outline-warning form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
                            <button class="btn btn-outline-warning form buttons btn-margin col-sm-3" (click) = "this.displayPaySchedule()" type = "button">
                              Payment schedule </button>
                            <button class="btn btn-warning form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
-
                         </div>
                         </div>
                 </form>

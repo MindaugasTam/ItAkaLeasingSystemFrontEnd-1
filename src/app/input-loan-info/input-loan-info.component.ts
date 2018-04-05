@@ -4,6 +4,9 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import {  Router, RouterModule } from '@angular/router';
 import { VehicleList} from '../services/vehicle-list.service';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+declare var $:any;
 
 @Component({
   selector: 'app-input-loan-info',
@@ -13,14 +16,16 @@ import { VehicleList} from '../services/vehicle-list.service';
 export class InputLoanInfoComponent implements OnInit {
 
 
-  public loanForm: FormGroup;
-  private userType: String = undefined;
-  private minAssetPrice: number = 5000;
+    public loanForm: FormGroup;
+    private userType: String = undefined;
+    private minAssetPrice: number = 5000;
 
-  private cars: any;
-  private brands: any;
-  private models = [];
-  fb: FormBuilder;
+    private cars: any;
+    private brands: any;
+    private models = [];
+    private i: number = 0;
+    fb: FormBuilder;
+    private carList;
 
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService,
               private vehicleList: VehicleList) {
@@ -92,70 +97,27 @@ export class InputLoanInfoComponent implements OnInit {
     }
   }
 
-  get assetType() {
-    return this.loanForm.get('assetType') as FormControl
-  };
-
-  get customerType() {
-    return this.loanForm.get('customerType') as FormControl
-  };
-
-  get year() {
-    return this.loanForm.get('year') as FormControl
-  };
-
-  get paymentAmount() {
-    return this.loanForm.get('paymentAmount') as FormControl
-  };
-
-  get carBrand() {
-    return this.loanForm.get('carBrand') as FormControl
-  };
-
-  get carModel() {
-    return this.loanForm.get('carModel') as FormControl
-  };
-
-  get advancedPaymentAmount() {
-    return this.advancedPaymentAmount
-  };
-
-  get enginePower() {
-    return this.loanForm.get('enginePower') as FormControl
-  };
-
-  get assetPrice() {
-    return this.loanForm.get('assetPrice') as FormControl
-  };
-
-  get paymentDay() {
-    return this.loanForm.get('paymentDay') as FormControl
-  };
-
-  get paymentPercentage() {
-    return this.loanForm.get('paymentPercentage') as FormControl
-  };
-
-  get margin() {
-    return this.loanForm.get('margin') as FormControl
-  };
-
-  get leasePeriod() {
-    return this.loanForm.get('leasePeriod') as FormControl
-  };
+    get assetType(){return this.loanForm.get('assetType') as FormControl};
+    get customerType(){return this.loanForm.get('customerType') as FormControl};
+    get year(){return this.loanForm.get('year') as FormControl};
+    get paymentAmount(){return this.loanForm.get('paymentAmount') as FormControl};
+    get carBrand(){return this.loanForm.get('carBrand') as FormControl};
+    get carModel() {return this.loanForm.get('carModel') as FormControl};
+    get advancedPaymentAmount(){return this.advancedPaymentAmount};
+    get enginePower(){return this.loanForm.get('enginePower') as FormControl};
+    get assetPrice(){return this.loanForm.get('assetPrice') as FormControl};
+    get paymentDay(){return this.loanForm.get('paymentDay') as FormControl};
+    get paymentPercentage(){return this.loanForm.get('paymentPercentage') as FormControl};
+    get margin() {return this.loanForm.get('margin') as FormControl};
+    get leasePeriod() { return this.loanForm.get('leasePeriod') as FormControl};
 
 
-  get assetPriceValue() {
-    return this.loanForm.get('assetPrice').value
-  }
+    get assetPriceValue(){return this.loanForm.get('assetPrice').value}
+    get paymentPercentageValue(){return this.loanForm.get('paymentPercentage').value}
 
-  get paymentPercentageValue() {
-    return this.loanForm.get('paymentPercentage').value
-  }
-
-  set assetPriceValue(minAssetPrice) {
-    this.loanForm.setValue(minAssetPrice);
-  }
+    set assetPriceValue(minAssetPrice){
+      this.loanForm.setValue(minAssetPrice);
+    }
 
   send() {
     this.dataStore.saveLoanFormInfo(this.loanForm, this.calculateContractFee(), this.calculateAdvancedPaymentAmount());
@@ -176,13 +138,17 @@ export class InputLoanInfoComponent implements OnInit {
     this.loanForm.updateValueAndValidity;
   }
 
+
+
   ngOnInit() {
+    this.rangeSlider();
     this.loanForm = this.createForm(this.userType);
     if (this.dataStore.loanFormInfo) {
       this.loanForm = this.dataStore.getLoanForm();
       this.vehicleList.getAllVehicleList().then(data => {
         this.initalizeCarLists(data);
-        this.findModels();
+        this.findModels()
+
       });
     }
   }
@@ -296,5 +262,25 @@ export class InputLoanInfoComponent implements OnInit {
     }
     return paymentDates;
   }
+  rangeSlider(){
+    var abs = 42;
+    var slider = $('.range-slider'),
+        range = $('.range-slider__range'),
+        value = $('.range-slider__value');
 
+
+
+    slider.each(function(){
+
+      value.each(function(){
+        var value = $(this).prev().attr('value');
+        $(this).html(value);
+        console.log(value);
+      });
+
+      range.on('input', function(){
+        $(this).next(value).html(this.value);
+      });
+    });
+  };
 }
