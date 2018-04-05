@@ -13,7 +13,7 @@
                                                         <option name="Business">Business</option>
                                                 </select>
                                                 <small *ngIf="customerType.invalid && customerType.dirty" class="form-text alert alert-danger">Customer type is required</small>
-                                        </div> 
+                                        </div>
                                         <div class="form-group col-sm-6 text-center">
                                                         <small>Asset Type</small>
                                                         <select class="form-control" id="assetType" formControlName="assetType">
@@ -39,7 +39,7 @@
                                                         <option *ngFor="let selectedModels of models" [value]="selectedModels">{{selectedModels}}</option>
                                                 </select>
                                         </div>
-                                
+
                                 </div>
                         </div>
 
@@ -58,7 +58,7 @@
 
                                 </div>
                         </div>
-                        <div class="row">  
+                        <div class="row">
                         <div class="form-group col-sm-6 text-center">
                                 <small>Asset price</small>
                                         <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
@@ -78,10 +78,10 @@
                                                 <input class="range-slider__range" type="range" value="48" min="6" max="84" step="6" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod" >
                                                <span class="range-slider__value">0</span>
                                               </div>
-                                       
-                                
+
+
                                 </div>
-                                       
+
                 <div class="row">
                         <div class="form-group col-sm-6 text-center">
                                 <small >Margin</small>
@@ -96,6 +96,7 @@
                                                 <option name="paymentDay">30</option>
                                         </select>
                                         <small *ngIf="paymentDay.invalid && paymentDay.dirty" class="form-text alert alert-danger">Payment day is invalid.</small>
+
                         </div>
                 </div>
                         <h5 *ngIf="assetPrice.valid&&paymentPercentage.valid">Calculated advanced payment amount: <span class="calculated">{{calculateAdvancedPaymentAmount()}}</span></h5>
@@ -103,9 +104,10 @@
 
                         <div class="form-footer">
                                 <div class="row">
-                           <button class="btn btn-outline-econdary form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
-                           <button class="btn btn-secondary form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
-                          
+                           <button class="btn btn-outline-warning form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
+                           <button class="btn btn-outline-warning form buttons btn-margin col-sm-3" (click) = "this.displayPaySchedule()" type = "button">
+                             Payment schedule </button>
+                           <button class="btn btn-warning form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
                         </div>
                         </div>
                 </form>

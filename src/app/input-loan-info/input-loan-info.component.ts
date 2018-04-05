@@ -2,14 +2,11 @@ import { Component, OnInit,  } from '@angular/core';
 import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
-import {Http, Response } from '@angular/http'
-//import { CarList } from './CarList';
-import { forEach } from '@angular/router/src/utils/collection';
 import { VehicleList} from '../services/vehicle-list.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 declare var $:any;
-
 
 @Component({
   selector: 'app-input-loan-info',
@@ -22,7 +19,7 @@ export class InputLoanInfoComponent implements OnInit {
     public loanForm: FormGroup;
     private userType: String = undefined;
     private minAssetPrice: number = 5000;
-    
+
     private cars: any;
     private brands: any;
     private models = [];
@@ -30,76 +27,75 @@ export class InputLoanInfoComponent implements OnInit {
     fb: FormBuilder;
     private carList;
 
-    constructor(fb: FormBuilder, private router: Router,  public dataStore : DataStoreService,
-      private vehicleList: VehicleList ){
-        vehicleList.getAllVehicleList().then(data => {
-          this.initalizeCarLists(data);
-        });
-      this.fb = fb;
+  constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService,
+              private vehicleList: VehicleList) {
+    vehicleList.getAllVehicleList().then(data => {
+      this.initalizeCarLists(data);
+    });
+    this.fb = fb;
 
-    
+  }
+
+  private initalizeCarLists(data) {
+    let dataIt: any;
+    dataIt = data;
+    let carBrands = [];
+    let i = 0;
+    for (let carData of dataIt) {
+      carBrands[i] = carData.groupValue;
+      i++;
     }
+    carBrands = Array.from(new Set(carBrands));
+    carBrands.sort();
+    this.brands = carBrands;
+    this.cars = data;
+  }
 
-    private initalizeCarLists(data){
-      let dataIt : any;
-      dataIt = data;
-      let carBrands = [];
-      let i = 0;
-      for(let carData of dataIt){
-        carBrands[i] = carData.groupValue;
-        i++;
-      }
-      carBrands = Array.from(new Set(carBrands));
-      carBrands.sort();
-      this.brands = carBrands;
-      this.cars = data;
-    }
+  createForm(userType) { //constructor
+    return this.fb.group({
+      customerType: [userType, Validators.required],
+      assetType: [null, Validators.required],
+      carBrand: [null, Validators.required],
+      carModel: [null, Validators.required],
+      year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4),
+        Validators.max(new Date().getFullYear()), Validators.pattern("^[0-9]*$")]],
+      enginePower: [0, [Validators.required, Validators.max(1000), Validators.maxLength(3),
+        Validators.min(0), Validators.pattern("^[0-9]*$")]],
+      assetPrice: [5000, [Validators.required, Validators.min(5000), Validators.max(1000000000), Validators.pattern("^[0-9]*$")]],
+      paymentPercentage: [10, [Validators.required, Validators.min(10), Validators.max(100),
+        Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
+      leasePeriod: [null, Validators.required],
+      margin: [3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
+      contractFee: [200, [Validators.required, Validators.max(1000000000)]],
+      paymentDay: [null, [Validators.required, Validators.min(15), Validators.max(30)]]
+    })
+  }
 
-    createForm(userType){ //constructor
-      return this.fb.group({
-        customerType:[userType, Validators.required],
-        assetType:[null, Validators.required],
-        carBrand:[null, Validators.required],
-        carModel:[null, Validators.required],
-        year: [2000, [Validators.required, Validators.minLength(4), Validators.min(2000), Validators.maxLength(4),
-          Validators.max(new Date().getFullYear()), Validators.pattern("^[0-9]*$")]],
-        enginePower:[0, [Validators.required, Validators.max(1000), Validators.maxLength(3),
-          Validators.min(0), Validators.pattern("^[0-9]*$")]],
-        assetPrice:[5000, [Validators.required, Validators.min(5000), Validators.max(1000000000), Validators.pattern("^[0-9]*$")]],
-        paymentPercentage:[10, [Validators.required, Validators.min(10), Validators.max(100),
-                          Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
-        leasePeriod:[null, Validators.required],
-        margin:[3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
-        contractFee:[200, [Validators.required, Validators.max(1000000000)]],
-        paymentDay:[null, [Validators.required, Validators.min(15), Validators.max(30)]]
-      })
-    }
+  calculateAdvancedPaymentAmount() {
+    let firstPaymentPrice = (this.assetPriceValue * (this.paymentPercentageValue / 100));
+    return firstPaymentPrice.toFixed(2);
+  }
 
-    calculateAdvancedPaymentAmount(){
-      let firstPaymentPrice=(this.assetPriceValue*(this.paymentPercentageValue/100));
-      return firstPaymentPrice.toFixed(2);
-    }
+  calculateContractFee() {
+    let perc = 0.01;
+    let contractFee = this.assetPriceValue * perc;
+    if (contractFee < 200) {
+      return 200;
+    } else return contractFee.toFixed(2);
+  }
 
-    calculateContractFee(){
-      let perc = 0.01;
-      let contractFee = this.assetPriceValue*perc;
-      if(contractFee<200){
-        return 200;
-      }else return contractFee.toFixed(2);
-    }
+  findModels() {
 
-    findModels(){
+    let a = 0;
+    this.models = [];
 
-      let a = 0;
-      this.models = [];
-
-      for (let i=0; i< this.cars.length; i++){
-        if (this.cars[i].groupValue === this.loanForm.get('carBrand').value){
-              this.models[a]=this.cars[i].value;
-              a++;
-        }
+    for (let i = 0; i < this.cars.length; i++) {
+      if (this.cars[i].groupValue === this.loanForm.get('carBrand').value) {
+        this.models[a] = this.cars[i].value;
+        a++;
       }
     }
+  }
 
     get assetType(){return this.loanForm.get('assetType') as FormControl};
     get customerType(){return this.loanForm.get('customerType') as FormControl};
@@ -113,7 +109,7 @@ export class InputLoanInfoComponent implements OnInit {
     get paymentDay(){return this.loanForm.get('paymentDay') as FormControl};
     get paymentPercentage(){return this.loanForm.get('paymentPercentage') as FormControl};
     get margin() {return this.loanForm.get('margin') as FormControl};
-    
+    get leasePeriod() { return this.loanForm.get('leasePeriod') as FormControl};
 
 
     get assetPriceValue(){return this.loanForm.get('assetPrice').value}
@@ -123,86 +119,168 @@ export class InputLoanInfoComponent implements OnInit {
       this.loanForm.setValue(minAssetPrice);
     }
 
-    send(){
-      this.dataStore.saveLoanFormInfo(this.loanForm, this.calculateContractFee(), this.calculateAdvancedPaymentAmount());
-      if(this.loanForm.value.customerType==='Private'){
-          this.router.navigate(['/input-private-user-info']);
-      }else {
-          this.router.navigate(['/input-business-user-info']);
-      }
+  send() {
+    this.dataStore.saveLoanFormInfo(this.loanForm, this.calculateContractFee(), this.calculateAdvancedPaymentAmount());
+    if (this.loanForm.value.customerType === 'Private') {
+      this.router.navigate(['/input-private-user-info']);
+    } else {
+      this.router.navigate(['/input-business-user-info']);
     }
-    reset(){ // after reset button
-      this.userType = undefined;
-      this._reset();
-    }
-    _reset(){
-     this.loanForm = this.createForm(this.userType);
-     this.loanForm.updateValueAndValidity;
-    }
+  }
 
-    
+  reset() { // after reset button
+    this.userType = undefined;
+    this._reset();
+  }
+
+  _reset() {
+    this.loanForm = this.createForm(this.userType);
+    this.loanForm.updateValueAndValidity;
+  }
+
+
 
   ngOnInit() {
     this.rangeSlider();
     this.loanForm = this.createForm(this.userType);
-    if(this.dataStore.loanFormInfo){
+    if (this.dataStore.loanFormInfo) {
       this.loanForm = this.dataStore.getLoanForm();
       this.vehicleList.getAllVehicleList().then(data => {
         this.initalizeCarLists(data);
         this.findModels()
-        
+
       });
     }
   }
 
-  userTypeChange(userTypeT: string){
+  userTypeChange(userTypeT: string) {
     this.userType = userTypeT;  // "Private" or "Business"
     this._reset();
     this.loanForm.patchValue({"assetPrice": this.findMinAssetPrice()})
     this.loanForm.controls['assetPrice'].setValidators([Validators.required, Validators.min(this.findMinAssetPrice()), Validators.pattern("^[0-9]*$")]);
     this.loanForm.controls['assetPrice'].updateValueAndValidity();
- }
+  }
 
-  findMinAssetPrice(){
-    if (this.userType === "Private"){
+  findMinAssetPrice() {
+    if (this.userType === "Private") {
       this.minAssetPrice = 5000;
       return this.minAssetPrice;
     }
-    if (this.userType === "Business"){
+    if (this.userType === "Business") {
       this.minAssetPrice = 10000;
       return this.minAssetPrice;
     }
   }
 
+  private monthlyPayment: any;
+  private monthlyPaymentData = [];
+  private totalInterestSum: any;
+  private totalPaymentSum: any;
+
+  displayPaySchedule() {
+
+    this.totalInterestSum = 0;
+
+    let advancePayment = +this.calculateAdvancedPaymentAmount();
+
+    let marginVal = (this.margin.value/100)/12;
+    let divisor = (1 - (1/Math.pow(1 + marginVal, this.leasePeriod.value)))/marginVal;
+
+    this.monthlyPayment = (this.assetPrice.value - advancePayment)/divisor;
+
+    let remainingAmount = this.assetPrice.value - advancePayment;
+
+    this.totalPaymentSum = +this.calculateContractFee() + advancePayment;
+
+    let dates = this.findPaymentDates(this.leasePeriod.value, this.paymentDay.value);
+
+    for(let month = 0; month < this.leasePeriod.value; month++){
+
+      let withInterest = (remainingAmount * (1 + marginVal));
+      let interestPaymentAmount = withInterest - remainingAmount;
+      let assetValuePaymentAmount = (this.monthlyPayment - interestPaymentAmount);
+
+      this.totalInterestSum+=interestPaymentAmount;
+      this.totalPaymentSum+=this.monthlyPayment;
+
+      this.monthlyPaymentData[month] = {
+        paymentDate: dates[month],
+        remainingAmount: remainingAmount.toFixed(2),
+        interestPaymentAmount: interestPaymentAmount.toFixed(2),
+        assetValuePaymentAmount: assetValuePaymentAmount.toFixed(2),
+        monthlyPayment: this.monthlyPayment.toFixed(2)
+      };
+      remainingAmount-= assetValuePaymentAmount;
+    }
+    console.log(this.monthlyPaymentData);
+    console.log(this.totalInterestSum);
+    console.log(this.totalPaymentSum);
+  }
+
+  private static isLeapYear(year) {
+    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+  }
+
+
+  private findPaymentDates(leasePeriod, paymentDay){
+    let paymentDates = [];
+    let startDate = new Date();
+
+    if((startDate.getMonth() == 1) && (paymentDay > 28)){
+      if(InputLoanInfoComponent.isLeapYear(startDate.getFullYear())){
+        startDate.setDate(29);
+      }
+      else{
+        startDate.setDate(28);
+      }
+    }
+    else{
+      if(startDate.getDay() > paymentDay){
+        startDate.setMonth(startDate.getMonth() + 1);
+      }
+      startDate.setDate(paymentDay);
+      paymentDates[0] = startDate.toISOString().split('T')[0];
+    }
+
+    startDate.setDate(1);
+    for (let i = 1; i < leasePeriod; i++){
+      startDate.setMonth(startDate.getMonth() + 1);
+
+      if((startDate.getMonth() == 1) && (paymentDay > 28)){
+        if(InputLoanInfoComponent.isLeapYear(startDate.getFullYear())){
+          startDate.setDate(29);
+        }
+        else {
+          startDate.setDate(28);
+        }
+      }
+      else{
+        startDate.setDate(paymentDay);
+      }
+      paymentDates[i] = startDate.toISOString().split('T')[0];
+      startDate.setDate(1);
+    }
+    return paymentDates;
+  }
   rangeSlider(){
     var abs = 42;
     var slider = $('.range-slider'),
         range = $('.range-slider__range'),
         value = $('.range-slider__value');
-     
-     
-      
+
+
+
     slider.each(function(){
-  
+
       value.each(function(){
         var value = $(this).prev().attr('value');
         $(this).html(value);
         console.log(value);
       });
-  
+
       range.on('input', function(){
         $(this).next(value).html(this.value);
       });
     });
   };
-  
-  
-
-  
-  
-  
-    
-  
- 
-
 }
