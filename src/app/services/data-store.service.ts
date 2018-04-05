@@ -12,12 +12,13 @@ export class DataStoreService {
   advancedPaymentAmount;
 
   loanResponse;
+  officerContent;
 
   getLoanForm(){return this.loanFormInfo};
   getLoanFormInfo(){return this.loanFormInfo.value};
   getContractFee(){return this.contractFee};
   getAdvancedPaymentAmount(){return this.advancedPaymentAmount};
-  
+
   getPrivateUserForm(){return this.privateUserInfo};
   getPrivateUserData(){return this.privateUserInfo.value};
 
@@ -25,6 +26,7 @@ export class DataStoreService {
   getBusinessUserData(){return this.businessUserInfo.value};
 
   getLoanResponse(){return this.loanResponse}
+  getOfficerContent(){return this.officerContent}
 
   saveLoanFormInfo(form: FormGroup, contractFee, advancedPaymentAmount){
     this.contractFee=contractFee;
@@ -34,6 +36,10 @@ export class DataStoreService {
 
   storeLoanResponse(response: any){
     this.loanResponse = response;
+  }
+
+  storeOfficerContent(response: any){
+    this.officerContent = response;
   }
 
   savePrivateUserFormInfo(form: FormGroup){

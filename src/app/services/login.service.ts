@@ -18,6 +18,17 @@ export class LoginService {
       .toPromise();
   }
 
+  createOfficerLoginRequest(userId, password){
+    let loginRequest = {
+      userId: userId,
+      password: password
+    };
+
+    return this.http
+      .post("http://localhost:8080/officer/login", loginRequest)
+      .toPromise();
+  }
+
   requestPasswordChange(userId, oldPassword, newPassword){
     let passwordChangeRequest={
       userId: userId,

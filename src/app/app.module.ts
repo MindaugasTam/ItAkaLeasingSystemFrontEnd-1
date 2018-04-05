@@ -28,6 +28,7 @@ import { LoanListComponent } from './loan-list/loan-list.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {BackValidationService} from './services/back-validation.service';
 import {NewPassComponent} from './new-pass/new-pass.component';
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {NewPassComponent} from './new-pass/new-pass.component';
     LoanListComponent,
     ForgetPasswordComponent,
     NewPassComponent,
+    LeasingOfficerComponent,
   ],
   imports: [
     BrowserModule,
