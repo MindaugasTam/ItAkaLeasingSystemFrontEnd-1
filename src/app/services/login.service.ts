@@ -18,6 +18,17 @@ export class LoginService {
       .toPromise();
   }
 
+  createOfficerLoginRequest(userId, password){
+    let loginRequest = {
+      userId: userId,
+      password: password
+    };
+
+    return this.http
+      .post("http://localhost:8080/officer/login", loginRequest)
+      .toPromise();
+  }
+
   requestPasswordChange(userId, oldPassword, newPassword){
     let passwordChangeRequest={
       userId: userId,
@@ -51,5 +62,14 @@ export class LoginService {
       .toPromise();
   }
 
+  sendRecoveryMail(email){
+    return this.http.post('http://localhost:8080/customers/forgotpassword' + email, email)
+      .toPromise();
+  }
+
+  validateToken(token){
+    return this.http.get('http://localhost:8080/customers/resetpasswordval?token=' + token)
+      .toPromise();
+  }
 
 }

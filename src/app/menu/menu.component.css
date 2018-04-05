@@ -1,0 +1,49 @@
+.nav-menu {
+    position: absolute;
+    left:-295px;
+    top:30%;
+    text-align: right;
+    font-size: 1em;
+}
+
+.nav-menu li {
+    background:#546e7a;
+    text-transform: uppercase;
+    width:300px;
+    list-style-type: none;
+    border-radius: 35px;
+    margin:10px;
+    padding:3px;
+    padding-right: 53px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    animation-name:out;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.nav-menu a { color:white;}
+
+.nav-menu a:hover {text-decoration: none;}
+
+.nav-menu i {
+    color:white;
+   padding:25px;
+   border-radius:50%;
+   margin-right:-50px;
+}
+
+.nav-menu li:hover{
+    animation-duration: 0.5s;
+    animation-name:in;
+  }
+
+@keyframes in {
+    from {transform: translate(0px);}
+    to {transform: translate(120px);}
+}
+
+@keyframes out {
+    from {transform: translate(120px);}
+    to {transform: translate(0px);}
+}

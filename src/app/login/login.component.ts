@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
-import { DataStoreService } from '../services/data-store.service';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {Router} from '@angular/router';
+import {LoginService} from '../services/login.service';
+import {DataStoreService} from '../services/data-store.service';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +16,20 @@ export class LoginComponent implements OnInit {
   constructor(fb: FormBuilder, private router: Router, private loginService: LoginService, public dataStore: DataStoreService) {
 
     this.loginForm = fb.group({
-      userId: [null, [Validators.required, Validators.maxLength(20)] ],
-      password:[null, [Validators.required, Validators.maxLength(20) ]]
-    })
-   }
+      userId: [null, [Validators.required, Validators.maxLength(20)]],
+      password: [null, [Validators.required, Validators.maxLength(20)]]
+    });
+  }
 
-   badUserData = false;
+  badUserData = false;
 
-  get userId(){ return this.loginForm.get('userId') as FormControl;}
-  get password(){ return this.loginForm.get('password') as FormControl;}
+  get userId() {
+    return this.loginForm.get('userId') as FormControl;
+  }
+
+  get password() {
+    return this.loginForm.get('password') as FormControl;
+  }
 
   @Output()
   newLoginRequest = new EventEmitter<Object>();
@@ -33,41 +38,60 @@ export class LoginComponent implements OnInit {
 
   }
 
-  goToMain(){
+  goToMain() {
     this.router.navigate(['/']);
   }
 
-  login(){
+  login() {
     this.tryToLogin();
   }
 
-  forgotPassword(){
+  forgotPassword() {
     this.forgotPasswordPrompt();
   }
 
-  forgotPasswordPrompt(){
-    this.router.navigate(['/forget-password'])
+  forgotPasswordPrompt() {
+    this.router.navigate(['/forget-password']);
   }
 
-  tryToLogin(){
-    return this.loginService.createLoginRequest(this.userId.value, this.password.value)
-    .then(data => {
-      this.newLoginRequest.emit(data);
-      let temp = JSON.stringify(data);
-      let response = JSON.parse(temp);
-      if(!response){
-        this.badUserData = true;
-      }
-      else if (response=='Password exists'){
-        this.badUserData = false;
-        this.router.navigate(['/change-password']);
-      }
-      else if(response){
-        this.badUserData = false;
-        this.dataStore.storeLoanResponse(response);
-        this.router.navigate(['/loan-status']);
-      }
-    })
+  tryToLogin() {
+    if (this.userId.value === 'admin') {
+      console.log('wow men admin');
+      return this.loginService.createOfficerLoginRequest(this.userId.value, this.password.value)
+        .then(data => {
+          let response: Map<any, any>;
+          response = JSON.parse(JSON.stringify(data));
+          this.dataStore.storeOfficerContent(response);
+          this.router.navigate(['officer-menu']);
+        })
+        .catch((error: any) => {
+          let resp = JSON.parse(JSON.stringify(error));
+          console.log(resp['error']);
+        });
+    }
+    else {
+      return this.loginService.createLoginRequest(this.userId.value, this.password.value)
+        .then(data => {
+          this.newLoginRequest.emit(data);
+          let temp = JSON.stringify(data);
+          let response = JSON.parse(temp);
+          if (!response) {
+            this.badUserData = true;
+          }
+          else if (response == 'Password exists') {
+            this.badUserData = false;
+            this.router.navigate(['/change-password']);
+          }
+          else if (response) {
+            this.badUserData = false;
+            this.dataStore.storeLoanResponse(response);
+            this.router.navigate(['/loan-status']);
+          }
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
+    }
   }
 
 }

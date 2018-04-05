@@ -2,63 +2,69 @@
     <div class="form-header">Private customer info</div>
     <div class="inner-container">
 <form [formGroup]="privateUserInfoForm">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
+    <div class="row">
+    <div class="form-group col-sm-6 text-center">
+      <small>First Name</small>
       <input type="text" placeholder = "First Name" class="form-control" id="firstName" formControlName = "firstName" required>
-      <small *ngIf="firstName.invalid&&firstName.dirty" class="form-text text-danger">
+      <small *ngIf="firstName.invalid&&firstName.dirty" class="form-text alert alert-danger">
         First name is required
       </small>
     </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
+    <div class="form-group col-sm-6 text-center">
+      <small>Last Name</small>
       <input type="text" placeholder = "Last Name" class="form-control" id="lastName" formControlName ="lastName">
-      <small *ngIf="lastName.invalid&&lastName.dirty" class="form-text text-danger">
+      <small *ngIf="lastName.invalid&&lastName.dirty" class="form-text alert alert-danger">
         Last name is required
       </small>
     </div>
-    <div class="form-group select">
-      <label for="country">Country</label>
+  </div>
+  <div class="row">
+    <div class="form-group select col-sm-6 text-center">
+      <small>Country</small>
         <select formControlName="country" id="countrySelect" class="form-control" >
             <option *ngFor="let country of countries.countries" [ngValue]="country">
           {{ country }}
         </option>
     </select>
-    <small *ngIf="country.invalid && country.dirty" class="form-text text-danger">
+    <small *ngIf="country.invalid && country.dirty" class="form-text alert alert-danger">
         Country is required
       </small>
     </div>
-    <div class="form-group">
-      <label for="privateID">ID code</label>
+    <div class="form-group col-sm-6 text-center">
+      <small>ID code</small>
       <input type="text" placeholder = "Private ID" class="form-control" id="privateId" formControlName ="privateID">
-      <small *ngIf="privateID.invalid&&privateID.dirty" class="form-text text-danger">
+      <small *ngIf="privateID.invalid&&privateID.dirty" class="form-text alert alert-danger">
         Private customer ID must be specified and contain only numbers
       </small>
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
+    </div>
+    <div class="row">
+    <div class="form-group col-sm-3">
+      <small>Email</small>
       <input type="text" placeholder = "Email address" class="form-control" id="email" formControlName = "email">
-      <small *ngIf="email.invalid && email.dirty" class="form-text text-danger">
+      <small *ngIf="email.invalid && email.dirty" class="form-text alert alert-danger">
         Email is invalid
       </small>
     </div>
-    <div class="form-group">
-      <label for="phoneNumber">Phone number</label>
+    <div class="form-group col-sm-3">
+      <small>Phone number</small>
       <input type="text" placeholder = "Phone number" class="form-control" id="phoneNumber" formControlName = "phoneNumber">
-      <small *ngIf="phoneNumber.invalid && phoneNumber.dirty" class="form-text text-danger">
+      <small *ngIf="phoneNumber.invalid && phoneNumber.dirty" class="form-text alert alert-danger">
         Phone number is required
       </small>
     </div>
-    <div class="form-group">
-      <label for="address">Address</label>
+    <div class="form-group col-sm-6">
+      <small>Address</small>
       <input type="text" placeholder = "Address" class="form-control" id="address" formControlName = "address">
-      <small *ngIf="address.invalid && address.dirty" class="form-text text-danger">
+      <small *ngIf="address.invalid && address.dirty" class="form-text alert alert-danger">
         Address is required
       </small>
     </div>
+  </div>
     <div class="form-footer">
         <div class="row">     
-    <button class="btn btn-outline-warning  form-buttons btn-margin" (click)="toPreviousPage()">Back</button>
-   <button class="btn btn-warning form-buttons btn-margin " (click)="send()" type="submit"
+    <button class="btn btn-outline-secondary  form-buttons btn-margin col-sm-3" (click)="toPreviousPage()">Back</button>
+   <button class="btn btn-secondary form-buttons btn-margin col-sm-3" (click)="send()" type="submit"
    [disabled]="!this.privateUserInfoForm.valid">Next</button>
    </div>
   </div>

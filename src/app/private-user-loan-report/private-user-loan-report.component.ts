@@ -77,25 +77,31 @@ export class PrivateUserLoanReportComponent implements OnInit {
          }else{
            this.addPrivateVehicle = false;
                   }
-                  console.log(this.addPrivateUser + "add business user");
-                  console.log(this.addPrivateVehicle + "add business vehicle");
-                  console.log(temp);
 
                   var successMessage = " ";
+                  var statusMessage  = " ";
+                  var userId = " ";
+                  var userIdText = " ";
                   if(this.addPrivateUser == true && this.addPrivateVehicle == true){
-                    successMessage = $('<div>').text('Loan registration successful\n User login id: '
-                    + this.privateUserLoginID).css('color', 'green');
+                    successMessage = $('<p>').text('Your application has been accepted and is being processed right now. You should receive decision within 3 days. Use your ID to login');
+                    userId = "<span>" + this.privateUserLoginID + "</span>";
+                    userIdText = '<div>User login id: ' + userId +'</div>';
+                    statusMessage = "<div id='statusMessage'>Succes!</div>";
                   }else{
                     successMessage = $('<div>').text('Loan registration denied').css('color', 'red');
                   }
-
-                  $('.modal-footer').html(successMessage);
-                  window.setTimeout(function() {
-                  $('#exampleModal').modal('hide'); }, 5000);
-                  console.log("asdsasad");
-
+                  $('.modal-body').html("");
+                  $('.modal-body').append(statusMessage);
+                  $('.modal-body').append(successMessage);
+                  document.getElementById('modal-bodys').innerHTML += userIdText ; 
+                  
+                  
         })
       })
+  }
+
+  closeModal(){
+    $('#confirmationPop').modal('hide');
   }
 
   toPreviousPage() {

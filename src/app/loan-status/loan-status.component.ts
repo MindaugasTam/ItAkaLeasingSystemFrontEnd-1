@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataStoreService } from '../services/data-store.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.component';
+
+
 @Component({
   selector: 'app-loan-status',
   templateUrl: './loan-status.component.html',
@@ -15,7 +17,7 @@ export class LoanStatusComponent implements OnInit {
   constructor(private route: ActivatedRoute, public dataStore : DataStoreService,private modalService: NgbModal
   /*inputLoan: InputLoanInfoComponent*/) {
     this.loanData = dataStore.getLoanResponse();
-   }
+  }
 
 
 

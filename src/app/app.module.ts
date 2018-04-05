@@ -29,6 +29,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import {BackValidationService} from './services/back-validation.service';
 import {NewPassComponent} from './new-pass/new-pass.component';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoanListComponent,
     ForgetPasswordComponent,
     NewPassComponent,
+    LeasingOfficerComponent,
   ],
   imports: [
     BrowserModule,
