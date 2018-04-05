@@ -92,11 +92,12 @@ input[type=password]:focus{
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+  max-width: 1000px !important;
 }
 
   .modal-header { border-bottom: none;}
   .modal-footer{border-top: none !important;}
-  .modal-dialog {width: 20% !important;}
+  
 
   .period input{
     padding-left: 10px;
@@ -201,6 +202,10 @@ input[type=password]:focus{
 
 }
 
+.btn-outline-secondary {color:#546e7a;}
+
+.point {cursor: pointer;}
+
 input{
   border: none !important;
 }
@@ -270,5 +275,6 @@ box-shadow: inset 0 -1px 0 rgb(126, 125, 125);
     text-transform: capitalize !important;}
 
 .input-push-second{margin-left: -10px !important;}
-    
 .input-push-first {margin-right: -10px !important;} 
+
+td { width: 20%}

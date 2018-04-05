@@ -7,7 +7,7 @@ export class PrivateUserService {
   constructor(private http: HttpClient) { }
 
   createPrivateUser(firstName, lastName, privateID, email, phoneNumber, address, country){
-    let businessUser = {
+    let privateUser = {
       firstName: firstName,
       lastName: lastName,
       privateID: privateID,
@@ -19,7 +19,7 @@ export class PrivateUserService {
     };
 
     return this.http
-      .post("http://localhost:8080/customers/addBusinessCustomer", businessUser)
+      .post("http://localhost:8080/customers/addPrivateCustomer", privateUser)
       .toPromise();
   }
 
