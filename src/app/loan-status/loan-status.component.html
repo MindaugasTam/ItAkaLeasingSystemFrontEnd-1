@@ -21,12 +21,37 @@
         </tr>
         </tbody>
       <ng-template #content let-c="close" let-d="dismiss">
-        <div class="container">
-          <h4 class="text-center tableHeaderText">Payment calendar</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <table class="table">
+        <div class="container" id="report-pop">
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
+          <h4 class="text-center tableHeaderText">Loan information</h4>
+          <div class="report">
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                  <p>Loan information</p>
+                    <small>Asset price: {{ loanInfo.assetPrice }} </small><br>
+                    <small>Advanced payment percentage: {{ loanInfo.advancePaymentPercent }} %</small><br>
+                    <small>Advanced payment amount: {{ loanInfo.advancePaymentAmount }} </small><br>
+                    <small>Contract fee: {{ loanInfo.contractFee }} </small><br>
+                    <small>Leasing period: {{ loanInfo.leasingPeriod }} </small><br>
+                    <small>Leasing status: {{ loanInfo.leasingStatus }} </small><br>
+                    <small>Submission date: {{ loanInfo.submissionDate }} </small><br>
+                    <small>Engine power: {{ loanInfo.enginePower }} </small><br>
+                </div>
+
+                <div class="col-sm-6 text-center">
+                  <p>Asset information</p>
+                    <small>Asset type: Vehicle </small><br>
+                    <small>Manufacturer: {{ loanInfo.manufacturer }} </small><br>
+                    <small>Model: {{ loanInfo.model }} </small><br>
+                    <small>Manufacturing year: {{ loanInfo.manufacturingDate }} </small><br>
+
+                </div>
+
+            </div>
+
+            <div data-toggle="collapse" class="text-center show-shedule" data-target="#shedule"><small>show payment schedule <i class="fa fa-calendar"></i></small></div>
+          </div>
+            <table class="table collapse" id="shedule">
               <thead>
                        <tr>
                         <th scope="col"><small>date</small></th>
@@ -44,11 +69,11 @@
                         <td><small>{{payment.monthlyPayment}}</small></td>
                       </tr>
                       <tr>
-                        <td>Asset price: {{loanData.assetPrice}}</td>
+                        <td><small>Asset price:<br> {{loanInfo.assetPrice.toFixed(2)}}</small></td>
                         <td></td>
-                        <td>Interest amount: {{totalInterestSum.toFixed(2)}}</td>
+                        <td><small>Amount:<br> {{totalInterestSum.toFixed(2)}}</small></td>
                         <td></td>
-                        <td>Total sum: {{totalPaymentSum.toFixed(2)}}</td>
+                        <td><small>Sum:<br> {{totalPaymentSum.toFixed(2)}}</small></td>
                       </tr>
                     </tbody>
 
