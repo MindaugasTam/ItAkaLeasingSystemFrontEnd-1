@@ -1,3 +1,82 @@
-<p>
-  leasing-officer works!
-</p>
+<div class='container wide container_margins'>
+  <div class="form-header">All registered loans</div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Submission Date</th>
+      <th scope="col">Asset</th>
+      <th scope="col">Asset Price</th>
+      <th scope="col">Leasing Period</th>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Leasing Status</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let data of officerContent; let i = index">
+    <tr *ngFor="let leasing of data['leasings']; let j = index" (click)="open(content, i, j)">
+      <td id="submissionDate"><small>{{leasing.submissionDate}}</small></td>
+      <td id="vehicleInfo"><small>{{leasing.manufacturer}} {{leasing.model}}</small></td>
+      <td id="assetPrice"><small>{{leasing.assetPrice}}</small></td>
+      <td id="leasingPeriod"><small>{{leasing.leasingPeriod}}</small></td>
+      <td id="userID"><small>{{data['customer'].userID}}</small></td>
+      <td id="leasingStatus"><small>{{leasing.leasingStatus}}</small></td>
+    </tr>
+    </tbody>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr><span class="calculated"> Customer type: {{this.customerSummaryData.customerType}}</span></tr>
+              <div *ngIf="this.customerSummaryData.customerType==='BUSINESS'; else privateTempl">
+                <tr><span class="calculated"> Company ID: {{this.customerSummaryData.customerID}}</span></tr>
+                <tr><span class="calculated"> Company Name: {{this.customerSummaryData.customerNameIdentifier}}</span></tr>
+              </div>
+              <ng-template #privateTempl>
+                <tr><span class="calculated">Customer ID: {{this.customerSummaryData.customerID}}</span></tr>
+                <tr><span class="calculated"> Customer: {{this.customerSummaryData.customerNameIdentifier}}</span></tr>
+              </ng-template>
+              <tr><span class="calculated"> Email: {{this.customerSummaryData.customerEmail}}</span></tr>
+              <tr><span class="calculated"> Phone: {{this.customerSummaryData.customerPhone}}</span></tr>
+              <tr><span class="calculated"> Address: {{this.customerSummaryData.address}}</span></tr>
+              <tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr><span class="calculated"> Advance payment amount: {{this.leasingSummaryData.advancePaymentAmount}}</span></tr>
+              <tr><span class="calculated"> Advance payment percent: {{this.leasingSummaryData.advancePaymentPercent}}</span></tr>
+              <tr><span class="calculated"> Contract fee: {{this.leasingSummaryData.contractFee}}</span></tr>
+              <tr><span class="calculated"> Engine power: {{this.leasingSummaryData.enginePower}}</span></tr>
+              <tr><span class="calculated"> Manufacturing date: {{this.leasingSummaryData.manufacturingDate}}</span></tr>
+              <tr><span class="calculated"> Margin: {{this.leasingSummaryData.margin}}</span></tr>
+              <tr><span class="calculated"> Monthly payment date: {{this.leasingSummaryData.paymentDate}}</span></tr>
+              <tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+
+  </table>
+</div>
