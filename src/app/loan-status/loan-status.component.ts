@@ -44,10 +44,13 @@ export class LoanStatusComponent implements OnInit {
   private monthlypaymentDate = [];
   private totalInterestSum;
   private totalPaymentSum;
+  private assetPrice;
+  private loanInfo;
 
   displayPaySchedule(loanData) {
     let perc = 0.01;
-    console.log(loanData.assetPrice);
+    this.loanInfo = loanData;
+        console.log(this.loanInfo);
     this.totalInterestSum = 0;
     let advancePayment = +(loanData.assetPrice*(loanData.advancePaymentPercent/100));
     let marginVal = (loanData.margin /100)/12;
