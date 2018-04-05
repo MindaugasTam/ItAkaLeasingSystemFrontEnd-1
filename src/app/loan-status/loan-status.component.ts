@@ -19,13 +19,9 @@ export class LoanStatusComponent implements OnInit {
     this.loanData = dataStore.getLoanResponse();
   }
 
-
-
   closeResult: string;
 
-
    open(content, i){
-   // console.log(this.loanData[i].margin);
     this.displayPaySchedule(this.loanData[i])
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -55,7 +51,6 @@ export class LoanStatusComponent implements OnInit {
     this.totalInterestSum = 0;
     let advancePayment = +(loanData.assetPrice*(loanData.advancePaymentPercent/100));
     let marginVal = (loanData.margin /100)/12;
-   // console.log(marginVal);
     let divisor = (1 - (1/Math.pow(1 + marginVal, loanData.leasingPeriod)))/marginVal;
     this.monthlyPayment = (loanData.assetPrice - advancePayment)/divisor;
     let remainingAmount = loanData.assetPrice - advancePayment;
@@ -66,17 +61,12 @@ export class LoanStatusComponent implements OnInit {
     this.totalPaymentSum = +contractFee + advancePayment;
  
     let dates = this.findPaymentDates(loanData.leasingPeriod, loanData.paymentDate);
-     // console.log(dates);
-     //  console.log(loanData.leasingPeriod);
-    //console.log(loanData.paymentDate);
     for(let month = 0; month < loanData.leasingPeriod; month++){
-     // console.log(month);
       let withInterest = (remainingAmount * (1 + marginVal));
       let interestPaymentAmount = withInterest - remainingAmount;
       let assetValuePaymentAmount = (this.monthlyPayment - interestPaymentAmount);
       
       this.totalInterestSum+=interestPaymentAmount;
-    //  console.log(this.totalInterestSum);
       this.totalPaymentSum+=this.monthlyPayment;
       this.monthlypaymentDate[month] = {
         paymentDate: dates[month],
@@ -85,8 +75,7 @@ export class LoanStatusComponent implements OnInit {
         assetValuePaymentAmount: assetValuePaymentAmount.toFixed(2),
         monthlyPayment: this.monthlyPayment.toFixed(2)
       };
-      remainingAmount-= assetValuePaymentAmount;
-      console.log(remainingAmount);
+      remainingAmount -= assetValuePaymentAmount;
     } 
     return this.monthlypaymentDate;
   }
