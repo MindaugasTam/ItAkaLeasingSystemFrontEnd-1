@@ -1,22 +1,59 @@
 <div class='container wide container_margins'>
   <div class="form-header">Your current loans</div>
     <table class="table">
-        <thead>
-            <tr>
-              <th scope="col">Submission Date</th>
-              <th scope="col">Asset</th>
-              <th scope="col">Asset Price</th>
-              <th scope="col">Leasing Period</th>
-              <th scope="col">Leasing Status</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let loan of loanData">
-              <td><small>{{loan.submissionDate}}</small></td>
-              <td><small>{{loan.manufacturer}} {{loan.model}}</small></td>
-              <td><small>{{loan.assetPrice}}</small></td>
-              <td><small>{{loan.leasingPeriod}}</small></td>
-              <td><small>{{loan.leasingStatus}}</small></td>
-          </tbody>
-    </table>
+      <thead>
+        <tr>
+          <th scope="col">Submission Date</th>
+          <th scope="col">Asset</th>
+          <th scope="col">Asset Price</th>
+          <th scope="col">Leasing Period</th>
+          <th scope="col">Leasing Status</th> 
+        </tr>
+      </thead>
+      <tbody *ngFor="let loan of loanData; let i = index" (click)="open(content, i)">
+        <tr> 
+        <td>{{loan.submissionDate}}</td>
+          <td>{{loan.manufacturer}} {{loan.model}}</td>
+          <td>{{loan.assetPrice}}</td>
+          <td>{{loan.leasingPeriod}}</td>
+          <td>{{loan.leasingStatus}}</td>
+        </tr>
+        </tbody>
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <table class="table">
+              <thead>
+                       <tr>
+                        <th scope="col">Payment Date</th>
+                        <th scope="col">Remaining Amount</th>
+                        <th scope="col">Interest Payment Amount</th>
+                        <th scope="col">Asset Value Payment Amount</th>
+                        <th scope="col">Monthly Payment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let payment of monthlypaymentDate">
+                        <td>{{payment.paymentDate}}</td>
+                        <td>{{payment.remainingAmount}}</td>
+                        <td>{{payment.interestPaymentAmount}}</td>
+                        <td>{{payment.assetValuePaymentAmount}}</td>
+                        <td>{{payment.monthlyPayment}}</td>
+                      </tr>
+                      <tr>
+                        <td>Asset price: {{loanData.assetPrice}}</td>
+                        <td></td>
+                        <td>Interest amount: {{totalInterestSum.toFixed(2)}}</td>
+                        <td></td>
+                        <td>Total sum: {{totalPaymentSum.toFixed(2)}}</td>
+                      </tr>
+                    </tbody>
 
+                </table> 
+                </div>          
+          </ng-template>
+    </table>
 </div>
