@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DataStoreService } from '../services/data-store.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import  {NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.component';
 
 
@@ -68,7 +68,6 @@ export class LoanStatusComponent implements OnInit {
       let withInterest = (remainingAmount * (1 + marginVal));
       let interestPaymentAmount = withInterest - remainingAmount;
       let assetValuePaymentAmount = (this.monthlyPayment - interestPaymentAmount);
-      
       this.totalInterestSum+=interestPaymentAmount;
       this.totalPaymentSum+=this.monthlyPayment;
       this.monthlypaymentDate[month] = {

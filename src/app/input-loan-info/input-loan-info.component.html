@@ -105,12 +105,48 @@
                         <div class="form-footer">
                                 <div class="row">
                            <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
-                           <button class="btn btn-outline-secondary form buttons btn-margin col-sm-3" (click) = "this.displayPaySchedule()" type = "button">
+                           <button class="btn btn-outline-secondary form buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" (click)="open(content)" type = "button">
                              Payment schedule </button>
                            <button class="btn btn-secondary form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
                         </div>
                         </div>
                 </form>
+                <ng-template #content let-c="close" let-d="dismiss">
+                        <div class="container">
+                                <h4 class="text-center tableHeaderText">Payment calendar</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                                <table class="table">
+                                                <thead>
+                                                <tr>    
+                                                        <th scope="col"><small>Financing amount</small></th>
+                                                        <th scope="col"><small>Contract fee</small></th>
+                                                        <th scope="col"><small>Total interest</small></th>
+                                                        <th scope="col"><small>Total monthly payment</small></th>
+                                                </tr>
+                                                </thead>
+                                        <tbody>
+                                                <tr>
+
+                                                </tr>
+                                                <tr *ngFor="let payment of monthlyPaymentData">
+                                                        <td><small>{{payment.remainingAmount}}</small></td>
+                                                        <td><small>{{payment.interestPaymentAmount}}</small></td>
+                                                        <td><small>{{payment.assetValuePaymentAmount}}</small></td>
+                                                        <td><small>{{payment.monthlyPayment}}</small></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Asset price: {{this.assetPrice.value}}</td>
+                                                        <td></td>
+                                                        <td>Interest amount: {{totalInterestSum.toFixed(2)}}</td>
+                                                        <td></td>
+                                                        <td>Total sum: {{totalPaymentSum.toFixed(2)}}</td>
+                                                </tr>
+                                        </tbody>
+                                </table> 
+                        </div>          
+                </ng-template>
         </div>
 
 </div>

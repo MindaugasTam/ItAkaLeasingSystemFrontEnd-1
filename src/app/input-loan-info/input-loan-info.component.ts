@@ -3,7 +3,7 @@ import { DataStoreService } from '../services/data-store.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Router, RouterModule } from '@angular/router';
 import { VehicleList} from '../services/vehicle-list.service';
-
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 declare var $:any;
@@ -19,7 +19,7 @@ export class InputLoanInfoComponent implements OnInit {
     public loanForm: FormGroup;
     private userType: String = undefined;
     private minAssetPrice: number = 5000;
-
+    closeResult: string;
     private cars: any;
     private brands: any;
     private models = [];
@@ -27,7 +27,7 @@ export class InputLoanInfoComponent implements OnInit {
     fb: FormBuilder;
     private carList;
 
-  constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService,
+  constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService,private modalService: NgbModal,
               private vehicleList: VehicleList) {
     vehicleList.getAllVehicleList().then(data => {
       this.initalizeCarLists(data);
@@ -283,4 +283,23 @@ export class InputLoanInfoComponent implements OnInit {
       });
     });
   };
+
+  open(content){
+    this.displayPaySchedule();
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 }
