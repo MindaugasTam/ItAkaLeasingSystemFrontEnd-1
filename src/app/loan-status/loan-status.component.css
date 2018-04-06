@@ -9,4 +9,10 @@
     background-color: rgb(208,217,220);
 }
 
+.show-results {
+  border-top: 1px solid #626262;
+  cursor: pointer;
+  background-color: rgb(208,217,220);
+}
+
 #report-pop{min-width: 1000px;}

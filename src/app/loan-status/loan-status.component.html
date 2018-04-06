@@ -8,11 +8,11 @@
           <th scope="col"><small>Asset</small></th>
           <th scope="col"><small>Asset Price</small></th>
           <th scope="col"><small>Leasing Period</small></th>
-          <th scope="col"><small>Leasing Status</small></th> 
+          <th scope="col"><small>Leasing Status</small></th>
         </tr>
-      </thead> 
+      </thead>
       <tbody *ngFor="let loan of loanData; let i = index" (click)="open(content, i)">
-        <tr class="point"> 
+        <tr class="point">
         <td><small>{{loan.submissionDate}}</small></td>
           <td><small>{{loan.manufacturer}} {{loan.model}}</small></td>
           <td><small>{{loan.assetPrice}}</small></td>
@@ -48,9 +48,8 @@
                 </div>
 
             </div>
-
-            <div data-toggle="collapse" class="text-center show-shedule" data-target="#shedule"><small>show payment schedule <i class="fa fa-calendar"></i></small></div>
           </div>
+            <div data-toggle="collapse" class="text-center show-shedule" data-target="#shedule"><small>show payment schedule <i class="fa fa-calendar"></i></small></div>
             <table class="table collapse" id="shedule">
               <thead>
                        <tr>
@@ -61,7 +60,7 @@
                         <th scope="col"><small>monthly payment</small></th>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let payment of monthlypaymentDate">
+                      <tr *ngFor="let payment of monthlyPaymentData">
                         <td><small>{{payment.paymentDate}}</small></td>
                         <td><small>{{payment.remainingAmount}}</small></td>
                         <td><small>{{payment.interestPaymentAmount}}</small></td>
@@ -76,9 +75,26 @@
                         <td><small>Sum:<br> {{totalPaymentSum.toFixed(2)}}</small></td>
                       </tr>
                     </tbody>
+            </table>
 
-                </table> 
-                </div>          
+          <div data-toggle="collapse" class="text-center show-results" data-target="#results"><small>loan summary<i class=""></i></small></div>
+          <div class = "report collapse" id = "results">
+            <h4 class="text-center tableHeaderText"></h4>
+            <div class = "row">
+              <div class="col-sm-6 text-center">
+                <small>Financing amount: {{ this.financingAmount.toFixed(2) }} </small><br>
+                <small>Contract fee: {{ loanInfo.contractFee.toFixed(2)}} </small><br>
+              </div>
+
+              <div class="col-sm-6 text-center">
+                <small>Total interest: {{ totalInterestSum.toFixed(2) }} </small><br>
+                <small>Total monthly payment: {{ this.monthlyPayment.toFixed(2) }} </small><br>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
           </ng-template>
     </table>
 </div>

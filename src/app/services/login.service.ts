@@ -40,10 +40,10 @@ export class LoginService {
       .toPromise();
   }
 
-  forgottenPassword(userId, newPassword){
+  forgottenPassword(userId, newPassword, token){
       let forgotPasswordRequest={
         userId: userId,
-        oldPassword: null,
+        oldPassword: token,
         newPassword: newPassword
       };
 

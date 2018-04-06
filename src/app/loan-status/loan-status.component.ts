@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DataStoreService } from '../services/data-store.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import  {NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.component';
 
 
@@ -13,7 +13,7 @@ import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.compo
 })
 export class LoanStatusComponent implements OnInit {
   loanData;
-  
+
   constructor(private route: ActivatedRoute, public dataStore : DataStoreService,private modalService: NgbModal
   /*inputLoan: InputLoanInfoComponent*/) {
     this.loanData = dataStore.getLoanResponse();
@@ -22,7 +22,7 @@ export class LoanStatusComponent implements OnInit {
   closeResult: string;
 
    open(content, i){
-    this.displayPaySchedule(this.loanData[i])
+    this.displayPaySchedule(this.loanData[i]);
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -40,14 +40,17 @@ export class LoanStatusComponent implements OnInit {
     }
   }
 
-  private monthlyPayment;
-  private monthlypaymentDate = [];
-  private totalInterestSum;
-  private totalPaymentSum;
-  private assetPrice;
-  private loanInfo;
+  monthlyPayment;
+  monthlyPaymentData = [];
+  totalInterestSum;
+  totalPaymentSum;
+  assetPrice;
+  loanInfo;
+
+  financingAmount;
 
   displayPaySchedule(loanData) {
+    console.log(this.loanInfo);
     let perc = 0.01;
     this.loanInfo = loanData;
     this.totalInterestSum = 0;
@@ -56,21 +59,21 @@ export class LoanStatusComponent implements OnInit {
     let divisor = (1 - (1/Math.pow(1 + marginVal, loanData.leasingPeriod)))/marginVal;
     this.monthlyPayment = (loanData.assetPrice - advancePayment)/divisor;
     let remainingAmount = loanData.assetPrice - advancePayment;
+    this.financingAmount = remainingAmount;
     let contractFee = loanData.assetPrice*perc;
     if(contractFee<200){
       contractFee = 200;
     }
     this.totalPaymentSum = +contractFee + advancePayment;
- 
+
     let dates = this.findPaymentDates(loanData.leasingPeriod, loanData.paymentDate);
     for(let month = 0; month < loanData.leasingPeriod; month++){
       let withInterest = (remainingAmount * (1 + marginVal));
       let interestPaymentAmount = withInterest - remainingAmount;
       let assetValuePaymentAmount = (this.monthlyPayment - interestPaymentAmount);
-      
       this.totalInterestSum+=interestPaymentAmount;
       this.totalPaymentSum+=this.monthlyPayment;
-      this.monthlypaymentDate[month] = {
+      this.monthlyPaymentData[month] = {
         paymentDate: dates[month],
         remainingAmount: remainingAmount.toFixed(2),
         interestPaymentAmount: interestPaymentAmount.toFixed(2),
@@ -78,8 +81,8 @@ export class LoanStatusComponent implements OnInit {
         monthlyPayment: this.monthlyPayment.toFixed(2)
       };
       remainingAmount -= assetValuePaymentAmount;
-    } 
-    return this.monthlypaymentDate;
+    }
+    return this.monthlyPaymentData;
   }
   private findPaymentDates(leasingPeriod, paymentDate){
     let paymentDates = [];

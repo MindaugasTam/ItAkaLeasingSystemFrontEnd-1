@@ -103,12 +103,63 @@
                         <div class="form-footer">
                                 <div class="row">
                            <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
-                           <button class="btn btn-outline-secondary form buttons btn-margin col-sm-3" (click) = "this.displayPaySchedule()" type = "button">
-                             Payment schedule </button>
+                           <button class="btn btn-outline-secondary form buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" (click)="open(content)" type = "button">
+                             Payment information </button>
                            <button class="btn btn-secondary form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
                         </div>
                         </div>
                 </form>
+                <ng-template #content let-c="close" let-d="dismiss">
+                        <div class="container">
+                                <h4 class="text-center tableHeaderText">Payment information</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                           <div class = "report" id = "results">
+                            <h4 class="text-center tableHeaderText"></h4>
+                            <div class = "row">
+                              <div class="col-sm-6 text-center">
+                                <small>Financing amount: {{ this.financingAmount.toFixed(2) }} </small><br>
+                                <small>Contract fee: {{calculateContractFee()}} </small><br>
+                              </div>
+
+                              <div class="col-sm-6 text-center">
+                                <small>Total interest: {{ totalInterestSum.toFixed(2) }} </small><br>
+                                <small>Total monthly payment: {{ this.monthlyPayment.toFixed(2) }} </small><br>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div data-toggle="collapse" class="text-center show-shedule" data-target="#shedule"><small>show payment schedule <i class="fa fa-calendar"></i></small></div>
+                          <table class="table collapse" id="shedule">
+                            <thead>
+                            <tr>
+                              <th scope="col"><small>Payment date</small></th>
+                              <th scope="col"><small>Remaining amount</small></th>
+                              <th scope="col"><small>Interest payment amount</small></th>
+                              <th scope="col"><small>Asset value payment amount</small></th>
+                              <th scope="col"><small>Monthly payment</small></th>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let payment of monthlyPaymentData">
+                              <td><small>{{payment.paymentDate}}</small></td>
+                              <td><small>{{payment.remainingAmount}}</small></td>
+                              <td><small>{{payment.interestPaymentAmount}}</small></td>
+                              <td><small>{{payment.assetValuePaymentAmount}}</small></td>
+                              <td><small>{{payment.monthlyPayment}}</small></td>
+                            </tr>
+                            <tr>
+                              <td><small>Asset price:<br> {{assetPriceValue}}</small></td>
+                              <td></td>
+                              <td><small>Amount:<br> {{totalInterestSum.toFixed(2)}}</small></td>
+                              <td></td>
+                              <td><small>Sum:<br> {{totalPaymentSum.toFixed(2)}}</small></td>
+                            </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+                </ng-template>
         </div>
 
 </div>
