@@ -11,10 +11,13 @@ input {
     margin: 0 auto !important;
 }
 
-#password {
-    margin-left: -10px !important;
+div#loginContainer {
+    width: 400px;
+} 
+
+.loginButton {
+    width: 220px;
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
-#userId {
-    margin-right: -10px !important;
-}
