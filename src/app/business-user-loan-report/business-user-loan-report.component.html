@@ -42,7 +42,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="confirmationPop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" id="modalCustomWidth" role="document">
       <div class="modal-content">
         <div class="modal-header">
             <svg class="icon" id="succedIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle class="circle" cx="30" cy="30" r="30" fill="none"/><path class="check" fill="none" d="m12.5 28l10.0 13 24-22.2"/></svg>
@@ -51,10 +51,12 @@
             <div id="statusMessage"></div>
         </div>
         <div class="modal-footer">
+            <i class='fa fa-paste' id="copyIcon" (click)='copyToClipboard("loginId")'></i>
           <button type="button" id="modalClose" (click)="closeModal()">Close</button>
         </div>
       </div>
     </div>
+    
   </div>
 
     <div class="form-footer">

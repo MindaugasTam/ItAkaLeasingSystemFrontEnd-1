@@ -13,7 +13,6 @@ import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.compo
 })
 export class LoanStatusComponent implements OnInit {
   loanData;
-
   constructor(private route: ActivatedRoute, public dataStore : DataStoreService,private modalService: NgbModal
   /*inputLoan: InputLoanInfoComponent*/) {
     this.loanData = dataStore.getLoanResponse();
@@ -66,7 +65,6 @@ export class LoanStatusComponent implements OnInit {
       contractFee = 200;
     }
     this.totalPaymentSum = +contractFee + advancePayment;
-
     let dates = this.findPaymentDates(loanData.leasingPeriod, loanData.paymentDate);
     for(let month = 0; month < loanData.leasingPeriod; month++){
       let withInterest = (remainingAmount * (1 + marginVal));
