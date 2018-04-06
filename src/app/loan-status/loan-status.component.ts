@@ -52,7 +52,6 @@ export class LoanStatusComponent implements OnInit {
     console.log(this.loanInfo);
     let perc = 0.01;
     this.loanInfo = loanData;
-        console.log(this.loanInfo);
     this.totalInterestSum = 0;
     let advancePayment = +(loanData.assetPrice*(loanData.advancePaymentPercent/100));
     let marginVal = (loanData.margin /100)/12;

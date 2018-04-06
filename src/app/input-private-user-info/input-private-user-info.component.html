@@ -56,9 +56,7 @@
     <div class="form-group col-sm-6">
       <small>Address</small>
       <input type="text" placeholder = "Address" class="form-control" id="address" formControlName = "address">
-      <small *ngIf="address.invalid && address.dirty" class="form-text alert alert-danger">
-        Address is required
-      </small>
+      <small *ngIf="address.invalid && address.dirty" class="form-text alert alert-danger">Address is required</small>
     </div>
   </div>
     <div class="form-footer">
