@@ -58,7 +58,7 @@ export class LoginService {
       email: email
     };
 
-    return this.http.post('http://localhost:8080/customers/check', credentialsRequest)
+    return this.http.post("http://localhost:8080/customers/check", credentialsRequest)
       .toPromise();
   }
 

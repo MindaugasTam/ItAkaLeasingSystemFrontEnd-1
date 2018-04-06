@@ -92,6 +92,7 @@ input[type=password]:focus{
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+  max-width: 1000px !important;
 }
 
   .modal-header { border-bottom: none;}
@@ -201,6 +202,10 @@ input[type=password]:focus{
 
 }
 
+.btn-outline-secondary {color:#546e7a;}
+
+.point {cursor: pointer;}
+
 input{
   border: none !important;
 }
@@ -277,5 +282,6 @@ i#copyIcon {
     text-transform: capitalize !important;}
 
 .input-push-second{margin-left: -10px !important;}
-    
 .input-push-first {margin-right: -10px !important;} 
+
+td { width: 20%}

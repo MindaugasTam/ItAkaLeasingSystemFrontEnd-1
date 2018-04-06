@@ -28,6 +28,7 @@ import { LoanListComponent } from './loan-list/loan-list.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {BackValidationService} from './services/back-validation.service';
 import {NewPassComponent} from './new-pass/new-pass.component';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
 
 @NgModule({
@@ -55,6 +56,7 @@ import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.compo
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule.forRoot(),
   ],
   providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, BackValidationService,
     VehicleLoanService, LoginService, VehicleList],

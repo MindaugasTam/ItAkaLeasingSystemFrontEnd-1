@@ -1,0 +1,6 @@
+.modal-dialog,
+.modal-content {
+  /* 80% of window height */
+  height: 80%;
+  width: 100%;
+}
