@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BusinessUserService} from '../services/business-user.service';
 import {VehicleLoanService} from '../services/vehicle-loan.service';
@@ -13,10 +13,10 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class LeasingOfficerComponent implements OnInit {
 
-  public leasingOfficerForm: FormGroup;
-
   officerContent;
-  allLeasings = [];
+
+  selectedCustomer;
+  selectedLeasing;
 
   customerSummaryData = {
     userID: null,
@@ -43,31 +43,48 @@ export class LeasingOfficerComponent implements OnInit {
     paymentDate: null,
     submissionDate: null,
     leasingStatus: null
+  };
+
+  listStatusGroup;
+
+  constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService, private modalService: NgbModal,
+              public vehicleService: VehicleLoanService) {
+    this.officerContent = dataStore.getOfficerContent();
+    this.listStatusGroup = fb.group({
+      leasingStatusList: null
+    })
   }
 
-
-  constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService, private modalService: NgbModal) {
-    this.officerContent = dataStore.getOfficerContent();
+  get leasingStatusList() {
+    return this.listStatusGroup.get('leasingStatusList') as FormControl;
   }
 
   ngOnInit() {
-    for(let data of this.officerContent){
-      console.log(data);
-      for(let leasing of data['leasings']){
-          this.allLeasings.push(leasing);
-      }
-    }
   }
 
   closeResult: string;
 
+  updateLoanStatus() {
+    let leasingToUpdate = this.selectedLeasing;
+    leasingToUpdate.leasingStatus = this.leasingStatusList.value;
 
-  open(content, i, j){
-    let selectedCustomer = this.officerContent[i]['customer'];
-    this.getSelectedCustomerData(selectedCustomer);
+    this.vehicleService.updateVehicleLeasingStatus(leasingToUpdate.id, leasingToUpdate)
+      .then(data => {
+        this.selectedLeasing = leasingToUpdate;
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }
 
-    let selectedLoan = this.officerContent[i]['leasings'][j];
-    this.getSelectedLoanData(selectedLoan);
+
+  open(content, i, j) {
+    this.selectedCustomer = this.officerContent[i]['customer'];
+    this.getSelectedCustomerData(this.selectedCustomer);
+
+    this.selectedLeasing = this.officerContent[i]['leasings'][j];
+
+    this.getSelectedLoanData(this.selectedLeasing);
 
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -82,20 +99,20 @@ export class LeasingOfficerComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
-  private getSelectedCustomerData(selectedCustomer){
+  private getSelectedCustomerData(selectedCustomer) {
     this.customerSummaryData.customerType = selectedCustomer.customerType;
     this.customerSummaryData.userID = selectedCustomer.userID;
-    if(this.customerSummaryData.customerType === 'BUSINESS'){
+    if (this.customerSummaryData.customerType === 'BUSINESS') {
       this.customerSummaryData.customerID = selectedCustomer.companyID;
       this.customerSummaryData.customerNameIdentifier = selectedCustomer.companyName;
     }
-    else{
+    else {
       this.customerSummaryData.customerID = selectedCustomer.privateID;
-      this.customerSummaryData.customerNameIdentifier = selectedCustomer.firstName + " " + selectedCustomer.lastName;
+      this.customerSummaryData.customerNameIdentifier = selectedCustomer.firstName + ' ' + selectedCustomer.lastName;
     }
     this.customerSummaryData.customerEmail = selectedCustomer.email;
     this.customerSummaryData.customerPhone = selectedCustomer.phoneNumber;
@@ -103,7 +120,7 @@ export class LeasingOfficerComponent implements OnInit {
     this.customerSummaryData.country = selectedCustomer.country;
   }
 
-  private getSelectedLoanData(selectedLoan){
+  private getSelectedLoanData(selectedLoan) {
     this.leasingSummaryData.advancePaymentAmount = selectedLoan.advancePaymentAmount;
     this.leasingSummaryData.advancePaymentPercent = selectedLoan.advancePaymentPercent;
     this.leasingSummaryData.assetPrice = selectedLoan.assetPrice;

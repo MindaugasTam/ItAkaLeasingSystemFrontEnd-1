@@ -103,7 +103,7 @@ export class InputLoanInfoComponent implements OnInit {
     get paymentAmount(){return this.loanForm.get('paymentAmount') as FormControl};
     get carBrand(){return this.loanForm.get('carBrand') as FormControl};
     get carModel() {return this.loanForm.get('carModel') as FormControl};
-    get advancedPaymentAmount(){return this.advancedPaymentAmount};
+    get advancedPaymentAmount(){return this.calculateAdvancedPaymentAmount()};
     get enginePower(){return this.loanForm.get('enginePower') as FormControl};
     get assetPrice(){return this.loanForm.get('assetPrice') as FormControl};
     get paymentDay(){return this.loanForm.get('paymentDay') as FormControl};
@@ -172,10 +172,11 @@ export class InputLoanInfoComponent implements OnInit {
     }
   }
 
-  private monthlyPayment: any;
-  private monthlyPaymentData = [];
-  private totalInterestSum: any;
-  private totalPaymentSum: any;
+  monthlyPayment: any;
+  monthlyPaymentData = [];
+  totalInterestSum: any;
+  totalPaymentSum: any;
+  financingAmount;
 
   displayPaySchedule() {
 
@@ -189,12 +190,21 @@ export class InputLoanInfoComponent implements OnInit {
     this.monthlyPayment = (this.assetPrice.value - advancePayment)/divisor;
 
     let remainingAmount = this.assetPrice.value - advancePayment;
+    this.financingAmount = remainingAmount;
 
     this.totalPaymentSum = +this.calculateContractFee() + advancePayment;
 
     let dates = this.findPaymentDates(this.leasePeriod.value, this.paymentDay.value);
 
-    for(let month = 0; month < this.leasePeriod.value; month++){
+    this.monthlyPaymentData[0] = {
+      paymentDate: 'Initial',
+      remainingAmount: this.assetPriceValue,
+      interestPaymentAmount: 0,
+      assetValuePaymentAmount: this.advancedPaymentAmount,
+      monthlyPayment: this.totalPaymentSum
+    };
+
+    for(let month = 1; month <= this.leasePeriod.value; month++){
 
       let withInterest = (remainingAmount * (1 + marginVal));
       let interestPaymentAmount = withInterest - remainingAmount;
@@ -212,9 +222,6 @@ export class InputLoanInfoComponent implements OnInit {
       };
       remainingAmount-= assetValuePaymentAmount;
     }
-    console.log(this.monthlyPaymentData);
-    console.log(this.totalInterestSum);
-    console.log(this.totalPaymentSum);
   }
 
   private static isLeapYear(year) {
@@ -243,7 +250,7 @@ export class InputLoanInfoComponent implements OnInit {
     }
 
     startDate.setDate(1);
-    for (let i = 1; i < leasePeriod; i++){
+    for (let i = 1; i <= leasePeriod; i++){
       startDate.setMonth(startDate.getMonth() + 1);
 
       if((startDate.getMonth() == 1) && (paymentDay > 28)){

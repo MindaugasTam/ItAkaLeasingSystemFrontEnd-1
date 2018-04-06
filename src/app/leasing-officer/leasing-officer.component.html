@@ -78,6 +78,16 @@
               <tr>
               </tbody>
             </table>
+
+            <div [formGroup]="listStatusGroup">
+              <select class="form-control" id="leasingStatusList" formControlName = "leasingStatusList">
+                <option name = "status" value="APPROVED" selected="selected">APPROVED</option>
+                <option name = "status" value="PROCESSED">PROCESSED</option>
+                <option name = "status" value="DENIED">DENIED</option>
+              </select>
+            </div>
+
+            <button type="button" (click)="updateLoanStatus()">Update status</button>
           </div>
         </div>
 

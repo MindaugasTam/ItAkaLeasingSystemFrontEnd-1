@@ -16,7 +16,7 @@ export class NewPassComponent implements OnInit {
   validInput = true;
   validUser = true;
 
-  token;
+  token = null;
   validToken = false;
 
   constructor(fb: FormBuilder, private router: Router, private loginService: LoginService,
@@ -34,7 +34,7 @@ export class NewPassComponent implements OnInit {
     });
 
     if(this.token == null){
-      console.log("NO TOKEN SPECIFIED, SHOULD CLOSE PAGE OR SOMETHING?");
+      console.log("NO TOKEN SPECIFIED");
     }
   }
 
@@ -51,8 +51,10 @@ export class NewPassComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.validToken);
+
     if (this.validToken && (this.newPassword.value === this.repeatPassword.value)) {
-      this.loginService.forgottenPassword(this.userId.value, this.newPassword.value)
+      this.loginService.forgottenPassword(this.userId.value, this.newPassword.value, this.token)
         .then(data => {
           if (data === true) {
             this.validUser = true;
@@ -78,7 +80,9 @@ export class NewPassComponent implements OnInit {
   ngOnInit() {
     this.loginService.validateToken(this.token)
       .catch((error: any) => {
+        console.log(error);
         if(error.status === 200){
+          console.log(error);
           this.validToken = true;
           console.log("VALID TOKEN")
         }

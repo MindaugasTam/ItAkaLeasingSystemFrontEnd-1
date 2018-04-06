@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
 
   tryToLogin() {
     if (this.userId.value === 'admin') {
-      console.log('wow men admin');
       return this.loginService.createOfficerLoginRequest(this.userId.value, this.password.value)
         .then(data => {
           let response: Map<any, any>;
