@@ -34,17 +34,25 @@ export class ForgetPasswordComponent implements OnInit {
     return this.forgetPasswordForm.get('email') as FormControl;
   }
 
+  errorMessage = null;
+
   submit(){
     this.checkIfCustomerExists()
       .then(data => {
         if(this.customerFound){
           this.loginService.sendRecoveryMail(this.email.value)
             .then(data  => {
-              console.log("should show success message")
+              this.router.navigate(['/login']);
             })
             .catch((error: any) => {
+              if(error.status != 200){
+                this.errorMessage = error['error'];
+                console.log(this.errorMessage);
+              }
+              else{
+                this.errorMessage = null;
+              }
             });
-          //this.router.navigate(['/new-pass']);
         }
       });
   }
@@ -58,10 +66,15 @@ export class ForgetPasswordComponent implements OnInit {
 
   checkIfCustomerExists() {
     return this.loginService.existsUser(this.userId.value, this.email.value)
+      .then()
       .catch((error: any) => {
         if(error.status === 200){
           this.customerFound = true;
         }
+        else if(error.status === 403){
+
+        }
+
         else if(error.status === 404){
           this.customerFound = false;
         }

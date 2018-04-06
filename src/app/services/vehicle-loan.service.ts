@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpClientModule } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class VehicleLoanService {
@@ -28,10 +28,9 @@ export class VehicleLoanService {
       .toPromise();
   }
 
-  getAllVehicleLeasingsUsers(){
+  updateVehicleLeasingStatus(id, leasing){
     return this.http
-      .get("http://localhost:8080/vehicleLeasings")
+      .put("http://localhost:8080/vehicleLeasings/updatestatus" + id, leasing)
       .toPromise();
   }
-
 }
