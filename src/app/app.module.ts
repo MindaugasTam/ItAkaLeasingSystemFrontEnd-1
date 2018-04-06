@@ -32,7 +32,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
 import { TableComponent } from './leasing-officer/table/table.component';
 import { TableRowComponent } from './components/table-row/table-row.component';
-import { PopupComponentComponent } from './leasing-officer/popup-component/popup-component.component';
+import { PopupComponentComponent } from './leasing-officer/admin-loan-info-popup-table/admin-loan-info-popup-table.component';
 
 @NgModule({
   declarations: [
