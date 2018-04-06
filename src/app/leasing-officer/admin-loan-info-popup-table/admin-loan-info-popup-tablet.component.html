@@ -1,0 +1,21 @@
+        <table class="table">
+          <tbody>
+          <app-table-row [fieldName]="'Customer type: '" [data]=leasingData.customerType ></app-table-row>
+          <app-table-row [fieldName]="'Customer User ID: '" [data]=leasingData.userID ></app-table-row>
+          <div *ngIf="this.leasingData.customerType==='BUSINESS'; else privateTempl">
+          <app-table-row [fieldName]="'Company ID: '" [data]=leasingData.customerID ></app-table-row>
+          <app-table-row [fieldName]="'Company Name: '" [data]=leasingData.customerNameIdentifier ></app-table-row>
+          </div>
+          <ng-template #privateTempl>
+          <app-table-row [fieldName]="'Customer ID: '" [data]=leasingData.customerID ></app-table-row>
+          <app-table-row [fieldName]="'Customer: '" [data]=leasingData.customerNameIdentifier ></app-table-row>
+          </ng-template>
+          <app-table-row [fieldName]="'Email: '" [data]=leasingData.customerEmail ></app-table-row>
+          <app-table-row [fieldName]="'Phone: '" [data]=leasingData.customerPhone ></app-table-row>
+          <app-table-row [fieldName]="'Address: '" [data]=leasingData.address ></app-table-row>
+          <app-table-row [fieldName]="'Country: '" [data]=leasingData.country ></app-table-row>
+
+          <tr>
+          </tbody>
+        </table>
+  

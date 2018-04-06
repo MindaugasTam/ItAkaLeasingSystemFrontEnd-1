@@ -1,6 +1,8 @@
 .modal-dialog,
 .modal-content {
-  /* 80% of window height */
   height: 80%;
   width: 100%;
 }
+
+td {cursor: pointer;}
+.card{width: 600px;}
