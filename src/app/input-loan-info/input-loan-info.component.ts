@@ -33,7 +33,6 @@ export class InputLoanInfoComponent implements OnInit {
       this.initalizeCarLists(data);
     });
     this.fb = fb;
-
   }
 
   private initalizeCarLists(data) {
@@ -64,7 +63,7 @@ export class InputLoanInfoComponent implements OnInit {
       assetPrice: [5000, [Validators.required, Validators.min(5000), Validators.max(1000000000), Validators.pattern("^[0-9]*$")]],
       paymentPercentage: [10, [Validators.required, Validators.min(10), Validators.max(100),
         Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
-      leasePeriod: [null, Validators.required],
+      leasePeriod: [48, Validators.required],
       margin: [3.2, [Validators.required, Validators.min(3.2), Validators.max(100), Validators.pattern("[+-]?([0-9]*[.])?[0-9]+")]],
       contractFee: [200, [Validators.required, Validators.max(1000000000)]],
       paymentDay: [null, [Validators.required, Validators.min(15), Validators.max(30)]]
@@ -141,14 +140,13 @@ export class InputLoanInfoComponent implements OnInit {
 
 
   ngOnInit() {
-    this.rangeSlider();
     this.loanForm = this.createForm(this.userType);
     if (this.dataStore.loanFormInfo) {
+
       this.loanForm = this.dataStore.getLoanForm();
       this.vehicleList.getAllVehicleList().then(data => {
         this.initalizeCarLists(data);
         this.findModels()
-
       });
     }
   }
@@ -178,7 +176,7 @@ export class InputLoanInfoComponent implements OnInit {
   totalPaymentSum: any;
   financingAmount;
 
-  displayPaySchedule() {
+  calculatePaySchedule() {
 
     this.totalInterestSum = 0;
 
@@ -203,7 +201,7 @@ export class InputLoanInfoComponent implements OnInit {
       assetValuePaymentAmount: this.advancedPaymentAmount,
       monthlyPayment: this.totalPaymentSum
     };
-
+    console.log(this.leasePeriod.value);
     for(let month = 1; month <= this.leasePeriod.value; month++){
 
       let withInterest = (remainingAmount * (1 + marginVal));
@@ -270,6 +268,7 @@ export class InputLoanInfoComponent implements OnInit {
     return paymentDates;
   }
   rangeSlider(){
+
     var abs = 42;
     var slider = $('.range-slider'),
         range = $('.range-slider__range'),
@@ -292,7 +291,7 @@ export class InputLoanInfoComponent implements OnInit {
   };
 
   open(content){
-    this.displayPaySchedule();
+    this.calculatePaySchedule();
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
