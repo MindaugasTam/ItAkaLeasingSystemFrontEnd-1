@@ -84,8 +84,8 @@ export class PrivateUserLoanReportComponent implements OnInit {
                   var userIdText = " ";
                   if(this.addPrivateUser == true && this.addPrivateVehicle == true){
                     successMessage = $('<p>').text('Your application has been accepted and is being processed right now. You should receive decision within 3 days. Use your ID to login');
-                    userId = "<span>" + this.privateUserLoginID + "</span>";
-                    userIdText = '<div>User login id: ' + userId +'</div>';
+                    userId = "<span id='loginId'>" + this.privateUserLoginID + "</span>";
+                    userIdText = '<div>User login id: ' + userId + '</div>';
                     statusMessage = "<div id='statusMessage'>Succes!</div>";
                   }else{
                     successMessage = $('<div>').text('Loan registration denied').css('color', 'red');
@@ -119,6 +119,17 @@ export class PrivateUserLoanReportComponent implements OnInit {
       loanForm.carBrand, loanForm.carModel, loanForm.year, loanForm.enginePower,
       loanForm.paymentPercentage, this.advancedPaymentAmount, loanForm.leasePeriod,
       loanForm.margin, this.contractFee, loanForm.assetPrice, loanForm.paymentDay, this.privateUserID);
+  }
+
+  copyToClipboard(elementId) {
+    var textArea = document.createElement("textarea");
+    textArea.value = document.getElementById(elementId).innerHTML;
+    document.getElementById("confirmationPop").appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    document.execCommand('copy', false, null);
+    textArea.remove();
+    console.log("sdsf")
   }
 
 }

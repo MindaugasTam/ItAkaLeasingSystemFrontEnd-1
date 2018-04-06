@@ -14,6 +14,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class LeasingOfficerComponent implements OnInit {
 
   officerContent;
+  allLeasings = [];
 
   selectedCustomer;
   selectedLeasing;
