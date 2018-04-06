@@ -8,19 +8,11 @@
           <th scope="col"><small>Asset</small></th>
           <th scope="col"><small>Asset Price</small></th>
           <th scope="col"><small>Leasing Period</small></th>
-<<<<<<< HEAD
-          <th scope="col"><small>Leasing Status</small></th> 
-        </tr>
-      </thead> 
-      <tbody *ngFor="let loan of loanData; let i = index" (click)="open(content, i)">
-        <tr class="point"> 
-=======
           <th scope="col"><small>Leasing Status</small></th>
         </tr>
       </thead>
       <tbody *ngFor="let loan of loanData; let i = index" (click)="open(content, i)">
         <tr class="point">
->>>>>>> 8a4b8c7e3da3c56914bb5a6f727531f6dd4de78f
         <td><small>{{loan.submissionDate}}</small></td>
           <td><small>{{loan.manufacturer}} {{loan.model}}</small></td>
           <td><small>{{loan.assetPrice}}</small></td>
@@ -29,14 +21,6 @@
         </tr>
         </tbody>
       <ng-template #content let-c="close" let-d="dismiss">
-<<<<<<< HEAD
-        <div class="container">
-          <h4 class="text-center tableHeaderText">Payment calendar</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <table class="table">
-=======
         <div class="container" id="report-pop">
           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
           <h4 class="text-center tableHeaderText">Loan information</h4>
@@ -67,7 +51,6 @@
           </div>
             <div data-toggle="collapse" class="text-center show-shedule" data-target="#shedule"><small>show payment schedule <i class="fa fa-calendar"></i></small></div>
             <table class="table collapse" id="shedule">
->>>>>>> 8a4b8c7e3da3c56914bb5a6f727531f6dd4de78f
               <thead>
                        <tr>
                         <th scope="col"><small>date</small></th>
@@ -77,11 +60,7 @@
                         <th scope="col"><small>monthly payment</small></th>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-                      <tr *ngFor="let payment of monthlypaymentDate">
-=======
                       <tr *ngFor="let payment of monthlyPaymentData">
->>>>>>> 8a4b8c7e3da3c56914bb5a6f727531f6dd4de78f
                         <td><small>{{payment.paymentDate}}</small></td>
                         <td><small>{{payment.remainingAmount}}</small></td>
                         <td><small>{{payment.interestPaymentAmount}}</small></td>
@@ -89,18 +68,6 @@
                         <td><small>{{payment.monthlyPayment}}</small></td>
                       </tr>
                       <tr>
-<<<<<<< HEAD
-                        <td>Asset price: {{loanData.assetPrice}}</td>
-                        <td></td>
-                        <td>Interest amount: {{totalInterestSum.toFixed(2)}}</td>
-                        <td></td>
-                        <td>Total sum: {{totalPaymentSum.toFixed(2)}}</td>
-                      </tr>
-                    </tbody>
-
-                </table> 
-                </div>          
-=======
                         <td><small>Asset price:<br> {{loanInfo.assetPrice.toFixed(2)}}</small></td>
                         <td></td>
                         <td><small>Amount:<br> {{totalInterestSum.toFixed(2)}}</small></td>
@@ -128,7 +95,6 @@
           </div>
 
         </div>
->>>>>>> 8a4b8c7e3da3c56914bb5a6f727531f6dd4de78f
           </ng-template>
     </table>
 </div>
