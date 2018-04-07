@@ -201,7 +201,6 @@ export class InputLoanInfoComponent implements OnInit {
       assetValuePaymentAmount: this.advancedPaymentAmount,
       monthlyPayment: this.totalPaymentSum
     };
-    console.log(this.leasePeriod.value);
     for(let month = 1; month <= this.leasePeriod.value; month++){
 
       let withInterest = (remainingAmount * (1 + marginVal));
@@ -281,7 +280,6 @@ export class InputLoanInfoComponent implements OnInit {
       value.each(function(){
         var value = $(this).prev().attr('value');
         $(this).html(value);
-        console.log(value);
       });
 
       range.on('input', function(){

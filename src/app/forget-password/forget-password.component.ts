@@ -47,7 +47,6 @@ export class ForgetPasswordComponent implements OnInit {
             .catch((error: any) => {
               if(error.status != 200){
                 this.errorMessage = error['error'];
-                console.log(this.errorMessage);
               }
               else{
                 this.errorMessage = null;
