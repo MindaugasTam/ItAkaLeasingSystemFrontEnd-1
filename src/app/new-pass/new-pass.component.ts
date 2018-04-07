@@ -51,7 +51,6 @@ export class NewPassComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.validToken);
 
     if (this.validToken && (this.newPassword.value === this.repeatPassword.value)) {
       this.loginService.forgottenPassword(this.userId.value, this.newPassword.value, this.token)

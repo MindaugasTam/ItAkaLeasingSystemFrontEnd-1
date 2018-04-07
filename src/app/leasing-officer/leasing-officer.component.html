@@ -13,7 +13,7 @@
     </thead>
     <tbody *ngFor="let data of officerContent; let i = index">
     <tr *ngFor="let leasing of data['leasings']; let j = index" (click)="open(content, i, j)">
-      <td id="submissionDate"><small>{{leasing.submissionDate}}</small></td> 
+      <td id="submissionDate"><small>{{leasing.submissionDate}}</small></td>
       <td id="vehicleInfo"><small>{{leasing.manufacturer}} {{leasing.model}}</small></td>
       <td id="assetPrice"><small>{{leasing.assetPrice}}</small></td>
       <td id="leasingPeriod"><small>{{leasing.leasingPeriod}}</small></td>
@@ -23,7 +23,7 @@
     </tbody>
 
     <ng-template #content let-c="close" let-d="dismiss">
-     
+
       <div class="card-header">Change loan status
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
@@ -53,8 +53,10 @@
           </div>
         </div>
 
-      </div> 
+      </div>
     </ng-template>
 
   </table>
+
+  <button class="btn btn-secondary form-buttons btn-margin " type="submit" (click)="logout()">Logout</button>
 </div>

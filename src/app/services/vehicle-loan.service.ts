@@ -33,4 +33,10 @@ export class VehicleLoanService {
       .put("http://localhost:8080/vehicleLeasings/updatestatus" + id, leasing)
       .toPromise();
   }
+
+  getVehicleLeasingsByUserID(id){
+    return this.http
+      .get("http://localhost:8080/vehicleLeasings/" + id)
+      .toPromise();
+  }
 }
