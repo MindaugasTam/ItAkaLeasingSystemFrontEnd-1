@@ -34,7 +34,7 @@ export class NewPassComponent implements OnInit {
     });
 
     if(this.token == null){
-      console.log("NO TOKEN SPECIFIED");
+      //console.log("NO TOKEN SPECIFIED");
     }
   }
 
@@ -57,11 +57,9 @@ export class NewPassComponent implements OnInit {
         .then(data => {
           if (data === true) {
             this.validUser = true;
-            console.log('success');
             this.router.navigate(['/']);
           }
           else if (data === false) {
-            console.log('failure');
             this.validUser = false;
           }
         });
@@ -83,11 +81,11 @@ export class NewPassComponent implements OnInit {
         if(error.status === 200){
           console.log(error);
           this.validToken = true;
-          console.log("VALID TOKEN")
         }
         else if(error.status === 404){
           this.validToken = false;
-          console.log("INVALID TOKEN, SHOULD CLOSE PAGE OR SOMETHING")
+          //console.log("INVALID TOKEN, SHOULD CLOSE PAGE OR SOMETHING")
+          this.router.navigate(['/']);
         }
       });
   }

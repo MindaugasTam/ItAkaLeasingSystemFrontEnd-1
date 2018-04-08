@@ -27,9 +27,9 @@
       </small>
     </div>
 
-    <button class="btn btn-warning form-buttons btn-margin " type="submit" (click)="submit()"
+    <button class="btn btn-outline-secondary  form-buttons btn-margin col-sm-3" type="submit" (click)="submit()"
             [disabled]="!this.newPasswordForm.valid">Submit</button>
-    <button class="btn btn-warning form-buttons btn-margin " type="submit" (click)="close()">Close</button>
+    <button class="btn btn-secondary form-buttons btn-margin col-sm-3" type="submit" (click)="close()">Close</button>
     <small *ngIf="!validInput" class="form-text text-danger">
       Input passwords do not match
     </small>

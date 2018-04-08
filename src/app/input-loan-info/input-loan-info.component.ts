@@ -178,6 +178,7 @@ export class InputLoanInfoComponent implements OnInit {
 
   calculatePaySchedule() {
 
+    this.monthlyPaymentData = [];
     this.totalInterestSum = 0;
 
     let advancePayment = +this.calculateAdvancedPaymentAmount();
