@@ -78,12 +78,12 @@ export class BusinessUserLoanReportComponent implements OnInit {
          }else{
            this.addBusinessVehicle = false;
                   }
-                  
+
                   var successMessage = " ";
                   var statusMessage  = " ";
                   var userId = " ";
                   var userIdText = " ";
-                 
+
                   if(this.addBusinessUser == true && this.addBusinessVehicle == true){
                     successMessage = $('<p>').text('Your application has been accepted and is being processed right now. You should receive decision within 3 days. Use your ID to login');
                     userId = "<span id='loginId'>" + this.businessUserLoginID + "</span>";
@@ -95,8 +95,8 @@ export class BusinessUserLoanReportComponent implements OnInit {
                   $('.modal-body').html("");
                   $('.modal-body').append(statusMessage);
                   $('.modal-body').append(successMessage);
-                  document.getElementById('modal-bodys').innerHTML += userIdText ; 
-                                
+                  document.getElementById('modal-bodys').innerHTML += userIdText ;
+
         })
       })
 
@@ -135,6 +135,5 @@ export class BusinessUserLoanReportComponent implements OnInit {
     textArea.select();
     document.execCommand('copy', false, null);
     textArea.remove();
-    console.log("sdsf")
   }
 }
