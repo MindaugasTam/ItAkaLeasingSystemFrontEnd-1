@@ -34,3 +34,7 @@
 div#report_container {
     margin-bottom: 15px;
 }
+
+.logout_margins {
+    margin: 30px 30px;
+}
