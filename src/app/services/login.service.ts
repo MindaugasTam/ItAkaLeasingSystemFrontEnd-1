@@ -62,8 +62,12 @@ export class LoginService {
       .toPromise();
   }
 
-  sendRecoveryMail(email){
-    return this.http.post('http://localhost:8080/customers/forgotpassword' + email, email)
+  sendRecoveryMail(userId, email){
+    let credentialsRequest = {
+      userId: userId,
+      email: email
+    };
+    return this.http.post('http://localhost:8080/customers/forgotpassword', credentialsRequest)
       .toPromise();
   }
 

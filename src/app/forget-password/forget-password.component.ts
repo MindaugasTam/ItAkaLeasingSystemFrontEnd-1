@@ -40,7 +40,7 @@ export class ForgetPasswordComponent implements OnInit {
     this.checkIfCustomerExists()
       .then(data => {
         if(this.customerFound){
-          this.loginService.sendRecoveryMail(this.email.value)
+          this.loginService.sendRecoveryMail(this.userId.value, this.email.value)
             .then(data  => {
               this.router.navigate(['/login']);
             })
