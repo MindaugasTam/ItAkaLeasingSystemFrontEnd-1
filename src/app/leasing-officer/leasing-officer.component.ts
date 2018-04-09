@@ -86,7 +86,9 @@ export class LeasingOfficerComponent implements OnInit {
 
     this.vehicleService.updateVehicleLeasingStatus(leasingToUpdate.id, leasingToUpdate)
       .then(data => {
+        leasingToUpdate.statusChanged = true;
         this.selectedLeasing = leasingToUpdate;
+        //console.log(this.selectedLeasing);
       })
       .catch((error: any) => {
         console.log(error);
