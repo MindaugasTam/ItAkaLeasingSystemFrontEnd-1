@@ -18,7 +18,13 @@
       <td id="assetPrice"><small>{{leasing.assetPrice}}</small></td>
       <td id="leasingPeriod"><small>{{leasing.leasingPeriod}}</small></td>
       <td id="userID"><small>{{data['customer'].userID}}</small></td>
-      <td id="leasingStatus"><small>{{leasing.leasingStatus}}</small></td>
+      <div *ngIf="leasing.leasingStatus==='IN_PROGRESS'; else otherTempl">
+        <td><small>IN PROGRESS</small></td>
+      </div>
+      <ng-template #otherTempl>
+        <td><small>{{leasing.leasingStatus}}</small></td>
+      </ng-template>
+
     </tr>
     </tbody>
 
@@ -36,16 +42,15 @@
               <admin-popup-table-component [leasingData]=this.customerSummaryData></admin-popup-table-component>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" >
 
-            <app-table [leasingData]=this.leasingSummaryData></app-table>
+            <app-table [leasingData]=this.leasingSummaryData ></app-table>
 
             <div [formGroup]="listStatusGroup">
               <select class="form-control" id="leasingStatusList" formControlName = "leasingStatusList">
-                  <option disabled value="null" selected>Select new leasing status</option>
-                <option name = "status" value="APPROVED" selected="selected">APPROVED</option>
-                <option name = "status" value="PROCESSED">PROCESSED</option>
-                <option name = "status" value="DENIED">DENIED</option>
+                  <option disabled value="Select status" >Select new leasing status</option>
+                <option name ="statusApp" value="APPROVED">APPROVED</option>
+                <option name ="statusDen" value="DENIED">DENIED</option>
               </select>
             </div>
 
