@@ -17,8 +17,8 @@ export class InputPrivateUserInfoComponent implements OnInit {
 
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService) {
     this.privateUserInfoForm = fb.group({
-      firstName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern("[a-zA-Z ]*")]],
-      lastName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern("[a-zA-Z ]*")]],
+      firstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(100), Validators.pattern("[a-zA-Z ]*")]],
+      lastName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(100), Validators.pattern("[a-zA-Z ]*")]],
       country: [null, Validators.required],
       privateID: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
       email: [null, [Validators.required, Validators.email, Validators.maxLength(70)]],

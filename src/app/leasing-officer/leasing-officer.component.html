@@ -1,6 +1,6 @@
 <div class='container wide container_margins'>
   <div class="form-header">All registered loans</div>
-  <table class="table table-hover">
+  <table class="table table-hover show-data">
     <thead>
     <tr>
       <th scope="col"><small>Submission Date</small></th>
@@ -30,34 +30,70 @@
 
     <ng-template #content let-c="close" let-d="dismiss">
 
-      <div class="card-header">Change loan status
+      <!-- <div class="text-center card-header tableHeaderText">Change loan status
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="card">
+      </div> -->
+      <div class="container" id="report-pop">
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
+        <h4 class="text-center tableHeaderText">Customer loan status</h4>
+        <div class="report" id="report_container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-sm-6 text-center">
+            <p>Customer information</p>
+            <small>Customer type: {{ customerSummaryData.customerType }} </small><br>
+            <small>Customer user ID: {{ customerSummaryData.userID }} </small><br>
 
-              <admin-popup-table-component [leasingData]=this.customerSummaryData></admin-popup-table-component>
-
+            <div *ngIf="customerSummaryData.customerType==='BUSINESS'; else pTempl">
+              <small> Company ID: {{customerSummaryData.customerID}}</small><br>
+              <small> Company Name: {{customerSummaryData.customerNameIdentifier}}</small><br>
+            </div>
+            <ng-template #pTempl>
+              <small> Customer private ID: {{customerSummaryData.customerID}}</small><br>
+              <small> Customer Name: {{customerSummaryData.customerNameIdentifier}}</small><br>
+            </ng-template>
+            <small>Email: {{ customerSummaryData.customerEmail }} </small><br>
+            <small>Phone: {{ customerSummaryData.customerPhone }} </small><br>
+            <small>Address: {{customerSummaryData.address}} </small><br>
+            <small>Country: {{ customerSummaryData.country}} </small><br>
           </div>
-          <div class="col-md-6" >
+          <div class="col-sm-6 text-center" >
 
-            <app-table [leasingData]=this.leasingSummaryData ></app-table>
+            <p>Asset information</p>
+            <small>Asset type: Vehicle </small><br>
+            <small>Submission date: {{ leasingSummaryData.submissionDate }} </small><br>
+            <small>Manufacturer: {{ leasingSummaryData.manufacturer }} </small><br>
+            <small>Model: {{ leasingSummaryData.model }} </small><br>
+            <small>Manufacturing  date: {{ leasingSummaryData.manufacturingDate }} </small><br>
+            <small>Advance payment amount: {{ leasingSummaryData.advancePaymentAmount }} </small><br>
+            <small>Advance payment percent: {{ leasingSummaryData.advancePaymentPercent }} </small><br>
+            <small>Contract fee: {{ leasingSummaryData.contractFee }} </small><br>
+            <small>Engine power: {{ leasingSummaryData.enginePower }} </small><br>
+            <small>Margin: {{ leasingSummaryData.margin }} </small><br>
+            <small>Leasing period: {{ leasingSummaryData.leasingPeriod }} </small><br>
+            <small>Monthly payment date: {{ leasingSummaryData.paymentDate }} </small><br>
+            <div *ngIf="leasingSummaryData.leasingStatus==='IN_PROGRESS'; else businessTempl">
+              <td><small>Leasing status: IN PROGRESS</small></td>
+            </div>
+            <ng-template #businessTempl>
+              <td><small>Leasing status: {{leasingSummaryData.leasingStatus}}</small></td>
+            </ng-template>
+
 
             <div [formGroup]="listStatusGroup">
-              <select class="form-control" id="leasingStatusList" formControlName = "leasingStatusList">
-                  <option disabled value="Select status" >Select new leasing status</option>
-                <option name ="statusApp" value="APPROVED">APPROVED</option>
-                <option name ="statusDen" value="DENIED">DENIED</option>
-              </select>
+            <select [hidden]="selectedLeasing['statusChanged']"
+                    class="form-control" id="leasingStatusList" formControlName="leasingStatusList">
+              <option disabled value="null" selected>Choose lease status</option>
+              <option name="status">APPROVED</option>
+              <option name="status">DENIED</option>
+            </select>
             </div>
-
-            <button type="button" class="btn btn-secondary" (click)="updateLoanStatus()">Update status</button>
+            <button [disabled]="leasingStatusList.pristine" [hidden]="selectedLeasing['statusChanged']"
+                    type="button" class="btn btn-secondary" (click)="updateLoanStatus(); d('Cross click')">Update status</button>
           </div>
         </div>
-
+      </div>
       </div>
     </ng-template>
 
