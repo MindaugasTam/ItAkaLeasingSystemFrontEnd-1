@@ -5,6 +5,8 @@ import {BusinessUserService} from '../services/business-user.service';
 import {VehicleLoanService} from '../services/vehicle-loan.service';
 import {DataStoreService} from '../services/data-store.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {HttpHeaders} from '@angular/common/http';
+import {AdministratorService} from '../services/administrator.service';
 
 @Component({
   selector: 'app-leasing-officer',
@@ -49,7 +51,7 @@ export class LeasingOfficerComponent implements OnInit {
   listStatusGroup;
 
   constructor(fb: FormBuilder, private router: Router, public dataStore: DataStoreService, private modalService: NgbModal,
-              public vehicleService: VehicleLoanService) {
+              public vehicleService: VehicleLoanService, private adminService: AdministratorService) {
     this.officerContent = dataStore.getOfficerContent();
     this.listStatusGroup = fb.group({
       leasingStatusList: null
@@ -61,6 +63,19 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    let currLogin = JSON.parse(localStorage.getItem('currentUser'));
+    if (currLogin != null) {
+      if (currLogin['roles'] == 'administrator') {
+        let headers = {headers: new HttpHeaders({'Authorization': 'Bearer ' + currLogin['token']})};
+        this.adminService.getCustomerDataForBusinessOfficer(headers)
+          .then(data => {
+            let response: Map<any, any>;
+            response = JSON.parse(JSON.stringify(data));
+            this.officerContent = response;
+          });
+      }
+    }
   }
 
   closeResult: string;
@@ -135,5 +150,10 @@ export class LeasingOfficerComponent implements OnInit {
     this.leasingSummaryData.paymentDate = selectedLoan.paymentDate;
     this.leasingSummaryData.submissionDate = selectedLoan.submissionDate;
     this.leasingSummaryData.leasingStatus = selectedLoan.leasingStatus;
+  }
+
+  private logout(){
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
   }
 }

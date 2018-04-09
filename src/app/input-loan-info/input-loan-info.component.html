@@ -76,7 +76,7 @@
                                         <small>Lease period</small>
                                         <div class="range-slider row" >
                                                 <input class="range-slider__range" type="range" value="48" min="6" max="84" step="6" id="leasePeriod" name="leasePeriod" formControlName="leasePeriod" >
-                                               <span class="range-slider__value">0</span>
+                                               <span class="range-slider__value">{{leasePeriod.value}}</span>
                                               </div>
                                 </div>
 
@@ -103,7 +103,7 @@
                         <div class="form-footer">
                                 <div class="row">
                            <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
-                           <button class="btn btn-outline-secondary form buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" (click)="open(content)" type = "button">
+                           <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3" [disabled]="!this.loanForm.valid" (click)="open(content)" type = "button">
                              Payment information </button>
                            <button class="btn btn-secondary form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
                         </div>

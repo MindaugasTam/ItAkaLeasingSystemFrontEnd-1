@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataStoreService } from '../services/data-store.service';
 import  {NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.component';
+import {VehicleLoanService} from '../services/vehicle-loan.service';
 
 
 @Component({
@@ -13,9 +14,10 @@ import { InputLoanInfoComponent } from '../input-loan-info/input-loan-info.compo
 })
 export class LoanStatusComponent implements OnInit {
   loanData;
-  constructor(private route: ActivatedRoute, public dataStore : DataStoreService,private modalService: NgbModal
-  /*inputLoan: InputLoanInfoComponent*/) {
+  constructor(private route: ActivatedRoute, public dataStore : DataStoreService, private modalService: NgbModal,
+   public router: Router, private vehicleLoanService: VehicleLoanService) {
     this.loanData = dataStore.getLoanResponse();
+    this.dataStore = dataStore;
   }
 
   closeResult: string;
@@ -49,7 +51,6 @@ export class LoanStatusComponent implements OnInit {
   financingAmount;
 
   displayPaySchedule(loanData) {
-    console.log(this.loanInfo);
     let perc = 0.01;
     this.loanInfo = loanData;
     this.totalInterestSum = 0;
@@ -97,5 +98,17 @@ export class LoanStatusComponent implements OnInit {
   }
 
   ngOnInit() {
+    let currLogin = JSON.parse(localStorage.getItem('currentUser'));
+    if(currLogin['roles'] == 'user'){
+      this.vehicleLoanService.getVehicleLeasingsByUserID(currLogin['username'])
+        .then(data => {
+          this.loanData = data;
+        });
+    }
+  }
+
+  logout(){
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
   }
 }

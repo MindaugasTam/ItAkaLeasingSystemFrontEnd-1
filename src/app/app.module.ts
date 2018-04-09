@@ -33,6 +33,7 @@ import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.compo
 import { TableComponent } from './leasing-officer/table/table.component';
 import { TableRowComponent } from './components/table-row/table-row.component';
 import { PopupComponentComponent } from './leasing-officer/admin-loan-info-popup-table/admin-loan-info-popup-table.component';
+import {AdministratorService} from './services/administrator.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { PopupComponentComponent } from './leasing-officer/admin-loan-info-popup
     NgbModule.forRoot(),
   ],
   providers: [AppComponent, DataStoreService, PrivateUserService, BusinessUserService, BackValidationService,
-    VehicleLoanService, LoginService, VehicleList],
+    VehicleLoanService, LoginService, VehicleList, AdministratorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
