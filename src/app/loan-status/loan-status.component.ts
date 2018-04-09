@@ -66,7 +66,16 @@ export class LoanStatusComponent implements OnInit {
     }
     this.totalPaymentSum = +contractFee + advancePayment;
     let dates = this.findPaymentDates(loanData.leasingPeriod, loanData.paymentDate);
-    for(let month = 0; month < loanData.leasingPeriod; month++){
+
+    this.monthlyPaymentData[0] = {
+      paymentDate: 'Initial',
+      remainingAmount: loanData.assetPrice,
+      interestPaymentAmount: 0,
+      assetValuePaymentAmount: advancePayment,
+      monthlyPayment: this.totalPaymentSum
+    };
+
+    for(let month = 1; month <= loanData.leasingPeriod; month++){
       let withInterest = (remainingAmount * (1 + marginVal));
       let interestPaymentAmount = withInterest - remainingAmount;
       let assetValuePaymentAmount = (this.monthlyPayment - interestPaymentAmount);
@@ -83,16 +92,49 @@ export class LoanStatusComponent implements OnInit {
     }
     return this.monthlyPaymentData;
   }
-  private findPaymentDates(leasingPeriod, paymentDate){
+
+  isLeapYear(year) {
+    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+  }
+
+
+  private findPaymentDates(leasePeriod, paymentDay){
     let paymentDates = [];
     let startDate = new Date();
-    if(startDate.getDay() > paymentDate){
-      startDate.setMonth(startDate.getMonth() + 1);
+
+    if((startDate.getMonth() == 1) && (paymentDay > 28)){
+      if(this.isLeapYear(startDate.getFullYear())){
+        startDate.setDate(29);
+      }
+      else{
+        startDate.setDate(28);
+      }
     }
-    startDate.setDate(paymentDate);
-    for (let i = 0; i < leasingPeriod; i++){
-      paymentDates[i] = startDate.toISOString().split('T')[0];
+    else{
+      if(startDate.getDay() > paymentDay){
+        startDate.setMonth(startDate.getMonth() + 1);
+      }
+      startDate.setDate(paymentDay);
+      paymentDates[0] = startDate.toISOString().split('T')[0];
+    }
+
+    startDate.setDate(1);
+    for (let i = 1; i <= leasePeriod; i++){
       startDate.setMonth(startDate.getMonth() + 1);
+
+      if((startDate.getMonth() == 1) && (paymentDay > 28)){
+        if(this.isLeapYear(startDate.getFullYear())){
+          startDate.setDate(29);
+        }
+        else {
+          startDate.setDate(28);
+        }
+      }
+      else{
+        startDate.setDate(paymentDay);
+      }
+      paymentDates[i] = startDate.toISOString().split('T')[0];
+      startDate.setDate(1);
     }
     return paymentDates;
   }
