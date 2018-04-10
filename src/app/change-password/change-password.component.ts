@@ -36,7 +36,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   goToMain(){
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   changePassword(){

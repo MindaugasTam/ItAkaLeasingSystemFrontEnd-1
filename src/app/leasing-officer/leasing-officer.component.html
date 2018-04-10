@@ -1,5 +1,6 @@
 <div class='container wide container_margins'>
   <div class="form-header">All registered loans</div>
+  <div class="inner-container">
   <table class="table table-hover show-data">
     <thead>
     <tr>
@@ -36,8 +37,10 @@
         </button>
       </div> -->
       <div class="container" id="report-pop">
+          
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
         <h4 class="text-center tableHeaderText">Customer loan status</h4>
+        <div class="inner-container">
         <div class="report" id="report_container">
         <div class="row">
           <div class="col-sm-6 text-center">
@@ -57,6 +60,7 @@
             <small>Phone: {{ customerSummaryData.customerPhone }} </small><br>
             <small>Address: {{customerSummaryData.address}} </small><br>
             <small>Country: {{ customerSummaryData.country}} </small><br>
+            
           </div>
           <div class="col-sm-6 text-center" >
 
@@ -80,24 +84,27 @@
               <td><small>Leasing status: {{leasingSummaryData.leasingStatus}}</small></td>
             </ng-template>
 
-
-            <div [formGroup]="listStatusGroup">
-            <select [hidden]="selectedLeasing['statusChanged']"
-                    class="form-control" id="leasingStatusList" formControlName="leasingStatusList">
-              <option disabled value="null" selected>Choose lease status</option>
-              <option name="status">APPROVED</option>
-              <option name="status">DENIED</option>
-            </select>
-            </div>
-            <button [disabled]="leasingStatusList.pristine" [hidden]="selectedLeasing['statusChanged']"
-                    type="button" class="btn btn-secondary" (click)="updateLoanStatus(); d('Cross click')">Update status</button>
+          </div>
+          <div class="col-sm-6">
+              <div [formGroup]="listStatusGroup">
+                  <select [hidden]="selectedLeasing['statusChanged']"
+                          class="form-control input_padding statusStyles" id="leasingStatusList" formControlName="leasingStatusList">
+                    <option disabled value="null" selected>Choose lease status</option>
+                    <option name="status">APPROVED</option>
+                    <option name="status">DENIED</option>
+                  </select>
+                  </div>
+                  <button [disabled]="leasingStatusList.pristine" [hidden]="selectedLeasing['statusChanged']"
+                          type="button" class="btn btn-secondary updateStatBtn" (click)="updateLoanStatus(); d('Cross click')">Update status</button>
           </div>
         </div>
       </div>
       </div>
+    </div>
     </ng-template>
 
   </table>
 
-  <button class="btn btn-secondary form-buttons btn-margin " type="submit" (click)="logout()">Logout</button>
+  <button class="btn btn-secondary form-buttons btn-margin buttonWidth" type="submit" (click)="logout()">Logout</button>
+</div>
 </div>

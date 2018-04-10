@@ -38,3 +38,9 @@ div#report_container {
 .logout_margins {
     margin: 30px 30px;
 }
+
+.buttonWidth {
+    margin-left: 35px;
+    margin-bottom: 30px;
+    width: 155px;
+  }

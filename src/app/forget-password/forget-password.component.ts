@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../services/login.service';
+declare var $:any;
 
 @Component({
   selector: 'app-forget-password',
@@ -42,6 +43,7 @@ export class ForgetPasswordComponent implements OnInit {
         if(this.customerFound){
           this.loginService.sendRecoveryMail(this.userId.value, this.email.value)
             .then(data  => {
+              $("#passwordChangePop").modal()
               this.router.navigate(['/login']);
             })
             .catch((error: any) => {
@@ -61,6 +63,10 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  closeModal(){
+    $('#passwordChangePop').modal('hide');
   }
 
   checkIfCustomerExists() {

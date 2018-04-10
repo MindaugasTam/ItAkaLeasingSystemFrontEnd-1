@@ -24,3 +24,21 @@ td {cursor: pointer;}
 }
 
 #report-pop{min-width: 800px;}
+
+.buttonWidth {
+  margin-left: 35px;
+  margin-bottom: 30px;
+  width: 155px;
+}
+
+.updateStatBtn{
+  margin-left: 35px;
+  margin-bottom: 15px;
+  width: 155px;
+  margin-top: 15px;
+}
+
+.statusStyles{
+  margin-left: 35px;
+  width: 42%;
+}
