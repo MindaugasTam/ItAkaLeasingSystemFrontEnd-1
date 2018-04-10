@@ -5,36 +5,36 @@
 
                         <div>
                                 <div class="row">
-                                        <div class="form-group col-sm-6 text-center">
+                                        <div class="form-group col-sm-6 ">
                                                 <small>Customer Type</small>
-                                                 <select class="form-control" id="customerType" (input) ="userTypeChange($event.target.value)" formControlName="customerType">
+                                                 <select class="form-control input_padding" id="customerType" (input) ="userTypeChange($event.target.value)" formControlName="customerType">
                                                         <option disabled value="null" selected>Please Choose Customer Type</option>
                                                         <option name="Private">Private</option>
                                                         <option name="Business">Business</option>
                                                 </select>
-                                                <small *ngIf="customerType.invalid && customerType.dirty" class="form-text alert alert-danger">Customer type is required</small>
+                                                <small *ngIf="customerType.invalid && customerType.dirty" class="form-text alert errorMesageStyle">Customer type is required</small>
                                         </div>
-                                        <div class="form-group col-sm-6 text-center">
+                                        <div class="form-group col-sm-6">
                                                         <small>Asset Type</small>
-                                                        <select class="form-control" id="assetType" formControlName="assetType">
+                                                        <select class="form-control input_padding" id="assetType" formControlName="assetType">
                                                                 <option disabled value="null" selected>Please Choose Asset Type</option>
                                                                 <option value="vehicle" selected>Vehicle</option>
                                                         </select>
-                                                        <small *ngIf="assetType.invalid && assetType.dirty" class="form-text alert alert-danger">Asset type is invalid.</small>
+                                                        <small *ngIf="assetType.invalid && assetType.dirty" class="form-text alert errorMesageStyle">Asset type is invalid.</small>
                                                 </div>
                                 </div>
                                 <div class="row">
-                                        <div class="form-group col-sm-6 text-center">
+                                        <div class="form-group col-sm-6 ">
                                                         <small>Car brand</small>
-                                                        <select class="form-control" id="carBrand" formControlName="carBrand" (change)="findModels()">
+                                                        <select class="form-control input_padding" id="carBrand" formControlName="carBrand" (change)="findModels()">
                                                                 <option disabled value="null" selected>Please Choose Car Brand</option>
                                                                 <option *ngFor="let selectedBrand of brands" [value]="selectedBrand">{{selectedBrand}}</option>
                                                         </select>
-                                                        <small *ngIf="carBrand.invalid && carBrand.dirty" class="form-text alert alert-danger">Please select car brand.</small>
+                                                        <small *ngIf="carBrand.invalid && carBrand.dirty" class="form-text alert errorMesageStyle">Please select car brand.</small>
                                         </div>
-                                <div class="form-group col-sm-6 text-center">
+                                <div class="form-group col-sm-6 ">
                                         <small>Car Model</small>
-                                                <select class="form-control" id="carModel" formControlName="carModel">
+                                                <select class="form-control input_padding" id="carModel" formControlName="carModel">
                                                         <option disabled value="null" selected>Please Choose Car Model</option>
                                                         <option *ngFor="let selectedModels of models" [value]="selectedModels">{{selectedModels}}</option>
                                                 </select>
@@ -44,31 +44,31 @@
                         </div>
 
                         <div class="row">
-                                <div class="form-group col-sm-6 text-center">
+                                <div class="form-group col-sm-6 ">
                                         <small>Year</small>
-                                                <input type="text" class="form-control" id="year" name="year" formControlName="year">
-                                                <small *ngIf="year.invalid && year.dirty" class="form-text alert alert-danger">Please enter valid year (starting from 2000).</small>
+                                                <input type="number" class="form-control input_padding" id="year" name="year" formControlName="year">
+                                                <small *ngIf="year.invalid && year.dirty" class="form-text alert errorMesageStyle year-message">Please enter valid year (starting from 2000).</small>
 
                                 </div>
-                                <div class="form-group col-sm-6 text-center">
+                                <div class="form-group col-sm-6 ">
                                         <small>Engine power (kW)</small>
 
-                                                <input type="text" class="form-control" id="enginePower" name="enginePower" formControlName="enginePower">
-                                                <small *ngIf="enginePower.invalid && enginePower.dirty" class="form-text alert alert-danger">Engine power is invalid.</small>
+                                                <input type="number" class="form-control input_padding" id="enginePower" name="enginePower" formControlName="enginePower">
+                                                <small *ngIf="enginePower.invalid && enginePower.dirty" class="form-text alert errorMesageStyle">Engine power is invalid.</small>
 
                                 </div>
                         </div>
                         <div class="row">
-                        <div class="form-group col-sm-6 text-center">
+                        <div class="form-group col-sm-6 ">
                                 <small>Asset price</small>
-                                        <input type="text" class="form-control" id="assetPrice" name="assetPrice" formControlName="assetPrice">
-                                        <small *ngIf="assetPrice.invalid&&assetPrice.dirty" class="form-text alert alert-danger">Asset price is invalid.</small>
+                                        <input type="number" class="form-control input_padding" id="assetPrice" name="assetPrice" formControlName="assetPrice">
+                                        <small *ngIf="assetPrice.invalid&&assetPrice.dirty" class="form-text alert errorMesageStyle">Asset price is invalid.</small>
 
                         </div>
-                                <div class="form-group col-sm-6 text-center">
+                                <div class="form-group col-sm-6 ">
                                 <small>Advanced payment amount</small>
-                                        <input type="text" class="form-control" id="paymentPercentage" name="paymentPercentage" formControlName="paymentPercentage">
-                                        <small *ngIf="paymentPercentage.invalid && paymentPercentage.dirty" class="form-text alert alert-danger">Advanced payment percentage is invalid. Minimum 10 percent</small>
+                                        <input type="number" class="form-control input_padding" id="paymentPercentage" name="paymentPercentage" formControlName="paymentPercentage">
+                                        <small *ngIf="paymentPercentage.invalid && paymentPercentage.dirty" class="form-text alert errorMesageStyle">Advanced payment percentage is invalid. Minimum 10 percent</small>
                                 </div>
                         </div>
 
@@ -81,14 +81,14 @@
                                 </div>
 
                 <div class="row">
-                        <div class="form-group col-sm-6 text-center">
+                        <div class="form-group col-sm-6 ">
                                 <small >Margin</small>
-                                        <input type="text" class="form-control" id="margin" name="margin" formControlName="margin">
-                                        <small *ngIf="margin.invalid && margin.dirty" class = "form-text alert alert-danger">Margin is invalid. Minimum 3.2 percent </small>
+                                        <input type="number" class="form-control input_padding" id="margin" name="margin" formControlName="margin">
+                                        <small *ngIf="margin.invalid && margin.dirty" class = "form-text alert errorMesageStyle">Margin is invalid. Minimum 3.2 percent </small>
                         </div>
-                        <div class="form-group col-sm-6 text-center">
+                        <div class="form-group col-sm-6 ">
                                 <small>Payment day</small>
-                                        <select class="form-control" id="paymentDay" formControlName="paymentDay">
+                                        <select class="form-control input_padding" id="paymentDay" formControlName="paymentDay">
                                                 <option disabled value="null" selected>Please Choose Payment Day</option>
                                                 <option name="paymentDay">15</option>
                                                 <option name="paymentDay">30</option>
@@ -102,10 +102,12 @@
 
                         <div class="form-footer">
                                 <div class="row">
+                      
                            <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3" (click) = "this.reset()" type = "button"  >Reset</button>
-                           <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3" [disabled]="!this.loanForm.valid" (click)="open(content)" type = "button">
-                             Payment information </button>
                            <button class="btn btn-secondary form-buttons btn-margin col-sm-3" [disabled]="!this.loanForm.valid" type="submit"  >Next</button>
+                           <button class="btn btn-outline-secondary form-buttons  btn-margin col-sm-3 infoButton" [disabled]="!this.loanForm.valid" (click)="open(content)" type = "button">
+                                        Payment information </button>
+                                
                         </div>
                         </div>
                 </form>
@@ -118,7 +120,7 @@
                            <div class = "report" id = "results">
                             <h4 class="text-center tableHeaderText"></h4>
                             <div class = "row">
-                              <div class="col-sm-6 text-center">
+                              <div class="col-sm-6 text-center ">
                                 <small>Financing amount: {{ this.financingAmount.toFixed(2) }} </small><br>
                                 <small>Contract fee: {{calculateContractFee()}} </small><br>
                               </div>

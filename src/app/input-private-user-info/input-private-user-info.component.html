@@ -5,15 +5,15 @@
     <div class="row">
     <div class="form-group col-sm-6 ">
       <small>First Name</small>
-      <input type="text" class="form-control" id="firstName" formControlName = "firstName" required>
-      <small *ngIf="firstName.invalid&&firstName.dirty" class="form-text alert alert-danger">
+      <input type="text" class="form-control input_padding" id="firstName" formControlName = "firstName" required>
+      <small *ngIf="firstName.invalid&&firstName.dirty" class="form-text alert errorMesageStyle">
         First name is required
       </small>
     </div>
     <div class="form-group col-sm-6 ">
       <small>Last Name</small>
-      <input type="text" class="form-control" id="lastName" formControlName ="lastName">
-      <small *ngIf="lastName.invalid&&lastName.dirty" class="form-text alert alert-danger">
+      <input type="text" class="form-control input_padding" id="lastName" formControlName ="lastName">
+      <small *ngIf="lastName.invalid&&lastName.dirty" class="form-text alert errorMesageStyle">
         Last name is required
       </small>
     </div>
@@ -21,19 +21,19 @@
   <div class="row">
     <div class="form-group select col-sm-6 ">
       <small>Country</small>
-        <select formControlName="country" id="countrySelect" class="form-control" >
+        <select formControlName="country" id="countrySelect" class="form-control input_padding" >
             <option *ngFor="let country of countries.countries" [ngValue]="country">
           {{ country }}
         </option>
     </select>
-    <small *ngIf="country.invalid && country.dirty" class="form-text alert alert-danger">
+    <small *ngIf="country.invalid && country.dirty" class="form-text alert errorMesageStyle">
         Country is required
       </small>
     </div>
     <div class="form-group col-sm-6">
       <small>ID code</small>
-      <input type="text" class="form-control" id="privateId" formControlName ="privateID">
-      <small *ngIf="privateID.invalid&&privateID.dirty" class="form-text alert alert-danger">
+      <input type="text" class="form-control input_padding" id="privateId" formControlName ="privateID">
+      <small *ngIf="privateID.invalid&&privateID.dirty" class="form-text alert errorMesageStyle">
         Private customer ID must be specified and contain only numbers
       </small>
     </div>
@@ -41,23 +41,23 @@
     <div class="row">
     <div class="form-group col-sm-6">
       <small>Email</small>
-      <input type="text" placeholder = "example@info.com" class="form-control" id="email" formControlName = "email">
-      <small *ngIf="email.invalid && email.dirty" class="form-text alert alert-danger">
+      <input type="text" placeholder = "example@info.com" class="form-control input_padding" id="email" formControlName = "email">
+      <small *ngIf="email.invalid && email.dirty" class="form-text alert errorMesageStyle">
         Email is invalid
       </small>
     </div>
 
     <div class="form-group col-sm-6">
       <small>Address</small>
-      <input type="text" class="form-control" id="address" formControlName = "address">
-      <small *ngIf="address.invalid && address.dirty" class="form-text alert alert-danger">Address is required</small>
+      <input type="text" class="form-control input_padding" id="address" formControlName = "address">
+      <small *ngIf="address.invalid && address.dirty" class="form-text alert errorMesageStyle">Address is required</small>
     </div>
   </div>
   <div class="row">
     <div class="form-group col-sm-6">
       <small>Phone number</small>
-      <input type="text" placeholder = "370" class="form-control" id="phoneNumber" formControlName = "phoneNumber">
-      <small *ngIf="phoneNumber.invalid && phoneNumber.dirty" class="form-text alert alert-danger">
+      <input type="number" placeholder = "370" class="form-control input_padding" id="phoneNumber" formControlName = "phoneNumber">
+      <small *ngIf="phoneNumber.invalid && phoneNumber.dirty" class="form-text alert errorMesageStyle">
         Phone number is required
       </small>
     </div>

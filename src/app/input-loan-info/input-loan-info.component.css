@@ -22,6 +22,11 @@
     width: 100%;
   }
 
+  .year-message {
+    color: red;
+  }
+
+
   .range-slider__range {
     -webkit-appearance: none;
     width: calc(100% - (73px));
@@ -109,3 +114,8 @@
 .form-buttons {
   color:darkslategrey;
 }
+
+.infoButton {
+ margin-left: 145px;
+}
+
