@@ -17,7 +17,12 @@
           <td><small>{{loan.manufacturer}} {{loan.model}}</small></td>
           <td><small>{{loan.assetPrice}}</small></td>
           <td><small>{{loan.leasingPeriod}}</small></td>
-          <td><small>{{loan.leasingStatus}}</small></td>
+          <div *ngIf="loan.leasingStatus==='IN_PROGRESS'; else otherTempl">
+          <td><small>IN PROGRESS</small></td>
+          </div>
+          <ng-template #otherTempl>
+            <td><small>{{loan.leasingStatus}}</small></td>
+          </ng-template>
         </tr>
         </tbody>
       <ng-template #content let-c="close" let-d="dismiss">
@@ -79,7 +84,6 @@
 
           <div data-toggle="collapse" class="text-center show-results" data-target="#results"><small>loan summary<i class=""></i></small></div>
           <div class = "report collapse" id = "results">
-            <h4 class="text-center tableHeaderText"></h4>
             <div class = "row">
               <div class="col-sm-6 text-center">
                 <small>Financing amount: {{ this.financingAmount.toFixed(2) }} </small><br>

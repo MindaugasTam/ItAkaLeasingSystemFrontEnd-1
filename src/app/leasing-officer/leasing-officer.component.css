@@ -6,3 +6,21 @@
 
 td {cursor: pointer;}
 .card{width: 600px;}
+
+.tableHeaderText {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  padding: 20px 0px;
+  color: #fff;
+  border-radius: 5px 5px 0px 0px;
+  background: #546e7a;
+  margin-bottom: 15px;
+}
+
+.close {
+  margin-right: 5px;
+  margin-top: 3px;
+  color: #fff;
+}
+
+#report-pop{min-width: 800px;}
